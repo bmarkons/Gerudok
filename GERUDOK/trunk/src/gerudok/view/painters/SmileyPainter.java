@@ -20,8 +20,6 @@ public class SmileyPainter extends ElementPainter {
 	@Override
 	public void paint(Graphics2D g) {
 		Point position = this.element.getPosition();
-		// Color color = this.element.getColor();
-
 		/*
 		 * Iscrtati Smajlija. Polje position predstavlja referentu poziciju na
 		 * kojoj treba izvrsiti iscrtavanje. Polje color predstavlja boju koju
@@ -43,8 +41,6 @@ public class SmileyPainter extends ElementPainter {
 		Ellipse2D doko = new Ellipse2D.Double(x + 80, y + 25, 20, 20);
 		g.fill(loko);
 		g.fill(doko);
-		// g.draw(new Line2D.Double(position.getX(), position.getY(),
-		// position.getX() + 50, position.getY() - 50));
 		QuadCurve2D smile = new QuadCurve2D.Double(x + 15, y + 70, 
 				x + 65, y+95,
 				x + 110, y + 70);

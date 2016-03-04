@@ -24,11 +24,6 @@ public class TreeMouseListener extends MouseAdapter {
 		TreePopUp popup = tree.getPopUp();
 
 		if (SwingUtilities.isRightMouseButton(e)) {
-			// JTreeGerudok tree = MainFrameGerudok.getInstance().getTree();
-			// TreePath path = tree.getPathForLocation(e.getX(), e.getY());
-			// Object node = null;
-			// TreePopUp popup = tree.getPopUp();
-
 			if (path == null) {
 				popup.disableAll();
 			} else {

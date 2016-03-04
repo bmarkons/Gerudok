@@ -17,12 +17,11 @@ public class AddCommand extends Command {
 	@Override
 	public void doCommand() {
 		model.addGraphicSlotElement(element);
-
 	}
 
 	@Override
 	public void undoCommand() {
-		model.removeElement(element);
+		model.removeGraphicSlotElement(element);
 	}
 
 }

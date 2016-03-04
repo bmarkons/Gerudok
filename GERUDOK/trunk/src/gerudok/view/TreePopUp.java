@@ -8,10 +8,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 public class TreePopUp extends JPopupMenu {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JMenuItem Rename;
 	private JMenuItem Open;
 	private JMenuItem Delete;

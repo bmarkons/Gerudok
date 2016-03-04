@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
 
 	@Override
 	public void doCommand() {
-		model.removeElement(element);
+		model.removeGraphicSlotElement(element);
 	}
 
 	@Override

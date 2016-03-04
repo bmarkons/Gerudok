@@ -1,6 +1,5 @@
 package gerudok.model;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.Enumeration;
@@ -16,7 +15,6 @@ public class GraphicSlotElement implements MutableTreeNode, Serializable {
 	SlotGraphic parent = null;
 	String name = null;
 	Point position;
-	Color color = Color.BLUE;
 	ElementPainter painter = null;
 
 	public GraphicSlotElement(SlotGraphic parent, Point position) {
@@ -42,14 +40,6 @@ public class GraphicSlotElement implements MutableTreeNode, Serializable {
 
 	public void setPosition(Point position) {
 		this.position = position;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
 	}
 
 	public ElementPainter getPainter() {

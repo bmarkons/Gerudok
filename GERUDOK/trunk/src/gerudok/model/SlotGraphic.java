@@ -12,67 +12,76 @@ import gerudok.view.SlotView;
 public class SlotGraphic extends Slot {
 	private static final long serialVersionUID = -5018847687408131521L;
 
-	ArrayList<GraphicSlotElement> elements = new ArrayList<GraphicSlotElement>();
-	
+	ArrayList<GraphicSlotElement> graphicElements = new ArrayList<GraphicSlotElement>();
+
 	public SlotGraphic(Page parent) {
 		super(parent);
 	}
-	
-	public ArrayList<GraphicSlotElement> getElements(){
-		return elements;
+
+	public ArrayList<GraphicSlotElement> getElements() {
+		return graphicElements;
 	}
-	
-	public void addGraphicSlotElement(GraphicSlotElement element){
-		element.setName(element.getName() + (elements.size()+1));
-		elements.add(element);
+
+	public void addGraphicSlotElement(GraphicSlotElement element) {
+
+		element.setName(element.getName() + (graphicElements.size() + 1));
+		graphicElements.add(element);
+
+		// Dogodila se promena u slotu - obavestiti stranicu koja ga sadrzi
 		slotChanged();
+
+		//Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg slotView-a
+		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+		this.slotView.repaint();
+
+	}
+
+	public void removeGraphicSlotElement(GraphicSlotElement element) {
+		
+		graphicElements.remove(element);
+		
+		// Dogodila se promena u slotu - obavestiti stranicu koja ga sadrzi
+		slotChanged();
+		
+		//Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg slotView-a
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 		this.slotView.repaint();
 	}
-	
-	public void removeElement(GraphicSlotElement element) {
-		elements.remove(element);
-		slotChanged();
-		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-		this.slotView.repaint();
-	}
-	
-	public Object readResolve(){
+
+	public Object readResolve() {
 		slotView = new SlotView(this);
 		addObserver(parent);
 		return this;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Enumeration<GraphicSlotElement> children() {
-		return (Enumeration<GraphicSlotElement>) elements;
+		return (Enumeration<GraphicSlotElement>) graphicElements;
 	}
-	
+
 	@Override
 	public boolean getAllowsChildren() {
 		return true;
 	}
-	
+
 	@Override
 	public TreeNode getChildAt(int childIndex) {
-		return elements.get(childIndex);
+		return graphicElements.get(childIndex);
 	}
-	
+
 	@Override
 	public int getChildCount() {
-		return elements.size();
+		return graphicElements.size();
 	}
-	
+
 	@Override
 	public int getIndex(TreeNode node) {
-		return elements.indexOf(node);
+		return graphicElements.indexOf(node);
 	}
-	
+
 	@Override
 	public boolean isLeaf() {
 		return false;
 	}
-
-	
 }

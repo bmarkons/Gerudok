@@ -18,8 +18,6 @@ public class StarPainter extends ElementPainter {
 	@Override
 	public void paint(Graphics2D g) {
 		Point position = this.element.getPosition();
-		Color color = this.element.getColor();
-
 		/*
 		 * Iscrtati zvezdu. Polje position predstavlja referentu poziciju na
 		 * kojoj treba izvrsiti iscrtavanje. Polje color predstavlja boju koju
@@ -29,11 +27,9 @@ public class StarPainter extends ElementPainter {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g.setColor(color);
+		g.setColor(Color.BLUE);
 		double x = position.getX();
 		double y = position.getY();
-		// g.draw(new Line2D.Double(position.getX(), position.getY(),
-		// position.getX() + 50, position.getY() + 50));
 		double xPoints[] = { x + 55, x + 67, x + 109, x + 73, x + 83, x + 55,
 				x + 27, x + 37, x + 1, x + 43 };
 

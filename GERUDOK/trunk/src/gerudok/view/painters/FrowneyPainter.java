@@ -19,19 +19,14 @@ public class FrowneyPainter extends ElementPainter {
 	@Override
 	public void paint(Graphics2D g) {
 		Point position = this.element.getPosition();
-		// Color color = this.element.getColor();
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-
 		/*
 		 * Iscrtati tuznog smajlija. Polje position predstavlja referentu
 		 * poziciju na kojoj treba izvrsiti iscrtavanje. Polje color predstavlja
 		 * boju koju treba koristiti. Donji kod, koji iscrtava liniju, zameniti
 		 * novim kodom koji iscrtava tuznog smajlija.
 		 */
-		// g.setColor(color);
-		// g.draw(new Line2D.Double(position.getX(), position.getY(),
-		// position.getX() + 50, position.getY()));
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(Color.YELLOW);
 		double x = position.getX();
 		double y = position.getY();

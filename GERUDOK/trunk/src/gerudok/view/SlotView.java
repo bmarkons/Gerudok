@@ -28,7 +28,6 @@ import javax.swing.JToolBar;
 
 import gerudok.actions.CommandRedoAction;
 import gerudok.actions.CommandUndoAction;
-import gerudok.comands.CommandManager;
 import gerudok.model.GraphicSlotElement;
 import gerudok.model.Slot;
 import gerudok.model.SlotGraphic;
@@ -43,7 +42,6 @@ public class SlotView extends JPanel implements FocusListener, MouseListener, Ac
 		GRAPHIC, TEXT
 	};
 
-	private CommandManager commandManager = new CommandManager();
 	Slot slot;
 	String name = null;
 	SlotType type = null;
@@ -89,14 +87,6 @@ public class SlotView extends JPanel implements FocusListener, MouseListener, Ac
 		}
 	}
 
-	public CommandManager getCommandManager() {
-		return commandManager;
-	}
-
-	public void setCommandManager(CommandManager commandManager) {
-		this.commandManager = commandManager;
-	}
-
 	public Slot getSlot() {
 		return slot;
 	}
@@ -140,7 +130,6 @@ public class SlotView extends JPanel implements FocusListener, MouseListener, Ac
 		if (type == SlotType.GRAPHIC) {
 			// Ukoliko je graficki slot dodaj odredjeni element
 			stateManager.getCurrentState().mouseClicked(e);
-			// repaint();
 		}
 	}
 
@@ -186,7 +175,6 @@ public class SlotView extends JPanel implements FocusListener, MouseListener, Ac
 				painter.paint(g2);
 			}
 		}
-
 	}
 
 	public class TextSlotToolbar extends JToolBar {
@@ -199,40 +187,16 @@ public class SlotView extends JPanel implements FocusListener, MouseListener, Ac
 			JButton bold = new JButton();
 			bold.setToolTipText("Bold Text");
 			bold.setIcon(new ImageIcon("images/toolbar_slotview/bold.jpg"));
-			bold.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
-
-				}
-			});
 			add(bold);
 
 			JButton italic = new JButton();
 			italic.setToolTipText("Italic Text");
 			italic.setIcon(new ImageIcon("images/toolbar_slotview/italic.jpg"));
-			italic.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
-
-				}
-			});
 			add(italic);
 
 			JButton underline = new JButton();
 			underline.setToolTipText("Underline Text");
 			underline.setIcon(new ImageIcon("images/toolbar_slotview/underline.jpg"));
-			underline.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
-
-				}
-			});
 			add(underline);
 		}
 
