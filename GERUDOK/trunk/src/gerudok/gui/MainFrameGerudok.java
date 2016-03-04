@@ -29,7 +29,6 @@ public class MainFrameGerudok extends JFrame {
 	MenuBarGerudok menuBar = null;
 	StatusBarGerudok statusBar = null;
 	ToolBarGerudok toolBar = null;
-	//CommandManager mCommandManager;
 
 	private MainFrameGerudok() {
 		setTitle("GeRuDok T1.1");
@@ -114,10 +113,4 @@ public class MainFrameGerudok extends JFrame {
 	public ToolBarGerudok getToolBar() {
 		return toolBar;
 	}
-
-//	public CommandManager getCommandManager() {
-//		return this.mCommandManager;
-//	}
-	
-
 }
