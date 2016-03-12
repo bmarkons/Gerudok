@@ -1,6 +1,10 @@
 package gerudok.view;
 
+import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Project;
+
+import java.awt.Dimension;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
@@ -10,24 +14,40 @@ public class ProjectView extends JInternalFrame {
 
 	private static final long serialVersionUID = -1223897253460221963L;
 
-	Project project;
-	static int openFrameCount = 0;
-	static final int xOffset = 30, yOffset = 30;
-	JTabbedPane tabPane;
+	private static int xStart = 20;
+	private static int yStart = 20;
+	private static int x = xStart;
+	private static int y = yStart;
+	
+	private Project project;
+	private JTabbedPane tabPane;
 
 	public ProjectView(String title) {
 
-		super("", true, true, true, true);
+		super(title, true, true, true, true);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		
-		this.setSize(1200, 600);
-		this.title = title;
-		++openFrameCount;
-		setLocation(xOffset * openFrameCount, yOffset * openFrameCount);
+		Dimension d = MainFrameGerudok.getInstance().getSize();
+		this.setSize(d.width / 2, 2 * d.height / 3);
+
 		ImageIcon image = new ImageIcon("images/tree/treeproj.png");
-		setFrameIcon(image);
+		setFrameIcon(new ImageIcon(image.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH)));
+		
 		tabPane = new JTabbedPane();
 		add(tabPane);
+		
+		setLocation(x,y);
+		int maxY = MainFrameGerudok.getInstance().getHeight();
+		
+		//Algoritam za određivanje pozicije prozora projekta nakon što izađe sa površine ekrana prilikom dodavanja
+		if (d.height / 2 + y + 20 < maxY) {
+			y += 40;
+			x += 40;
+		} else {
+			xStart += 40;
+			y = yStart;
+			x = xStart + 40;
+		}
 	}
 	
 	
