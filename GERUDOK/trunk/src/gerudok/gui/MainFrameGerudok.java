@@ -41,7 +41,7 @@ public class MainFrameGerudok extends JFrame {
 		setLocationRelativeTo(null);
 
 		// Postavljanje ikone
-		Image img = kit.getImage("/images/logo.png");
+		Image img = kit.getImage("images/logo.png");
 		setIconImage(img);
 
 		// dodavanje komponenti prozora
