@@ -5,7 +5,7 @@ import gerudok.view.SlotView;
 public class SlotText extends Slot {
 	private static final long serialVersionUID = 3641546233772099557L;
 
-	String text = null;
+	private String text = null;
 	
 	public SlotText(Page parent) {
 		super(parent);

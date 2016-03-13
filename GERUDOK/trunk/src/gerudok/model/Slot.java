@@ -10,7 +10,7 @@ import javax.swing.tree.TreeNode;
 import gerudok.comands.CommandManager;
 import gerudok.view.SlotView;
 
-public class Slot extends Observable implements TreeNode, Serializable, Observer {
+public abstract class Slot extends Observable implements TreeNode, Serializable, Observer {
 	private static final long serialVersionUID = 3756092790397970680L;
 
 	Page parent = null;

@@ -15,12 +15,12 @@ public class StatusBarGerudok extends JPanel {
 	public StatusBarGerudok() {
 		super(new BorderLayout());
 
-		setBackground(Color.decode("#bbbbbb"));
+		//setBackground(Color.decode("#bbbbbb"));
 		setPreferredSize(new Dimension(200, 20));
 
 		JLabel status1 = new JLabel("Your application is running. ");
 		JLabel status2 = new JLabel("Language: English", SwingConstants.CENTER);
-		JLabel status3 = new JLabel(" Ready");
+		JLabel status3 = new JLabel("Ready");
 
 		JSeparator sep = new JSeparator(JSeparator.HORIZONTAL);
 

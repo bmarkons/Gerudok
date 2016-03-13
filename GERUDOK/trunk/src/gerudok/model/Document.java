@@ -6,11 +6,12 @@ import java.util.Enumeration;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.view.DocumentView;
 
-public class Document extends Observable implements TreeNode, Serializable, Observer {
+public class Document extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = 3563415829958763008L;
 
 	Project parent = null;
@@ -119,5 +120,41 @@ public class Document extends Observable implements TreeNode, Serializable, Obse
 		// Prosledjuje obavestenje o promeni ka parent-u
 		setChanged();
 		notifyObservers();
+	}
+
+	@Override
+	public void insert(MutableTreeNode child, int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(MutableTreeNode node) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setUserObject(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFromParent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setParent(MutableTreeNode newParent) {
+		// TODO Auto-generated method stub
+		
 	}
 }

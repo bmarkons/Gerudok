@@ -4,7 +4,7 @@ import javax.swing.UIManager;
 
 import gerudok.gui.MainFrameGerudok;
 
-public class MyApplicationGerudok {
+public class GerudokMain {
 
 	public static void main(String[] args) {
 		try {

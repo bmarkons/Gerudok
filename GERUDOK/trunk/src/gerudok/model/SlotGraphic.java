@@ -12,7 +12,7 @@ import gerudok.view.SlotView;
 public class SlotGraphic extends Slot {
 	private static final long serialVersionUID = -5018847687408131521L;
 
-	ArrayList<GraphicSlotElement> graphicElements = new ArrayList<GraphicSlotElement>();
+	private ArrayList<GraphicSlotElement> graphicElements = new ArrayList<GraphicSlotElement>();
 
 	public SlotGraphic(Page parent) {
 		super(parent);

@@ -257,14 +257,7 @@ public class MenuBarGerudok extends JMenuBar {
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
 		// dodavanje podmenija i menuitem-a
-		JMenuItem about = new JMenuItem("About GeRuDok");
-		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
-				ActionEvent.ALT_MASK));
-		about.setMnemonic(KeyEvent.VK_A);
-		ImageIcon iconabout = new ImageIcon("images/menu/about.png");
-		about.setIcon(iconabout);
-		about.addActionListener(new AboutAction());
-		help.add(about);
+		help.add(new AboutAction());
 
 		add(file);
 		add(project);

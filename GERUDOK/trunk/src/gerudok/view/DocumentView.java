@@ -7,9 +7,9 @@ import gerudok.model.Document;
 public class DocumentView extends JScrollPane {
 	private static final long serialVersionUID = -1537590242534111512L;
 
-	String name = "";
-	Document document = null;
-	DocumentPanel panel;
+	private String name = "";
+	private Document document = null;
+	private DocumentPanel panel;
 
 	public DocumentView(String name) {
 		super();

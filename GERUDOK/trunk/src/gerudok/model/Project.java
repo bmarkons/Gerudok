@@ -8,12 +8,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.SwingUtilities;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.gui.MainFrameGerudok;
 import gerudok.view.ProjectView;
 
-public class Project extends Observable implements TreeNode, Serializable, Observer {
+public class Project extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = -8713701240302899388L;
 
 	Workspace parent = null;
@@ -141,7 +142,7 @@ public class Project extends Observable implements TreeNode, Serializable, Obser
 
 	@Override
 	public boolean isLeaf() {
-		return false;
+		return this.documents.size() == 0;
 	}
 
 	@Override
@@ -149,5 +150,36 @@ public class Project extends Observable implements TreeNode, Serializable, Obser
 		if (!this.projectModified) {
 			this.setProjectModified(true);
 		}
+	}
+
+	@Override
+	public void insert(MutableTreeNode child, int index) {
+		this.projectModified = true;
+		this.documents.add(index, (Document) child);
+	}
+
+	@Override
+	public void remove(int index) {
+		this.projectModified = true;
+		this.documents.remove(index);
+	}
+
+	@Override
+	public void remove(MutableTreeNode node) {
+		this.projectModified = true;
+		this.documents.remove(node);
+	}
+
+	@Override
+	public void setUserObject(Object object) {
+	}
+
+	@Override
+	public void removeFromParent() {	
+	}
+
+	@Override
+	public void setParent(MutableTreeNode newParent) {
+		this.parent = (Workspace) newParent;
 	}
 }

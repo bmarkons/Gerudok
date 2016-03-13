@@ -129,11 +129,12 @@ public class ToolBarGerudok extends JToolBar {
 
 		addSeparator();
 
-		JButton aboutBtn = new JButton();
-		aboutBtn.setToolTipText("About GeRuDok (ALT+A)");
-		aboutBtn.setIcon(new ImageIcon("images/toolbar/about.png"));
-		aboutBtn.addActionListener(new AboutAction());
-		add(aboutBtn);
-
+		//JButton aboutBtn = new JButton();
+		//aboutBtn.setToolTipText("About GeRuDok (ALT+A)");
+		//aboutBtn.setIcon(new ImageIcon("images/toolbar/about.png"));
+		//aboutBtn.addActionListener(new AboutAction());
+		//add(aboutBtn);
+		add(new AboutAction());
+		
 	}
 }

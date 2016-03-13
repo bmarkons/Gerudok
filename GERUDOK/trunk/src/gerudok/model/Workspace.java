@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-public class Workspace implements TreeNode, Serializable {
+public class Workspace extends DefaultMutableTreeNode implements TreeNode, Serializable {
 	private static final long serialVersionUID = -7676203044336567301L;
-	
-	String name = "DefaultWorkspace";
+
+	String name = "Workspace";
 	private ArrayList<Project> projects = new ArrayList<Project>();
 
 	public Workspace() {
@@ -21,7 +22,7 @@ public class Workspace implements TreeNode, Serializable {
 		projects.add(project);
 		if (project.getName() == null)
 			project.setName("Project - " + projects.size());
-		if(project.getProjectFile() == null){
+		if (project.getProjectFile() == null) {
 			project.setProjectModified(true);
 		}
 	}
@@ -75,6 +76,6 @@ public class Workspace implements TreeNode, Serializable {
 
 	@Override
 	public boolean isLeaf() {
-		return false;
+		return this.projects.size() == 0;
 	}
 }
