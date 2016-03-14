@@ -1,8 +1,9 @@
 package gerudok.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import gerudok.gui.MainFrameGerudok;
@@ -11,8 +12,17 @@ import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.view.DocumentView;
 
-public class DeletePageAction implements ActionListener {
+@SuppressWarnings("serial")
+public class DeletePageAction extends AbstractActionIcon {
+	
+	public DeletePageAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.SHIFT_MASK));
+		putValue(SMALL_ICON, iconGetter("/toolbar/delpage.png"));
+		putValue(NAME, "Delete page");
+		putValue(SHORT_DESCRIPTION, "Delete page (SHIFT+P)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Brisanje selektovane stranice

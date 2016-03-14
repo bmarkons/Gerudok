@@ -1,9 +1,10 @@
 package gerudok.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import gerudok.gui.MainFrameGerudok;
@@ -12,7 +13,17 @@ import gerudok.model.Project;
 import gerudok.model.Workspace;
 import gerudok.view.ProjectView;
 
-public class DeleteProjectAction implements ActionListener {
+@SuppressWarnings("serial")
+public class DeleteProjectAction extends AbstractActionIcon {
+	
+	public DeleteProjectAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.SHIFT_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_P);
+		putValue(SMALL_ICON, iconGetter("/menu/delproj.png"));
+		putValue(NAME, "Delete project");
+		putValue(SHORT_DESCRIPTION, "Delete project (SHIFT+N)");
+
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

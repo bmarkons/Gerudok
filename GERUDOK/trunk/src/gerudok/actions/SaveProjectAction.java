@@ -1,18 +1,30 @@
 package gerudok.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import javax.swing.KeyStroke;
+
 import gerudok.gui.MainFrameGerudok;
 import gerudok.gui.windowParts.JTreeGerudok;
 import gerudok.model.Project;
 
-public class SaveProjectAction implements ActionListener {
+@SuppressWarnings("serial")
+public class SaveProjectAction extends AbstractActionIcon {
+
+	public SaveProjectAction() {
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		putValue(SMALL_ICON, iconGetter("/menu/save.png"));
+		putValue(NAME, "Save");
+		putValue(SHORT_DESCRIPTION, "Save (CTRL+S)");
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -28,12 +40,12 @@ public class SaveProjectAction implements ActionListener {
 				new SaveAsProjectAction().actionPerformed(e);
 				return;
 			}
-			
-			if(!project.isProjectModified())
+
+			if (!project.isProjectModified())
 				return;
 
 			project.setProjectModified(false);
-			
+
 			// Zapisivanje projekta u datoteku
 			ObjectOutputStream os;
 			try {

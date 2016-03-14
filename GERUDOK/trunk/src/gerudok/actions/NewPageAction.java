@@ -1,8 +1,9 @@
 package gerudok.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
@@ -13,8 +14,18 @@ import gerudok.model.Page;
 import gerudok.view.DocumentView;
 import gerudok.view.PageView;
 
-public class NewPageAction implements ActionListener {
+@SuppressWarnings("serial")
+public class NewPageAction extends AbstractActionIcon {
+	
+	public NewPageAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_P);
+		putValue(SMALL_ICON, iconGetter("/toolbar/addpage.png"));
+		putValue(NAME, "New page");
+		putValue(SHORT_DESCRIPTION, "New page (CTRL+P)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Dodavanje nove stranice u selektovani dokument

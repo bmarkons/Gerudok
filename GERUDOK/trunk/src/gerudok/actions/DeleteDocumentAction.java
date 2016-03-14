@@ -1,8 +1,9 @@
 package gerudok.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import gerudok.gui.MainFrameGerudok;
@@ -12,8 +13,17 @@ import gerudok.model.Project;
 import gerudok.view.DocumentView;
 import gerudok.view.ProjectView;
 
-public class DeleteDocumentAction implements ActionListener {
+@SuppressWarnings("serial")
+public class DeleteDocumentAction extends AbstractActionIcon {
+	
+	public DeleteDocumentAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.SHIFT_MASK));
+		putValue(SMALL_ICON, iconGetter("/toolbar/deldoc.png"));
+		putValue(NAME, "Delete document");
+		putValue(SHORT_DESCRIPTION, "Delete document (SHIFT+D)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Brisanje selektovanog dokumenta

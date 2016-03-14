@@ -4,14 +4,24 @@ import gerudok.gui.MainFrameGerudok;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.KeyStroke;
 
-public class TileHorizontallyAction implements ActionListener {
+@SuppressWarnings("serial")
+public class TileHorizontallyAction extends AbstractActionIcon {
+	
+	public TileHorizontallyAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
+		putValue(SMALL_ICON, iconGetter("/toolbar/th.png"));
+		putValue(NAME, "Tile horizontally");
+		putValue(SHORT_DESCRIPTION, "Tile horizontally (ALT+C)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JDesktopPane desktop = MainFrameGerudok.getInstance().getDesktopPane();

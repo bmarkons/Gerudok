@@ -2,8 +2,10 @@ package gerudok.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JDesktopPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
@@ -13,8 +15,18 @@ import gerudok.model.Project;
 import gerudok.model.Workspace;
 import gerudok.view.ProjectView;
 
-public class NewProjectAction implements ActionListener {
+@SuppressWarnings("serial")
+public class NewProjectAction extends AbstractActionIcon {
+	
+	public NewProjectAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
+		putValue(SMALL_ICON, iconGetter("/toolbar/addproj.png"));
+		putValue(NAME, "New project");
+		putValue(SHORT_DESCRIPTION, "New project (CTRL+N)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// dodavanje novog projekta u JTree

@@ -14,7 +14,7 @@ import gerudok.view.ProjectView;
 import gerudok.view.SlotView;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,11 +23,22 @@ import java.io.ObjectInputStream;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
-public class OpenProjectAction implements ActionListener {
+@SuppressWarnings("serial")
+public class OpenProjectAction extends AbstractActionIcon {
+	
+	public OpenProjectAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_P);
+		putValue(SMALL_ICON, iconGetter("/toolbar/openproj.png"));
+		putValue(NAME, "Open");
+		putValue(SHORT_DESCRIPTION, "Open project (CTRL+O)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		

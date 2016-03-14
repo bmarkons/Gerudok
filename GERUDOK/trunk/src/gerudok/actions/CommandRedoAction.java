@@ -3,11 +3,12 @@ package gerudok.actions;
 import gerudok.model.SlotGraphic;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
-import javax.swing.AbstractAction;
+import javax.swing.KeyStroke;
 
-public class CommandRedoAction extends AbstractAction implements Serializable {
+public class CommandRedoAction extends AbstractActionIcon implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	SlotGraphic slot;
@@ -17,7 +18,10 @@ public class CommandRedoAction extends AbstractAction implements Serializable {
 	}
 
 	public CommandRedoAction() {
-		// TODO Auto-generated constructor stub
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+		putValue(SMALL_ICON, iconGetter("/menu/redo.png"));
+		putValue(NAME, "Redo");
 	}
 
 	@Override

@@ -4,18 +4,30 @@ import gerudok.gui.MainFrameGerudok;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.KeyStroke;
 
-public class GridProjectAction implements ActionListener {
+@SuppressWarnings("serial")
+public class GridProjectAction extends AbstractActionIcon {
+
+	public GridProjectAction() {
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.ALT_MASK));
+		putValue(SMALL_ICON, iconGetter("/toolbar/grid.png"));
+		putValue(NAME, "Grid layout");
+		putValue(SHORT_DESCRIPTION, "Grid layout (ALT+G)");
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JDesktopPane desktop = MainFrameGerudok.getInstance().getDesktopPane();
-		JInternalFrame[] frames = MainFrameGerudok.getInstance().getDesktopPane().getAllFrames();
+		JInternalFrame[] frames = MainFrameGerudok.getInstance()
+				.getDesktopPane().getAllFrames();
 		int count = frames.length;
 		if (count == 0)
 			return;

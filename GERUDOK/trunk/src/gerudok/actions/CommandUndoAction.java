@@ -2,13 +2,15 @@ package gerudok.actions;
 
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
-import javax.swing.AbstractAction;
+import javax.swing.KeyStroke;
 
 import gerudok.model.SlotGraphic;
 
-public class CommandUndoAction extends AbstractAction implements Serializable {
+public class CommandUndoAction extends AbstractActionIcon implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	SlotGraphic slot;
@@ -18,7 +20,10 @@ public class CommandUndoAction extends AbstractAction implements Serializable {
 	}
 
 	public CommandUndoAction() {
-		// TODO Auto-generated constructor stub
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+		putValue(SMALL_ICON, iconGetter("/menu/undo.png"));
+		putValue(NAME, "Undo");
 	}
 
 	@Override

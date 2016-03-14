@@ -13,14 +13,23 @@ import gerudok.view.ProjectView;
 import gerudok.view.SlotView;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 
-import javax.swing.AbstractAction;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
-public class DeleteNode extends AbstractAction {
+public class DeleteNode extends AbstractActionIcon {
+	
+	public DeleteNode() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
+		putValue(SMALL_ICON, iconGetter("/menu/deleteAll.png"));
+		putValue(NAME, "Universal delete");
+		putValue(SHORT_DESCRIPTION, "Universal delete (DELETE)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JTreeGerudok tree = MainFrameGerudok.getInstance().getTree();

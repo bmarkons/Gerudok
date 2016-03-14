@@ -1,8 +1,9 @@
 package gerudok.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
@@ -12,8 +13,18 @@ import gerudok.model.Document;
 import gerudok.model.Project;
 import gerudok.view.DocumentView;
 
-public class NewDocumentAction implements ActionListener {
+@SuppressWarnings("serial")
+public class NewDocumentAction extends AbstractActionIcon {
 
+	public NewDocumentAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
+		putValue(SMALL_ICON, iconGetter("/toolbar/adddoc.png"));
+		putValue(NAME, "New document");
+		putValue(SHORT_DESCRIPTION, "New document (CTRL+D)");
+
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Dodavanje novog dokumenta u selektovani projekat

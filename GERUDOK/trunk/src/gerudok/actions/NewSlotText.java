@@ -1,8 +1,9 @@
 package gerudok.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
@@ -13,8 +14,18 @@ import gerudok.model.SlotText;
 import gerudok.view.PageView;
 import gerudok.view.SlotView;
 
-public class NewSlotText implements ActionListener {
+@SuppressWarnings("serial")
+public class NewSlotText extends AbstractActionIcon {
+	
+	public NewSlotText() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_T);
+		putValue(SMALL_ICON, iconGetter("/toolbar/newtxt.png"));
+		putValue(NAME, "New text slot");
+		putValue(SHORT_DESCRIPTION, "New text slot (CTRL+T)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Dodavanje novog tekstualnog slota u selektovanu stranicu

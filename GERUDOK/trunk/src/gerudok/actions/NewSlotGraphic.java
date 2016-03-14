@@ -1,8 +1,9 @@
 package gerudok.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
@@ -13,8 +14,18 @@ import gerudok.model.SlotGraphic;
 import gerudok.view.PageView;
 import gerudok.view.SlotView;
 
-public class NewSlotGraphic implements ActionListener {
+@SuppressWarnings("serial")
+public class NewSlotGraphic extends AbstractActionIcon {
+	
+	public NewSlotGraphic() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_G);
+		putValue(SMALL_ICON, iconGetter("/toolbar/newgslot.png"));
+		putValue(NAME, "New graphic slot");
+		putValue(SHORT_DESCRIPTION, "New graphic slot (CTRL+G)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Dodavanje novog grafickog slota u selektovanu stranicu

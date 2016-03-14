@@ -4,14 +4,24 @@ import gerudok.gui.MainFrameGerudok;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.KeyStroke;
 
-public class TileVerticallyAction implements ActionListener {
+@SuppressWarnings("serial")
+public class TileVerticallyAction extends AbstractActionIcon {
+	
+	public TileVerticallyAction() {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
+		putValue(SMALL_ICON, iconGetter("/toolbar/tv.png"));
+		putValue(NAME, "Tile vertically");
+		putValue(SHORT_DESCRIPTION, "Tile vertically (ALT+V)");
 
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JDesktopPane desktop = MainFrameGerudok.getInstance().getDesktopPane();
