@@ -17,13 +17,13 @@ import gerudok.view.ProjectView;
 public class Project extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = -8713701240302899388L;
 
-	Workspace parent = null;
-	String name = null;
-	ArrayList<Document> documents = new ArrayList<Document>();
-	String documentsNum = "";
-	transient ProjectView projectView = null;
-	File projectFile = null;
-	boolean projectModified;
+	private Workspace parent = null;
+	private String name = null;
+	private ArrayList<Document> documents = new ArrayList<Document>();
+	private String documentsNum = "";
+	private transient ProjectView projectView = null;
+	private File projectFile = null;
+	private boolean projectModified;
 
 	public Project() {
 		super();

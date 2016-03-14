@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import gerudok.gui.MainFrameGerudok;
 import gerudok.model.SlotGraphic;
 
 import java.awt.event.ActionEvent;
@@ -26,7 +27,14 @@ public class CommandRedoAction extends AbstractActionIcon implements Serializabl
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		slot.getCommandManager().doCommand();
+		
+		if (MainFrameGerudok.getInstance().getTree().getSelectionPath() != null)
+			if (MainFrameGerudok.getInstance().getTree().getSelectionPath()
+					.getLastPathComponent() instanceof SlotGraphic) {
+				slot = (SlotGraphic) MainFrameGerudok.getInstance().getTree().getSelectionPath().getLastPathComponent();
+				slot.getCommandManager().doCommand();
+			}
+		
 	}
 
 }
