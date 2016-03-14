@@ -6,8 +6,8 @@ import gerudok.view.SlotTextView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
-import javax.swing.JTextPane;
 
 public class SaveTextAction implements ActionListener {
 
@@ -21,7 +21,7 @@ public class SaveTextAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JTextPane textArea = ((SlotTextView) slot.getSlotView()).getTextArea();
+		JEditorPane textArea = ((SlotTextView) slot.getSlotView()).getTextArea();
 		String txt = textArea.getText();
 		slot.setText(txt);
 		JOptionPane.showMessageDialog(textArea, "Text saved!", slot.getName(), JOptionPane.INFORMATION_MESSAGE);

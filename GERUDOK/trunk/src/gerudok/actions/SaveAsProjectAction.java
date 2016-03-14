@@ -48,7 +48,11 @@ public class SaveAsProjectAction extends AbstractActionIcon {
 
 			project.setProjectModified(false);
 			project.setProjectFile(projectFile);
-
+			
+			if(!projectFile.getName().contains(".gpf")){
+				projectFile = new File (projectFile.getAbsolutePath() + ".gpf");
+			}
+			
 			// Snimanje projekta u izabrani fajl.
 			ObjectOutputStream os;
 			try {

@@ -6,6 +6,7 @@ import java.awt.event.FocusListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JToolBar;
@@ -30,6 +31,7 @@ public class SlotTextView extends SlotView {
 		add(scrollPane, BorderLayout.CENTER);
 		textArea.setContentType("text/html");
 		
+		
 		textArea.addFocusListener(new FocusListener() {
 			
 			@Override
@@ -53,7 +55,7 @@ public class SlotTextView extends SlotView {
 		add(toolbar, BorderLayout.EAST);
 	}
 
-	public JTextPane getTextArea() {
+	public JEditorPane getTextArea() {
 		return textArea;
 	}
 
@@ -82,6 +84,21 @@ public class SlotTextView extends SlotView {
 					"images/toolbar_slotview/underline.jpg"));
 			underline.addActionListener(new StyledEditorKit.UnderlineAction());
 			add(underline);
+			
+			//buduca implementacija velicine fonta
+//			JButton font = new JButton();
+//			font.setToolTipText("Font");
+//			font.setIcon(new ImageIcon(
+//					"images/toolbar_slotview/underline.jpg"));
+//			font.addActionListener(new ActionListener() {
+//				
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					new StyledEditorKit.FontSizeAction("myaction-", 20).actionPerformed(e);
+//					
+//				}
+//			});
+//			add(font);
 		}
 
 	}
