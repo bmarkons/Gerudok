@@ -7,7 +7,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.tree.TreeNode;
 
 import gerudok.gui.MainFrameGerudok;
-import gerudok.view.GraphicSlotView;
+import gerudok.view.SlotGraphicView;
 
 public class SlotGraphic extends Slot {
 	private static final long serialVersionUID = -5018847687408131521L;
@@ -49,7 +49,7 @@ public class SlotGraphic extends Slot {
 	}
 
 	public Object readResolve() {
-		slotView = new GraphicSlotView(this);
+		slotView = new SlotGraphicView(this);
 		addObserver(parent);
 		return this;
 	}

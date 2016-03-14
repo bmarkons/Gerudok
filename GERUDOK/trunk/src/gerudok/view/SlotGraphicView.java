@@ -29,14 +29,14 @@ import gerudok.model.SlotGraphic;
 import gerudok.statepattern.StateManager;
 import gerudok.view.painters.ElementPainter;
 
-public class GraphicSlotView extends SlotView implements FocusListener,
+public class SlotGraphicView extends SlotView implements FocusListener,
 		MouseListener {
 	private static final long serialVersionUID = -5207430261641543334L;
 
 	GraphicSlotToolbar toolBar = null;
 	StateManager stateManager = null;
 
-	public GraphicSlotView(Slot slot) {
+	public SlotGraphicView(Slot slot) {
 		super(slot);
 
 		addFocusListener(this);

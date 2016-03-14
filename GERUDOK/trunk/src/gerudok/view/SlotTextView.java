@@ -12,13 +12,13 @@ import gerudok.actions.SaveTextAction;
 import gerudok.model.Slot;
 import gerudok.model.SlotText;
 
-public class TextSlotView extends SlotView {
+public class SlotTextView extends SlotView {
 	private static final long serialVersionUID = 3150036223105443249L;
 
 	private JTextArea textArea = null;
 	private TextSlotToolbar toolbar = null;
 
-	public TextSlotView(Slot slot) {
+	public SlotTextView(Slot slot) {
 		super(slot);
 
 		// skrolabilni deo za tekst

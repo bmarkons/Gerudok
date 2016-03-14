@@ -1,6 +1,6 @@
 package gerudok.model;
 
-import gerudok.view.TextSlotView;
+import gerudok.view.SlotTextView;
 
 public class SlotText extends Slot {
 	private static final long serialVersionUID = 3641546233772099557L;
@@ -21,8 +21,8 @@ public class SlotText extends Slot {
 	}
 
 	public Object readResolve() {
-		slotView = new TextSlotView(this);
-		((TextSlotView) slotView).getTextArea().setText(this.text);
+		slotView = new SlotTextView(this);
+		((SlotTextView) slotView).getTextArea().setText(this.text);
 		addObserver(parent);
 		return this;
 	}

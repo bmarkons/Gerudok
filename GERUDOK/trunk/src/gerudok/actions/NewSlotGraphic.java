@@ -11,7 +11,7 @@ import gerudok.gui.MainFrameGerudok;
 import gerudok.gui.windowParts.JTreeGerudok;
 import gerudok.model.Page;
 import gerudok.model.SlotGraphic;
-import gerudok.view.GraphicSlotView;
+import gerudok.view.SlotGraphicView;
 import gerudok.view.PageView;
 
 @SuppressWarnings("serial")
@@ -40,7 +40,7 @@ public class NewSlotGraphic extends AbstractActionIcon {
 			SwingUtilities.updateComponentTreeUI(tree);
 
 			// Pravi novi SlotView i uvezuje se sa njim
-			GraphicSlotView slotView = new GraphicSlotView(slot);
+			SlotGraphicView slotView = new SlotGraphicView(slot);
 			slot.setSlotView(slotView);
 
 			// Prikaz stranice u koji se dodaje prikaz slota

@@ -12,7 +12,7 @@ import gerudok.gui.windowParts.JTreeGerudok;
 import gerudok.model.Page;
 import gerudok.model.SlotText;
 import gerudok.view.PageView;
-import gerudok.view.TextSlotView;
+import gerudok.view.SlotTextView;
 
 @SuppressWarnings("serial")
 public class NewSlotText extends AbstractActionIcon {
@@ -40,9 +40,8 @@ public class NewSlotText extends AbstractActionIcon {
 			SwingUtilities.updateComponentTreeUI(tree);
 
 			// Pravi novi SlotView i uvezuje se sa njim
-			TextSlotView slotView = new TextSlotView(slot);
+			SlotTextView slotView = new SlotTextView(slot);
 			slot.setSlotView(slotView);
-			System.out.println(slot.getSlotView().getName());
 
 			// Prikaz stranice u koji se dodaje prikaz slota
 			PageView pageView = page.getPageView();
