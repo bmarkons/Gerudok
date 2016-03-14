@@ -20,13 +20,14 @@ public class CascadeProjectAction extends AbstractActionIcon {
 		putValue(SHORT_DESCRIPTION, "Cascade horizontally (ALT+C)");
 
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 
-		JInternalFrame[] projects = MainFrameGerudok.getInstance().getDesktopPane().getAllFrames();
+		JInternalFrame[] projects = MainFrameGerudok.getInstance()
+				.getDesktopPane().getAllFrames();
 		int xStart = 20, yStart = 20, x = xStart, y = yStart,
-				// maxX = MainFrame.getInstance().getDesktopPane().getWidth(),
-				maxY = MainFrameGerudok.getInstance().getDesktopPane().getHeight();
+		// maxX = MainFrame.getInstance().getDesktopPane().getWidth(),
+		maxY = MainFrameGerudok.getInstance().getDesktopPane().getHeight();
 		Dimension d = MainFrameGerudok.getInstance().getDesktopPane().getSize();
 
 		for (int i = 0; i < projects.length; i++) {

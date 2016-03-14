@@ -1,12 +1,12 @@
 package gerudok.model;
 
-import gerudok.view.SlotView;
+import gerudok.view.TextSlotView;
 
 public class SlotText extends Slot {
 	private static final long serialVersionUID = 3641546233772099557L;
 
 	private String text = null;
-	
+
 	public SlotText(Page parent) {
 		super(parent);
 	}
@@ -19,10 +19,10 @@ public class SlotText extends Slot {
 		this.text = text;
 		slotChanged();
 	}
-	
-	public Object readResolve(){
-		slotView = new SlotView(this);
-		slotView.getTextArea().setText(this.text);
+
+	public Object readResolve() {
+		slotView = new TextSlotView(this);
+		((TextSlotView) slotView).getTextArea().setText(this.text);
 		addObserver(parent);
 		return this;
 	}
