@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import gerudok.actions.ActionManager;
 import gerudok.controller.JTreeControllerGerudok;
 import gerudok.gui.windowParts.JTreeGerudok;
 import gerudok.gui.windowParts.MenuBarGerudok;
@@ -23,12 +24,13 @@ public class MainFrameGerudok extends JFrame {
 	private static final long serialVersionUID = 2022795997717084907L;
 
 	private static MainFrameGerudok instance = null;
-
-	JTreeGerudok tree = null;
-	JDesktopPane desktopPane = null;
-	MenuBarGerudok menuBar = null;
-	StatusBarGerudok statusBar = null;
-	ToolBarGerudok toolBar = null;
+	
+	private ActionManager manager = new ActionManager();
+	private JTreeGerudok tree = null;
+	private JDesktopPane desktopPane = null;
+	private MenuBarGerudok menuBar = null;
+	private StatusBarGerudok statusBar = null;
+	private ToolBarGerudok toolBar = null;
 
 	private MainFrameGerudok() {
 		setTitle("GeRuDok T1.1");
@@ -112,5 +114,9 @@ public class MainFrameGerudok extends JFrame {
 
 	public ToolBarGerudok getToolBar() {
 		return toolBar;
+	}
+	
+	public ActionManager getActionManager() {
+		return manager;
 	}
 }
