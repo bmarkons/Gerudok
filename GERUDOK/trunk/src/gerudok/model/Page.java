@@ -14,10 +14,10 @@ import gerudok.view.PageView;
 public class Page extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = -8832891846966542402L;
 
-	Document parent = null;
-	String name = null;
-	ArrayList<Slot> slots = new ArrayList<Slot>();
-	String slotsNum = "";
+	private Document parent = null;
+	private String name = null;
+	private ArrayList<Slot> slots = new ArrayList<Slot>();
+	private String slotsNum = "";
 	transient PageView pageView = null;
 
 	public Page(Document parent) {

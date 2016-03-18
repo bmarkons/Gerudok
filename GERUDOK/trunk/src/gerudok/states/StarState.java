@@ -17,8 +17,8 @@ public class StarState extends State {
 	public void mouseClicked(MouseEvent e) {
 		// Dodavanje zvezde
 		Point point = e.getPoint();
-		slot.getCommandManager()
-				.addCommand(new AddCommand(slot, new StarElement(slot, point)));
+		getSlot().getCommandManager()
+				.addCommand(new AddCommand(getSlot(), new StarElement(getSlot(), point)));
 	}
 
 }

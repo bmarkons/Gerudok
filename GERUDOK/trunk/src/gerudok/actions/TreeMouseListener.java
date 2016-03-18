@@ -7,7 +7,7 @@ import gerudok.model.Page;
 import gerudok.model.Project;
 import gerudok.model.Slot;
 import gerudok.model.Workspace;
-import gerudok.view.TreePopUp;
+import gerudok.tree.view.TreePopUp;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

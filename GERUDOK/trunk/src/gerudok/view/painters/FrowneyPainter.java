@@ -18,7 +18,7 @@ public class FrowneyPainter extends ElementPainter {
 
 	@Override
 	public void paint(Graphics2D g) {
-		Point position = this.element.getPosition();
+		Point position = getElement().getPosition();
 		/*
 		 * Iscrtati tuznog smajlija. Polje position predstavlja referentu
 		 * poziciju na kojoj treba izvrsiti iscrtavanje. Polje color predstavlja

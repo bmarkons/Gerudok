@@ -17,8 +17,8 @@ import gerudok.gui.segments.StatusBarGerudok;
 import gerudok.gui.segments.ToolBarGerudok;
 import gerudok.model.JTreeModelGerudok;
 import gerudok.tree.listener.JTreeControllerGerudok;
+import gerudok.tree.view.TreeCellRendered;
 import gerudok.tree.view.TreeEditor;
-import gerudok.view.TreeCellRendered;
 
 public class MainFrameGerudok extends JFrame {
 	private static final long serialVersionUID = 2022795997717084907L;

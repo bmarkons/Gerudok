@@ -6,13 +6,29 @@ import gerudok.model.SlotGraphic;
 import gerudok.view.SlotView;
 
 public abstract class State{
-	SlotView view;
-	SlotGraphic slot;
+	private SlotView view;
+	private SlotGraphic slot;
 	
 	public State(SlotView view){
-		this.view = view;
-		this.slot = (SlotGraphic) view.getSlot();
+		this.setView(view);
+		this.setSlot((SlotGraphic) view.getSlot());
 	}
 	
 	public abstract void mouseClicked(MouseEvent e);
+
+	public SlotView getView() {
+		return view;
+	}
+
+	public void setView(SlotView view) {
+		this.view = view;
+	}
+
+	public SlotGraphic getSlot() {
+		return slot;
+	}
+
+	public void setSlot(SlotGraphic slot) {
+		this.slot = slot;
+	}
 }

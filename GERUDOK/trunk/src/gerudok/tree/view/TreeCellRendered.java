@@ -1,4 +1,4 @@
-package gerudok.view;
+package gerudok.tree.view;
 
 import gerudok.model.Page;
 import gerudok.model.Project;

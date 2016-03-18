@@ -13,10 +13,10 @@ import gerudok.view.SlotView;
 public abstract class Slot extends Observable implements TreeNode, Serializable, Observer {
 	private static final long serialVersionUID = 3756092790397970680L;
 
-	Page parent = null;
-	String name = null;
+	private Page parent = null;
+	private String name = null;
 	transient SlotView slotView = null;
-	CommandManager commandManager;
+	private CommandManager commandManager;
 
 	public Slot(Page parent) {
 		super();

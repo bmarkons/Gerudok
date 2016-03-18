@@ -1,7 +1,7 @@
 package gerudok.gui.segments;
 
 import gerudok.actions.TreeMouseListener;
-import gerudok.view.TreePopUp;
+import gerudok.tree.view.TreePopUp;
 
 import javax.swing.JTree;
 

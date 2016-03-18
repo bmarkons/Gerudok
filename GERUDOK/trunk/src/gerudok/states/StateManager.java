@@ -4,12 +4,12 @@ import gerudok.view.SlotView;
 
 public class StateManager {
 
-	State currentState;
+	private State currentState;
 
-	StarState starState;
-	SmileyState smileyState;
-	FrowneyState frowneyState;
-	SelectState selectState;
+	private StarState starState;
+	private SmileyState smileyState;
+	private FrowneyState frowneyState;
+	private SelectState selectState;
 
 	public StateManager(SlotView view) {
 		starState = new StarState(view);

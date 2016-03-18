@@ -34,8 +34,8 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 		MouseListener {
 	private static final long serialVersionUID = -5207430261641543334L;
 
-	GraphicSlotToolbar toolBar = null;
-	StateManager stateManager = null;
+	private GraphicSlotToolbar toolBar = null;
+	private StateManager stateManager = null;
 
 	public SlotGraphicView(Slot slot) {
 		super(slot);

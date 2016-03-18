@@ -17,7 +17,7 @@ public class FrowneyState extends State {
 	public void mouseClicked(MouseEvent e) {
 		// Dodavanje fraunija :(
 		Point point = e.getPoint();
-		slot.getCommandManager()
-				.addCommand(new AddCommand(slot, new FrowneyElement(slot, point)));
+		getSlot().getCommandManager()
+				.addCommand(new AddCommand(getSlot(), new FrowneyElement(getSlot(), point)));
 	}
 }

@@ -17,7 +17,7 @@ public class SmileyState extends State {
 	public void mouseClicked(MouseEvent e) {
 		// Dodavanje smajlija :)
 		Point point = e.getPoint();
-		slot.getCommandManager()
-				.addCommand(new AddCommand(slot, new SmileyElement(slot, point)));
+		getSlot().getCommandManager()
+				.addCommand(new AddCommand(getSlot(), new SmileyElement(getSlot(), point)));
 	}
 }

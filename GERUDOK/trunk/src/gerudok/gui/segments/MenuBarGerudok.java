@@ -1,31 +1,12 @@
 package gerudok.gui.segments;
 
-import gerudok.actions.AboutAction;
-import gerudok.actions.CascadeProjectAction;
-import gerudok.actions.DeleteNode;
-import gerudok.actions.GridProjectAction;
-import gerudok.actions.NewDocumentAction;
-import gerudok.actions.NewPageAction;
-import gerudok.actions.NewProjectAction;
-import gerudok.actions.NewSlotGraphic;
-import gerudok.actions.NewSlotText;
-import gerudok.actions.OpenProjectAction;
-import gerudok.actions.CommandRedoAction;
-import gerudok.actions.SaveAsProjectAction;
-import gerudok.actions.SaveProjectAction;
-import gerudok.actions.TileHorizontallyAction;
-import gerudok.actions.TileVerticallyAction;
-import gerudok.gui.MainFrameGerudok;
-import gerudok.actions.CommandUndoAction;
-
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
+
+import gerudok.gui.MainFrameGerudok;
 
 @SuppressWarnings("serial")
 public class MenuBarGerudok extends JMenuBar {
@@ -83,7 +64,7 @@ public class MenuBarGerudok extends JMenuBar {
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
 		// dodavanje podmenija i menuitem-a
-		help.add(new AboutAction());
+		help.add(MainFrameGerudok.getInstance().getActionManager().getAbout());
 
 		add(file);
 		add(project);

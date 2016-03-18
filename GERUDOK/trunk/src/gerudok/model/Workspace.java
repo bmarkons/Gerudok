@@ -10,7 +10,7 @@ import javax.swing.tree.TreeNode;
 public class Workspace extends Observable implements TreeNode, Serializable {
 	private static final long serialVersionUID = -7676203044336567301L;
 
-	String name = "Workspace";
+	private String name = "Workspace";
 	private ArrayList<Project> projects = new ArrayList<Project>();
 
 	public Workspace() {

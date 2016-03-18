@@ -50,7 +50,7 @@ public class SlotGraphic extends Slot {
 
 	public Object readResolve() {
 		slotView = new SlotGraphicView(this);
-		addObserver(parent);
+		addObserver((Page)getParent());
 		return this;
 	}
 

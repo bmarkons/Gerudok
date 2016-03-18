@@ -12,7 +12,7 @@ import net.miginfocom.swing.MigLayout;
 public class DocumentPanel extends JPanel implements Scrollable{
 	private static final long serialVersionUID = 7634404415396395048L;
 
-	ArrayList<PageView> pageViews = new ArrayList<PageView>();
+	private ArrayList<PageView> pageViews = new ArrayList<PageView>();
 
 	public DocumentPanel() {
 		super();
