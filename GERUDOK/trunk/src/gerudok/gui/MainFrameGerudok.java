@@ -103,7 +103,7 @@ public class MainFrameGerudok extends JFrame {
 		return tree;
 	}
 
-	public JDesktopPane getDesktopPane() {
+	public JDesktopPane getWorkspaceView() {
 		return workspaceView;
 	}
 

@@ -25,8 +25,8 @@ public class TileHorizontallyAction extends AbstractActionIcon {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		JDesktopPane desktop = MainFrameGerudok.getInstance().getDesktopPane();
-		JInternalFrame[] frames = MainFrameGerudok.getInstance().getDesktopPane().getAllFrames();
+		JDesktopPane desktop = MainFrameGerudok.getInstance().getWorkspaceView();
+		JInternalFrame[] frames = MainFrameGerudok.getInstance().getWorkspaceView().getAllFrames();
 
 		int count = frames.length;
 		if (count == 0)

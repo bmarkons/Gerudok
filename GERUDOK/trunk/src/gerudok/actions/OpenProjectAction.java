@@ -67,7 +67,7 @@ public class OpenProjectAction extends AbstractActionIcon {
 
 			if (project != null) {
 				JTree tree = MainFrameGerudok.getInstance().getTree();
-				JDesktopPane desktopPane = MainFrameGerudok.getInstance().getDesktopPane();
+				JDesktopPane desktopPane = MainFrameGerudok.getInstance().getWorkspaceView();
 
 				TreePath path = tree.getSelectionPath();
 				tree.expandPath(path);

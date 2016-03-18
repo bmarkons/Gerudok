@@ -25,11 +25,11 @@ public class CascadeProjectAction extends AbstractActionIcon {
 	public void actionPerformed(ActionEvent e) {
 
 		JInternalFrame[] projects = MainFrameGerudok.getInstance()
-				.getDesktopPane().getAllFrames();
+				.getWorkspaceView().getAllFrames();
 		int xStart = 20, yStart = 20, x = xStart, y = yStart,
 		// maxX = MainFrame.getInstance().getDesktopPane().getWidth(),
-		maxY = MainFrameGerudok.getInstance().getDesktopPane().getHeight();
-		Dimension d = MainFrameGerudok.getInstance().getDesktopPane().getSize();
+		maxY = MainFrameGerudok.getInstance().getWorkspaceView().getHeight();
+		Dimension d = MainFrameGerudok.getInstance().getWorkspaceView().getSize();
 
 		for (int i = 0; i < projects.length; i++) {
 			JInternalFrame cascade = projects[i];

@@ -25,8 +25,8 @@ public class TileVerticallyAction extends AbstractActionIcon {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JDesktopPane desktop = MainFrameGerudok.getInstance().getDesktopPane();
-		JInternalFrame[] frames = MainFrameGerudok.getInstance().getDesktopPane().getAllFrames();
+		JDesktopPane desktop = MainFrameGerudok.getInstance().getWorkspaceView();
+		JInternalFrame[] frames = MainFrameGerudok.getInstance().getWorkspaceView().getAllFrames();
 
 		int count = frames.length;
 		if (count == 0)

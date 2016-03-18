@@ -44,7 +44,7 @@ public class NewProjectAction extends AbstractActionIcon {
 
 	public static void createProjectViewer(Project project) {
 		JDesktopPane desktopPane = MainFrameGerudok.getInstance()
-				.getDesktopPane();
+				.getWorkspaceView();
 		ProjectView view = new ProjectView(project.getName());
 
 		// Medjusobno uvezivanje dodatog projekta i njegovog view-a
