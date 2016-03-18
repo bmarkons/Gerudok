@@ -3,13 +3,14 @@ package gerudok.model;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.Enumeration;
+import java.util.Observable;
 
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.view.painters.ElementPainter;
 
-public class GraphicSlotElement implements MutableTreeNode, Serializable {
+public class GraphicSlotElement extends Observable implements MutableTreeNode, Serializable {
 	private static final long serialVersionUID = 3610303136965099422L;
 
 	SlotGraphic parent = null;

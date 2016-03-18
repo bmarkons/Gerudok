@@ -5,13 +5,14 @@ import gerudok.model.Project;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
 
-public class ProjectView extends JInternalFrame {
-
+public class ProjectView extends JInternalFrame implements Observer{
 	private static final long serialVersionUID = -1223897253460221963L;
 
 	private static int xStart = 20;
@@ -69,6 +70,13 @@ public class ProjectView extends JInternalFrame {
 
 	public void removeDocumentView(DocumentView docView) {
 		tabPane.remove(docView);
+	}
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

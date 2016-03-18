@@ -3,11 +3,11 @@ package gerudok.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Observable;
 
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-public class Workspace extends DefaultMutableTreeNode implements TreeNode, Serializable {
+public class Workspace extends Observable implements TreeNode, Serializable {
 	private static final long serialVersionUID = -7676203044336567301L;
 
 	String name = "Workspace";

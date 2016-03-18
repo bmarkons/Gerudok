@@ -1,10 +1,13 @@
 package gerudok.view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JScrollPane;
 
 import gerudok.model.Document;
 
-public class DocumentView extends JScrollPane {
+public class DocumentView extends JScrollPane implements Observer{
 	private static final long serialVersionUID = -1537590242534111512L;
 
 	private String name = "";
@@ -50,4 +53,10 @@ public class DocumentView extends JScrollPane {
 	  {
 	    return this.document;
 	  }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
 }

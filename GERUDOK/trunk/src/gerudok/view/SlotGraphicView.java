@@ -15,6 +15,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -198,5 +199,11 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 			redoBtn.addActionListener(new CommandRedoAction((SlotGraphic) slot));
 			add(redoBtn);
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -3,6 +3,7 @@ package gerudok.view;
 import java.awt.BorderLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Observable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -101,5 +102,11 @@ public class SlotTextView extends SlotView {
 //			add(font);
 		}
 
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -14,7 +16,7 @@ import javax.swing.border.TitledBorder;
 import gerudok.model.Page;
 import net.miginfocom.swing.MigLayout;
 
-public class PageView extends JPanel implements FocusListener {
+public class PageView extends JPanel implements FocusListener, Observer {
 	private static final long serialVersionUID = 7320070701561579492L;
 
 	public static final int PAGE_HEIGHT = 1400;
@@ -44,7 +46,7 @@ public class PageView extends JPanel implements FocusListener {
 		border.setTitleColor(Color.BLUE);
 		setBorder(border);
 	}
-	
+
 	public Page getPage() {
 		return page;
 	}
@@ -80,5 +82,11 @@ public class PageView extends JPanel implements FocusListener {
 		TitledBorder border = BorderFactory.createTitledBorder(name);
 		border.setTitleColor(Color.BLACK);
 		setBorder(border);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+
 	}
 }
