@@ -7,7 +7,7 @@ import java.util.Observer;
 
 import javax.swing.tree.TreeNode;
 
-import gerudok.comands.CommandManager;
+import gerudok.commands.CommandManager;
 import gerudok.view.SlotView;
 
 public abstract class Slot extends Observable implements TreeNode, Serializable, Observer {

@@ -10,33 +10,35 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import gerudok.actions.ActionManager;
-import gerudok.controller.JTreeControllerGerudok;
-import gerudok.gui.windowParts.JTreeGerudok;
-import gerudok.gui.windowParts.MenuBarGerudok;
-import gerudok.gui.windowParts.StatusBarGerudok;
-import gerudok.gui.windowParts.ToolBarGerudok;
+import gerudok.actions.manager.ActionManager;
+import gerudok.gui.segments.JTreeGerudok;
+import gerudok.gui.segments.MenuBarGerudok;
+import gerudok.gui.segments.StatusBarGerudok;
+import gerudok.gui.segments.ToolBarGerudok;
 import gerudok.model.JTreeModelGerudok;
+import gerudok.tree.listener.JTreeControllerGerudok;
+import gerudok.tree.view.TreeEditor;
 import gerudok.view.TreeCellRendered;
-import gerudok.view.TreeEditor;
 
 public class MainFrameGerudok extends JFrame {
 	private static final long serialVersionUID = 2022795997717084907L;
 
 	private static MainFrameGerudok instance = null;
 	
-	private ActionManager manager = null;
+	private ActionManager manager = ActionManager.getInstance();
 	private JTreeGerudok tree = null;
 	private JDesktopPane desktopPane = null;
 	private MenuBarGerudok menuBar = null;
 	private StatusBarGerudok statusBar = null;
 	private ToolBarGerudok toolBar = null;
-
+	
 	private MainFrameGerudok() {
-		setTitle("GeRuDok T1.1");
+		super();
+	}
+	
+	public void initGerudok() {
 		
-		// instanciranje ActionManager-a
-		manager = ActionManager.getInstance();
+		setTitle("GeRuDok T1.1");
 		
 		// podesavanje velicine i pozicije prozora
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -96,6 +98,7 @@ public class MainFrameGerudok extends JFrame {
 	public static MainFrameGerudok getInstance() {
 		if (instance == null)
 			instance = new MainFrameGerudok();
+		
 		return instance;
 	}
 

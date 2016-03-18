@@ -1,7 +1,8 @@
 package gerudok.actions;
 
+import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.windowParts.JTreeGerudok;
+import gerudok.gui.segments.JTreeGerudok;
 import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.model.Project;

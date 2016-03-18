@@ -10,8 +10,9 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.KeyStroke;
 
+import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.windowParts.JTreeGerudok;
+import gerudok.gui.segments.JTreeGerudok;
 import gerudok.model.Project;
 
 @SuppressWarnings("serial")

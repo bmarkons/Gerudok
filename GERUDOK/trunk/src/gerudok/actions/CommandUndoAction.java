@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import javax.swing.KeyStroke;
 
+import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.SlotGraphic;
 

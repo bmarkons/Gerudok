@@ -1,7 +1,7 @@
 package gerudok.actions;
 
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.windowParts.JTreeGerudok;
+import gerudok.gui.segments.JTreeGerudok;
 
 import java.awt.event.ActionEvent;
 

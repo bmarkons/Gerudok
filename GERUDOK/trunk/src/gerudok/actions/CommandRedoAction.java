@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.SlotGraphic;
 

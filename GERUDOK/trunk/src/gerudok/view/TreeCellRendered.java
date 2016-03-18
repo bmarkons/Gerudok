@@ -3,12 +3,12 @@ package gerudok.view;
 import gerudok.model.Page;
 import gerudok.model.Project;
 import gerudok.model.Document;
-import gerudok.model.FrowneyElement;
 import gerudok.model.SlotGraphic;
 import gerudok.model.SlotText;
-import gerudok.model.SmileyElement;
-import gerudok.model.StarElement;
 import gerudok.model.Workspace;
+import gerudok.model.element.FrowneyElement;
+import gerudok.model.element.SmileyElement;
+import gerudok.model.element.StarElement;
 
 import java.awt.Component;
 import javax.swing.ImageIcon;

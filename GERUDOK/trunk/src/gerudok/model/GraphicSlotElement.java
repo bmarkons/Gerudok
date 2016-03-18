@@ -13,20 +13,24 @@ import gerudok.view.painters.ElementPainter;
 public class GraphicSlotElement extends Observable implements MutableTreeNode, Serializable {
 	private static final long serialVersionUID = 3610303136965099422L;
 
-	SlotGraphic parent = null;
-	String name = null;
-	Point position;
-	ElementPainter painter = null;
+	private SlotGraphic parent = null;
+	private String name = null;
+	private Point position;
+	private ElementPainter painter = null;
 
 	public GraphicSlotElement(SlotGraphic parent, Point position) {
 		this.parent = parent;
 		this.position = position;
 	}
-
+	
 	public String toString() {
 		return this.name;
 	}
-
+	
+	public void setPainter(ElementPainter painter) {
+		this.painter = painter;
+	}
+	
 	public String getName() {
 		return this.name;
 	}

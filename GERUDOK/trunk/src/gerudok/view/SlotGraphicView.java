@@ -27,7 +27,7 @@ import gerudok.actions.CommandUndoAction;
 import gerudok.model.GraphicSlotElement;
 import gerudok.model.Slot;
 import gerudok.model.SlotGraphic;
-import gerudok.statepattern.StateManager;
+import gerudok.states.StateManager;
 import gerudok.view.painters.ElementPainter;
 
 public class SlotGraphicView extends SlotView implements FocusListener,

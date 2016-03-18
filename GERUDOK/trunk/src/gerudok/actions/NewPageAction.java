@@ -7,8 +7,9 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
+import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.windowParts.JTreeGerudok;
+import gerudok.gui.segments.JTreeGerudok;
 import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.view.DocumentView;
