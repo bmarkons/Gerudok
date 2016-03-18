@@ -25,7 +25,7 @@ public class MainFrameGerudok extends JFrame {
 
 	private static MainFrameGerudok instance = null;
 	
-	private ActionManager manager = new ActionManager();
+	private ActionManager manager = null;
 	private JTreeGerudok tree = null;
 	private JDesktopPane desktopPane = null;
 	private MenuBarGerudok menuBar = null;
@@ -34,7 +34,10 @@ public class MainFrameGerudok extends JFrame {
 
 	private MainFrameGerudok() {
 		setTitle("GeRuDok T1.1");
-
+		
+		// instanciranje ActionManager-a
+		manager = ActionManager.getInstance();
+		
 		// podesavanje velicine i pozicije prozora
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		int height = kit.getScreenSize().height;

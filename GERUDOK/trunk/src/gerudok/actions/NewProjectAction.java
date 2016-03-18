@@ -16,16 +16,17 @@ import gerudok.view.ProjectView;
 
 @SuppressWarnings("serial")
 public class NewProjectAction extends AbstractActionIcon {
-	
+
 	public NewProjectAction() {
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
 		putValue(SMALL_ICON, iconGetter("/toolbar/addproj.png"));
 		putValue(NAME, "New project");
 		putValue(SHORT_DESCRIPTION, "New project (CTRL+N)");
 
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// dodavanje novog projekta u JTree

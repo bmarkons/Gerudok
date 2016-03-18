@@ -1,6 +1,9 @@
 package gerudok.actions;
 
 public class ActionManager {
+
+	private static ActionManager instance = null;
+
 	private AboutAction about;
 	private CascadeProjectAction cascade;
 	private CommandRedoAction redo;
@@ -26,7 +29,7 @@ public class ActionManager {
 	private TileHorizontallyAction tilehorizontally;
 	private TileVerticallyAction tilevertically;
 
-	public ActionManager(){
+	private ActionManager() {
 		about = new AboutAction();
 		cascade = new CascadeProjectAction();
 		redo = new CommandRedoAction();
@@ -148,5 +151,11 @@ public class ActionManager {
 	public TileVerticallyAction getTilevertically() {
 		return tilevertically;
 	}
-	
+
+	public static ActionManager getInstance() {
+		if (instance == null)
+			instance = new ActionManager();
+		return instance;
+	}
+
 }
