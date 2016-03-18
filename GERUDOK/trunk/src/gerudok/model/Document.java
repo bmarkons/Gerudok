@@ -112,7 +112,7 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 
 	@Override
 	public boolean isLeaf() {
-		return false;
+		return this.pages.size() == 0;
 	}
 
 	@Override

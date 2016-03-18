@@ -18,6 +18,8 @@ import gerudok.model.Workspace;
 import gerudok.tree.listener.JTreeControllerGerudok;
 import gerudok.tree.view.TreeCellRendered;
 import gerudok.tree.view.TreeEditor;
+import gerudok.view.WorkspaceView;
+
 import gerudok.tree.view.TreePopUp;
 
 public class MainFrameGerudok extends JFrame {
@@ -26,14 +28,14 @@ public class MainFrameGerudok extends JFrame {
 	private static MainFrameGerudok instance = null;
 
 	private JTree tree = null;
-	private JDesktopPane desktopPane = null;
+	private WorkspaceView workspaceView = null;
 	private MenuBarGerudok menuBar = null;
 	private StatusBarGerudok statusBar = null;
 	private ToolBarGerudok toolBar = null;
 
 	private MainFrameGerudok() {
 		super();
-		
+
 		setTitle("GeRuDok T1.1");
 
 		// podesavanje velicine i pozicije prozora
@@ -60,8 +62,8 @@ public class MainFrameGerudok extends JFrame {
 		// SPLIT PANE (JTREE + desktopPane)
 		tree = initTree();
 		JScrollPane sp = new JScrollPane(tree);
-		desktopPane = new JDesktopPane();
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sp, desktopPane);
+		workspaceView = new WorkspaceView();
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sp, workspaceView);
 		add(splitPane, BorderLayout.CENTER);
 
 		// STATUSBAR
@@ -86,7 +88,7 @@ public class MainFrameGerudok extends JFrame {
 		tree.setCellRenderer(new TreeCellRendered());
 		tree.setComponentPopupMenu(new TreePopUp());
 		tree.setEditable(true);
-		
+
 		return tree;
 	}
 
@@ -102,7 +104,7 @@ public class MainFrameGerudok extends JFrame {
 	}
 
 	public JDesktopPane getDesktopPane() {
-		return desktopPane;
+		return workspaceView;
 	}
 
 	public MenuBarGerudok getMenu() {

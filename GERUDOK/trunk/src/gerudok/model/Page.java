@@ -112,7 +112,7 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 
 	@Override
 	public boolean isLeaf() {
-		return false;
+		return this.slots.size() == 0;
 	}
 
 	@Override
@@ -130,37 +130,37 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 	@Override
 	public void insert(MutableTreeNode child, int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(MutableTreeNode node) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setUserObject(Object object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeFromParent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setParent(MutableTreeNode newParent) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
