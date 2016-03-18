@@ -11,6 +11,9 @@ import gerudok.model.element.SmileyElement;
 import gerudok.model.element.StarElement;
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -20,12 +23,17 @@ public class TreeCellRendered extends DefaultTreeCellRenderer {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	 
-	public TreeCellRendered() {
-
-		// TODO Auto-generated constructor stub
+	
+	protected ImageIcon iconGetter(String iconPath) {
+		final Dimension size = new Dimension(16, 16);
+		
+		String PATH = "images/tree/";
+		
+		ImageIcon i = new ImageIcon(new ImageIcon(PATH+iconPath).getImage()
+				.getScaledInstance(size.height, size.width, Image.SCALE_SMOOTH));
+		return i;
 	}
-
+	
 	public Component getTreeCellRendererComponent(JTree tree, Object value,
 			boolean sel, boolean expanded, boolean leaf, int row,
 			boolean hasFocus) {
@@ -34,46 +42,46 @@ public class TreeCellRendered extends DefaultTreeCellRenderer {
 		
 
 		if (value instanceof Workspace) {
-			ImageIcon icon = new ImageIcon("images/tree/treeworkspace.png");
+			ImageIcon icon = iconGetter("treeworkspace.png");
 			if (icon != null)
 				setIcon(icon);
 		} else if (value instanceof Document) {
-			ImageIcon icon = new ImageIcon("images/tree/treedoc.png");
+			ImageIcon icon = iconGetter("treedoc.png");
 			if (icon != null)
 				setIcon(icon);
 
 		} else if (value instanceof Project) {
-			ImageIcon icon = new ImageIcon("images/tree/treeproj.png");
+			ImageIcon icon = iconGetter("treeproj.png");
 			if (icon != null)
 				setIcon(icon);
 
 		} else if (value instanceof Page) {
-			ImageIcon icon = new ImageIcon("images/tree/treepage.png");
+			ImageIcon icon = iconGetter("treepage.png");
 			if (icon != null)
 				setIcon(icon);
 
 		} else if (value instanceof SlotText) {
-			ImageIcon icon = new ImageIcon("images/tree/treestext.png");
+			ImageIcon icon = iconGetter("treestext.png");
 			if (icon != null)
 				setIcon(icon);
 
 		} else if (value instanceof SlotGraphic) {
-			ImageIcon icon = new ImageIcon("images/tree/treesgraph.png");
+			ImageIcon icon = iconGetter("treesgraph.png");
 			if (icon != null)
 				setIcon(icon);
 
 		} else if (value instanceof StarElement) {
-			ImageIcon icon = new ImageIcon("images/tree/star16x16.png");
+			ImageIcon icon = iconGetter("star16x16.png");
 			if (icon != null)
 				setIcon(icon);
 
 		} else if (value instanceof SmileyElement) {
-			ImageIcon icon = new ImageIcon("images/tree/smiley16x16.png");
+			ImageIcon icon = iconGetter("smiley16x16.png");
 			if (icon != null)
 				setIcon(icon);
 
 		} else if (value instanceof FrowneyElement) {
-			ImageIcon icon = new ImageIcon("images/tree/frowney16x16.png");
+			ImageIcon icon = iconGetter("frowney16x16.png");
 			if (icon != null)
 				setIcon(icon);
 		}

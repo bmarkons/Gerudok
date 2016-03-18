@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Observable;
 
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-public class Workspace extends Observable implements TreeNode, Serializable {
+public class Workspace extends Observable implements MutableTreeNode, Serializable {
 	private static final long serialVersionUID = -7676203044336567301L;
 
 	private String name = "Workspace";
@@ -77,5 +78,41 @@ public class Workspace extends Observable implements TreeNode, Serializable {
 	@Override
 	public boolean isLeaf() {
 		return this.projects.size() == 0;
+	}
+
+	@Override
+	public void insert(MutableTreeNode child, int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(MutableTreeNode node) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setUserObject(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFromParent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setParent(MutableTreeNode newParent) {
+		// TODO Auto-generated method stub
+		
 	}
 }

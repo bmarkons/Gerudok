@@ -8,23 +8,24 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import gerudok.gui.segments.JTreeGerudok;
 import gerudok.gui.segments.MenuBarGerudok;
 import gerudok.gui.segments.StatusBarGerudok;
 import gerudok.gui.segments.ToolBarGerudok;
-import gerudok.model.JTreeModelGerudok;
+import gerudok.model.Workspace;
 import gerudok.tree.listener.JTreeControllerGerudok;
 import gerudok.tree.view.TreeCellRendered;
 import gerudok.tree.view.TreeEditor;
+import gerudok.tree.view.TreePopUp;
 
 public class MainFrameGerudok extends JFrame {
 	private static final long serialVersionUID = 2022795997717084907L;
 
 	private static MainFrameGerudok instance = null;
 
-	private JTreeGerudok tree = null;
+	private JTree tree = null;
 	private JDesktopPane desktopPane = null;
 	private MenuBarGerudok menuBar = null;
 	private StatusBarGerudok statusBar = null;
@@ -78,14 +79,14 @@ public class MainFrameGerudok extends JFrame {
 	}
 
 	// Inicijalizacija JTreeGerudok
-	private JTreeGerudok initTree() {
-		JTreeGerudok tree = new JTreeGerudok();
-		tree.setModel(new JTreeModelGerudok());
+	private JTree initTree() {
+		JTree tree = new JTree(new Workspace());
 		tree.addTreeSelectionListener(new JTreeControllerGerudok());
 		tree.setCellEditor(new TreeEditor(tree, new DefaultTreeCellRenderer()));
 		tree.setCellRenderer(new TreeCellRendered());
+		tree.setComponentPopupMenu(new TreePopUp());
 		tree.setEditable(true);
-
+		
 		return tree;
 	}
 
@@ -96,7 +97,7 @@ public class MainFrameGerudok extends JFrame {
 		return instance;
 	}
 
-	public JTreeGerudok getTree() {
+	public JTree getTree() {
 		return tree;
 	}
 

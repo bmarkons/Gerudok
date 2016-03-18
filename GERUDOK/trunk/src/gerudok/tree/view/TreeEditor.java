@@ -92,6 +92,7 @@ public class TreeEditor extends DefaultTreeCellEditor implements
 		// Otkomentarisati ovaj deo koda na kraju, i obavezno testirati
 		try {
 			tree.stopEditing();
+			tree.setInvokesStopCellEditing(true);
 		} catch (Exception e1) {
 		}
 	}

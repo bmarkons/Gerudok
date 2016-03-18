@@ -3,7 +3,6 @@ package gerudok.actions;
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.filters.GerudokFileFilter;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.segments.JTreeGerudok;
 import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.model.Project;
@@ -24,6 +23,7 @@ import java.io.ObjectInputStream;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
+import javax.swing.JTree;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
@@ -66,7 +66,7 @@ public class OpenProjectAction extends AbstractActionIcon {
 			}
 
 			if (project != null) {
-				JTreeGerudok tree = MainFrameGerudok.getInstance().getTree();
+				JTree tree = MainFrameGerudok.getInstance().getTree();
 				JDesktopPane desktopPane = MainFrameGerudok.getInstance().getDesktopPane();
 
 				TreePath path = tree.getSelectionPath();

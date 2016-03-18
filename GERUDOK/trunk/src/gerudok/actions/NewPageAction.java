@@ -3,13 +3,13 @@ package gerudok.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JTree;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.segments.JTreeGerudok;
 import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.view.DocumentView;
@@ -30,7 +30,7 @@ public class NewPageAction extends AbstractActionIcon {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Dodavanje nove stranice u selektovani dokument
-		JTreeGerudok tree = MainFrameGerudok.getInstance().getTree();
+		JTree tree = MainFrameGerudok.getInstance().getTree();
 		Object selectedComponent = tree.getLastSelectedPathComponent();
 		TreePath path = tree.getSelectionPath();
 		if (selectedComponent instanceof Document) {

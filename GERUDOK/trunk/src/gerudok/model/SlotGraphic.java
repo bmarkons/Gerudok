@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.SwingUtilities;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.gui.MainFrameGerudok;
@@ -83,5 +84,41 @@ public class SlotGraphic extends Slot {
 	@Override
 	public boolean isLeaf() {
 		return false;
+	}
+
+	@Override
+	public void insert(MutableTreeNode child, int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(MutableTreeNode node) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setUserObject(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFromParent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setParent(MutableTreeNode newParent) {
+		// TODO Auto-generated method stub
+		
 	}
 }

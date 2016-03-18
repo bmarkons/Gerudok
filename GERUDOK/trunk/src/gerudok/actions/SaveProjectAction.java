@@ -8,11 +8,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import javax.swing.JTree;
 import javax.swing.KeyStroke;
 
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.segments.JTreeGerudok;
 import gerudok.model.Project;
 
 @SuppressWarnings("serial")
@@ -29,7 +29,7 @@ public class SaveProjectAction extends AbstractActionIcon {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JTreeGerudok tree = MainFrameGerudok.getInstance().getTree();
+		JTree tree = MainFrameGerudok.getInstance().getTree();
 		Object selectedComponent = tree.getLastSelectedPathComponent();
 
 		if (selectedComponent instanceof Project) {

@@ -5,12 +5,13 @@ import java.util.Enumeration;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.commands.CommandManager;
 import gerudok.view.SlotView;
 
-public abstract class Slot extends Observable implements TreeNode, Serializable, Observer {
+public abstract class Slot extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = 3756092790397970680L;
 
 	private Page parent = null;

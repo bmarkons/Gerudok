@@ -4,13 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JTree;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.segments.JTreeGerudok;
 import gerudok.model.Project;
 import gerudok.model.Workspace;
 import gerudok.view.ProjectView;
@@ -31,7 +31,7 @@ public class NewProjectAction extends AbstractActionIcon {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// dodavanje novog projekta u JTree
-		JTreeGerudok tree = MainFrameGerudok.getInstance().getTree();
+		JTree tree = MainFrameGerudok.getInstance().getTree();
 		TreePath path = tree.getSelectionPath();
 		tree.expandPath(path);
 		Project project = new Project();

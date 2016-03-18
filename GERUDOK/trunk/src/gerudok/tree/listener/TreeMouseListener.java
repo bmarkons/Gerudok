@@ -1,4 +1,4 @@
-package gerudok.actions;
+package gerudok.tree.listener;
 
 import gerudok.gui.MainFrameGerudok;
 import gerudok.gui.segments.JTreeGerudok;
@@ -12,17 +12,19 @@ import gerudok.tree.view.TreePopUp;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JPopupMenu;
+import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
 public class TreeMouseListener extends MouseAdapter {
 
 	public void mousePressed(MouseEvent e) {
-		JTreeGerudok tree = MainFrameGerudok.getInstance().getTree();
-		TreePath path = tree.getPathForLocation(e.getX(), e.getY());
-		Object node = null;
-		TreePopUp popup = tree.getPopUp();
-
+		//JTree tree = MainFrameGerudok.getInstance().getTree();
+		//TreePath path = tree.getPathForLocation(e.getX(), e.getY());
+		//Object node = null;
+		//JPopupMenu popup = tree.getComponentPopupMenu();
+		/*
 		if (SwingUtilities.isRightMouseButton(e)) {
 			if (path == null) {
 				popup.disableAll();
@@ -43,5 +45,6 @@ public class TreeMouseListener extends MouseAdapter {
 			}
 			popup.show(tree, e.getX(), e.getY());
 		}
+		*/
 	}
 }

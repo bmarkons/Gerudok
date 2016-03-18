@@ -2,7 +2,6 @@ package gerudok.actions;
 
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.segments.JTreeGerudok;
 import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.model.Project;
@@ -17,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 
+import javax.swing.JTree;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
@@ -33,7 +33,7 @@ public class DeleteNode extends AbstractActionIcon {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		JTreeGerudok tree = MainFrameGerudok.getInstance().getTree();
+		JTree tree = MainFrameGerudok.getInstance().getTree();
 		Object selectedComponent = tree.getLastSelectedPathComponent();
 
 		if (((selectedComponent instanceof Workspace))
