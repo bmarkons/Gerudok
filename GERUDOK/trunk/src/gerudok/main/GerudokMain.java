@@ -15,7 +15,6 @@ public class GerudokMain {
 		}
 
 		MainFrameGerudok mainFrame = MainFrameGerudok.getInstance();
-		mainFrame.initGerudok();
 		mainFrame.setVisible(true);
 	}
 

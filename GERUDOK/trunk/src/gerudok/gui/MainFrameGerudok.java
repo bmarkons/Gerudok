@@ -10,7 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import gerudok.actions.manager.ActionManager;
 import gerudok.gui.segments.JTreeGerudok;
 import gerudok.gui.segments.MenuBarGerudok;
 import gerudok.gui.segments.StatusBarGerudok;
@@ -24,22 +23,18 @@ public class MainFrameGerudok extends JFrame {
 	private static final long serialVersionUID = 2022795997717084907L;
 
 	private static MainFrameGerudok instance = null;
-	
-	private ActionManager manager = ActionManager.getInstance();
+
 	private JTreeGerudok tree = null;
 	private JDesktopPane desktopPane = null;
 	private MenuBarGerudok menuBar = null;
 	private StatusBarGerudok statusBar = null;
 	private ToolBarGerudok toolBar = null;
-	
+
 	private MainFrameGerudok() {
 		super();
-	}
-	
-	public void initGerudok() {
 		
 		setTitle("GeRuDok T1.1");
-		
+
 		// podesavanje velicine i pozicije prozora
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		int height = kit.getScreenSize().height;
@@ -65,8 +60,7 @@ public class MainFrameGerudok extends JFrame {
 		tree = initTree();
 		JScrollPane sp = new JScrollPane(tree);
 		desktopPane = new JDesktopPane();
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sp,
-				desktopPane);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sp, desktopPane);
 		add(splitPane, BorderLayout.CENTER);
 
 		// STATUSBAR
@@ -80,7 +74,7 @@ public class MainFrameGerudok extends JFrame {
 		// mogucnosti izracunavanja lokacije divider-a u splitPane-u
 		setVisible(true);
 		splitPane.setDividerLocation(0.2);
-		//this.mCommandManager = new CommandManager();
+		// this.mCommandManager = new CommandManager();
 	}
 
 	// Inicijalizacija JTreeGerudok
@@ -98,7 +92,7 @@ public class MainFrameGerudok extends JFrame {
 	public static MainFrameGerudok getInstance() {
 		if (instance == null)
 			instance = new MainFrameGerudok();
-		
+
 		return instance;
 	}
 
@@ -120,9 +114,5 @@ public class MainFrameGerudok extends JFrame {
 
 	public ToolBarGerudok getToolBar() {
 		return toolBar;
-	}
-	
-	public ActionManager getActionManager() {
-		return manager;
 	}
 }

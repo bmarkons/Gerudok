@@ -1,6 +1,6 @@
 package gerudok.gui.segments;
 
-import gerudok.gui.MainFrameGerudok;
+import gerudok.actions.manager.ActionManager;
 
 import java.awt.Color;
 
@@ -14,39 +14,39 @@ public class ToolBarGerudok extends JToolBar {
 		setBackground(Color.decode("#eeeeee"));
 		setFloatable(false);
 
-		add(MainFrameGerudok.getInstance().getActionManager().getNewproject());
+		add(ActionManager.getInstance().getNewproject());
 
-		add(MainFrameGerudok.getInstance().getActionManager().getNewdocument());
+		add(ActionManager.getInstance().getNewdocument());
 
-		add(MainFrameGerudok.getInstance().getActionManager().getNewpage());
+		add(ActionManager.getInstance().getNewpage());
 
-		add(MainFrameGerudok.getInstance().getActionManager().getNewgraphicslot());
+		add(ActionManager.getInstance().getNewgraphicslot());
 		
-		add(MainFrameGerudok.getInstance().getActionManager().getNewtextslot());
+		add(ActionManager.getInstance().getNewtextslot());
 		
-		add(MainFrameGerudok.getInstance().getActionManager().getDeletenode());
+		add(ActionManager.getInstance().getDeletenode());
 		
 		addSeparator();
 
-		add(MainFrameGerudok.getInstance().getActionManager().getOpenproject());
+		add(ActionManager.getInstance().getOpenproject());
 
-		add(MainFrameGerudok.getInstance().getActionManager().getSave());
+		add(ActionManager.getInstance().getSave());
 		
-		add(MainFrameGerudok.getInstance().getActionManager().getSaveas());
+		add(ActionManager.getInstance().getSaveas());
 
 		addSeparator();
 
-		add(MainFrameGerudok.getInstance().getActionManager().getCascade());
+		add(ActionManager.getInstance().getCascade());
 
-		add(MainFrameGerudok.getInstance().getActionManager().getTilehorizontally());
+		add(ActionManager.getInstance().getTilehorizontally());
 
-		add(MainFrameGerudok.getInstance().getActionManager().getTilevertically());
+		add(ActionManager.getInstance().getTilevertically());
 
-		add(MainFrameGerudok.getInstance().getActionManager().getGridaction());
+		add(ActionManager.getInstance().getGridaction());
 
 		addSeparator();
 
-		add(MainFrameGerudok.getInstance().getActionManager().getAbout());
+		add(ActionManager.getInstance().getAbout());
 		
 	}
 }

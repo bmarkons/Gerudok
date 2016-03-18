@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
-import gerudok.gui.MainFrameGerudok;
+import gerudok.actions.manager.ActionManager;
 
 @SuppressWarnings("serial")
 public class MenuBarGerudok extends JMenuBar {
@@ -21,12 +21,12 @@ public class MenuBarGerudok extends JMenuBar {
 		ImageIcon iconas = new ImageIcon("images/menu/addslot.png");
 		newSlot.setIcon(iconas);
 		
-		newSlot.add(MainFrameGerudok.getInstance().getActionManager().getNewgraphicslot());
-		newSlot.add(MainFrameGerudok.getInstance().getActionManager().getNewtextslot());
+		newSlot.add(ActionManager.getInstance().getNewgraphicslot());
+		newSlot.add(ActionManager.getInstance().getNewtextslot());
 
-		file.add(MainFrameGerudok.getInstance().getActionManager().getNewproject());
-		file.add(MainFrameGerudok.getInstance().getActionManager().getNewdocument());
-		file.add(MainFrameGerudok.getInstance().getActionManager().getNewpage());
+		file.add(ActionManager.getInstance().getNewproject());
+		file.add(ActionManager.getInstance().getNewdocument());
+		file.add(ActionManager.getInstance().getNewpage());
 		file.addSeparator();
 		file.add(newSlot);
 
@@ -34,37 +34,37 @@ public class MenuBarGerudok extends JMenuBar {
 		project.setMnemonic(KeyEvent.VK_P);
 		// dodavanje podmenija i menu item-a
 
-		project.add(MainFrameGerudok.getInstance().getActionManager().getOpenproject());
+		project.add(ActionManager.getInstance().getOpenproject());
 		project.addSeparator();
-		project.add(MainFrameGerudok.getInstance().getActionManager().getSave());
-		project.add(MainFrameGerudok.getInstance().getActionManager().getSaveas());
+		project.add(ActionManager.getInstance().getSave());
+		project.add(ActionManager.getInstance().getSaveas());
 		project.addSeparator();
 		project.addSeparator();
 		project.addSeparator();
-		project.add(MainFrameGerudok.getInstance().getActionManager().getDeletenode());
+		project.add(ActionManager.getInstance().getDeletenode());
 
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic(KeyEvent.VK_E);
 
-		edit.add(MainFrameGerudok.getInstance().getActionManager().getUndo());
-		edit.add(MainFrameGerudok.getInstance().getActionManager().getRedo());
+		edit.add(ActionManager.getInstance().getUndo());
+		edit.add(ActionManager.getInstance().getRedo());
 
 		JMenu window = new JMenu("View");
 		window.setMnemonic(KeyEvent.VK_V);
 		// dodavanje podmenija i menuitem-a
 		
-		window.add(MainFrameGerudok.getInstance().getActionManager().getCascade());
+		window.add(ActionManager.getInstance().getCascade());
 
-		window.add(MainFrameGerudok.getInstance().getActionManager().getTilehorizontally());
+		window.add(ActionManager.getInstance().getTilehorizontally());
 
-		window.add(MainFrameGerudok.getInstance().getActionManager().getTilevertically());
+		window.add(ActionManager.getInstance().getTilevertically());
 
-		window.add(MainFrameGerudok.getInstance().getActionManager().getGridaction());
+		window.add(ActionManager.getInstance().getGridaction());
 
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
 		// dodavanje podmenija i menuitem-a
-		help.add(MainFrameGerudok.getInstance().getActionManager().getAbout());
+		help.add(ActionManager.getInstance().getAbout());
 
 		add(file);
 		add(project);
