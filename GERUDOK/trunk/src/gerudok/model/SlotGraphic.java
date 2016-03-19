@@ -24,34 +24,36 @@ public class SlotGraphic extends Slot {
 	}
 
 	public void addGraphicSlotElement(GraphicSlotElement element) {
-
-		element.setName(element.getName() + (graphicElements.size() + 1));
 		graphicElements.add(element);
+		if (element.getName() == null) {
+			element.setName(element.getName() + graphicElements.size());
+		}
 
 		// Dogodila se promena u slotu - obavestiti stranicu koja ga sadrzi
 		slotChanged();
 
-		//Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg slotView-a
+		// Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg
+		// slotView-a
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 		this.slotView.repaint();
-
 	}
 
 	public void removeGraphicSlotElement(GraphicSlotElement element) {
-		
+
 		graphicElements.remove(element);
-		
+
 		// Dogodila se promena u slotu - obavestiti stranicu koja ga sadrzi
 		slotChanged();
-		
-		//Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg slotView-a
+
+		// Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg
+		// slotView-a
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 		this.slotView.repaint();
 	}
 
 	public Object readResolve() {
 		slotView = new SlotGraphicView(this);
-		addObserver((Page)getParent());
+		addObserver((Page) getParent());
 		return this;
 	}
 
@@ -89,36 +91,36 @@ public class SlotGraphic extends Slot {
 	@Override
 	public void insert(MutableTreeNode child, int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(MutableTreeNode node) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setUserObject(Object object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeFromParent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setParent(MutableTreeNode newParent) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

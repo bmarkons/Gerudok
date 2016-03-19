@@ -9,6 +9,8 @@ import java.util.Observer;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import gerudok.events.PageEvent;
+import gerudok.events.PageEvent.Type;
 import gerudok.view.PageView;
 
 public class Page extends Observable implements MutableTreeNode, Serializable, Observer {
@@ -17,7 +19,6 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 	private Document parent = null;
 	private String name = null;
 	private ArrayList<Slot> slots = new ArrayList<Slot>();
-	private String slotsNum = "";
 	transient PageView pageView = null;
 
 	public Page(Document parent) {
@@ -48,18 +49,16 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 		slots.add(slot);
 		if (slot.getName() == null)
 			slot.setName("slot - " + slots.size());
-		slotsNum = "(" + slots.size() + ")";
 		// dogodila se modifikacija stranice
 		setChanged();
-		notifyObservers();
+		notifyObservers(new PageEvent(Type.ADD_SLOT, slot));
 	}
 
 	public void deleteSlot(Slot slot) {
 		slots.remove(slot);
-		slotsNum = "(" + slots.size() + ")";
 		// dogodila se modifikacija stranice
 		setChanged();
-		notifyObservers();
+		notifyObservers(new PageEvent(Type.REMOVE_SLOT, slot));
 	}
 
 	public void setName(String name) {
@@ -68,7 +67,7 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 			pageView.setName(name);
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers();
+		notifyObservers(new PageEvent(Type.RENAME_PAGE, null));
 	}
 
 	public String getName() {
@@ -76,7 +75,7 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 	}
 
 	public String toString() {
-		return name + slotsNum;
+		return name + "(" + slots.size() + ")";
 	}
 
 	@SuppressWarnings("unchecked")

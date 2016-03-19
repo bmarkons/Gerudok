@@ -21,9 +21,11 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
 
 import gerudok.actions.CommandRedoAction;
 import gerudok.actions.CommandUndoAction;
+import gerudok.gui.MainFrameGerudok;
 import gerudok.model.GraphicSlotElement;
 import gerudok.model.Slot;
 import gerudok.model.SlotGraphic;
@@ -102,6 +104,12 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 	@Override
 	public void focusLost(FocusEvent e) {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+		repaint();
 	}
 
 	private class GraphicSlotToolbar extends JToolBar {
@@ -199,11 +207,5 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 			redoBtn.addActionListener(new CommandRedoAction((SlotGraphic) slot));
 			add(redoBtn);
 		}
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
 	}
 }

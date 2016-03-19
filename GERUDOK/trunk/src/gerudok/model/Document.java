@@ -9,6 +9,8 @@ import java.util.Observer;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import gerudok.events.DocumentEvent;
+import gerudok.events.DocumentEvent.Type;
 import gerudok.view.DocumentView;
 
 public class Document extends Observable implements MutableTreeNode, Serializable, Observer {
@@ -17,7 +19,6 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	private Project parent = null;
 	private String name = null;
 	private ArrayList<Page> pages = new ArrayList<Page>();
-	private String pagesNum = "";
 	transient DocumentView documentView = null;
 
 	public Document(Project parent) {
@@ -48,18 +49,16 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 		pages.add(page);
 		if (page.getName() == null)
 			page.setName("Page - " + pages.size());
-		pagesNum = "(" + pages.size() + ")";
 		// dogodila se modifikacija dokumenta
 		setChanged();
-		notifyObservers();
+		notifyObservers(new DocumentEvent(Type.ADD_PAGE, page));
 	}
 
 	public void deletePage(Page page) {
 		pages.remove(page);
-		pagesNum = "(" + pages.size() + ")";
 		// dogodila se modifikacija dokumenta
 		setChanged();
-		notifyObservers();
+		notifyObservers(new DocumentEvent(Type.REMOVE_PAGE, page));
 	}
 
 	public void setName(String name) {
@@ -68,7 +67,7 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 			documentView.setName(name);
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers();
+		notifyObservers(new DocumentEvent(Type.RENAME_DOCUMENT, null));
 	}
 
 	public String getName() {
@@ -76,7 +75,7 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	}
 
 	public String toString() {
-		return name + pagesNum;
+		return name + "(" + pages.size() + ")";
 	}
 
 	@SuppressWarnings("unchecked")
@@ -125,36 +124,36 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	@Override
 	public void insert(MutableTreeNode child, int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(MutableTreeNode node) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setUserObject(Object object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeFromParent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setParent(MutableTreeNode newParent) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

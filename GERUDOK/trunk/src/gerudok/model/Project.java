@@ -11,6 +11,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import gerudok.events.ProjectEvent;
+import gerudok.events.ProjectEvent.Type;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.view.ProjectView;
 
@@ -74,14 +76,14 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 			document.setName("Document - " + documents.size());
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers();
+		notifyObservers(new ProjectEvent(Type.ADD_DOCUMENT, document));
 	}
 
 	public void deleteDocument(Document document) {
 		documents.remove(document);
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers();
+		notifyObservers(new ProjectEvent(Type.REMOVE_DOCUMENT, document));
 	}
 
 	public void setName(String name) {
@@ -90,7 +92,7 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 			projectView.setName(name);
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers();
+		notifyObservers(new ProjectEvent(Type.RENAME_PROJECT,null));
 	}
 
 	public String getName() {
@@ -98,7 +100,8 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	}
 
 	public String toString() {
-		return (projectModified?"*":" ") + name + "(" + documents.size() + ")";
+		String indicator = projectModified ? "*" : "";
+		return indicator + name + "(" + documents.size() + ")";
 	}
 
 	@SuppressWarnings("unchecked")
@@ -167,7 +170,7 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	}
 
 	@Override
-	public void removeFromParent() {	
+	public void removeFromParent() {
 	}
 
 	@Override
