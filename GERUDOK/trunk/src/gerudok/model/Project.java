@@ -20,7 +20,6 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	private Workspace parent = null;
 	private String name = null;
 	private ArrayList<Document> documents = new ArrayList<Document>();
-	private String documentsNum = "";
 	private transient ProjectView projectView = null;
 	private File projectFile = null;
 	private boolean projectModified;
@@ -49,11 +48,6 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	}
 
 	public void setProjectModified(boolean projectModified) {
-		if (projectModified == true)
-			this.name = "*" + this.name;
-		else
-			this.name = this.name.replace("*", "");
-
 		this.projectModified = projectModified;
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
@@ -78,7 +72,6 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 		documents.add(document);
 		if (document.getName() == null)
 			document.setName("Document - " + documents.size());
-		documentsNum = "(" + documents.size() + ")";
 		// dogodila se modifikacija projekta
 		setChanged();
 		notifyObservers();
@@ -86,7 +79,6 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 
 	public void deleteDocument(Document document) {
 		documents.remove(document);
-		documentsNum = "(" + documents.size() + ")";
 		// dogodila se modifikacija projekta
 		setChanged();
 		notifyObservers();
@@ -106,7 +98,7 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	}
 
 	public String toString() {
-		return name + documentsNum;
+		return (projectModified?"*":" ") + name + "(" + documents.size() + ")";
 	}
 
 	@SuppressWarnings("unchecked")

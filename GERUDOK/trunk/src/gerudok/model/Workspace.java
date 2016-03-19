@@ -8,6 +8,9 @@ import java.util.Observable;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import gerudok.events.WorkspaceEvent;
+import gerudok.events.WorkspaceEvent.Type;
+
 public class Workspace extends Observable implements MutableTreeNode, Serializable {
 	private static final long serialVersionUID = -7676203044336567301L;
 
@@ -16,7 +19,6 @@ public class Workspace extends Observable implements MutableTreeNode, Serializab
 
 	public Workspace() {
 		super();
-		//this.addObserver((Observer)MainFrameGerudok.getInstance().getWorkspaceView());
 	}
 
 	public void addProject(Project project) {
@@ -27,13 +29,16 @@ public class Workspace extends Observable implements MutableTreeNode, Serializab
 		if (project.getProjectFile() == null) {
 			project.setProjectModified(true);
 		}
+		
+		setChanged();
+		notifyObservers(new WorkspaceEvent(Type.ADD_PROJECT, project));
 	}
 
 	public void deleteProject(Project project) {
 		projects.remove(project);
 
 		setChanged();
-		notifyObservers(project);
+		notifyObservers(new WorkspaceEvent(Type.REMOVE_PROJECT, project));
 	}
 
 	public String getName() {
