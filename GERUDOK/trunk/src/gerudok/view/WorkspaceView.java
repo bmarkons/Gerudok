@@ -29,7 +29,7 @@ public class WorkspaceView extends JDesktopPane implements Observer {
 		}
 		
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-	
+	}
 	
 	private ProjectView addProjectView(Project project){
 		ProjectView projectView = new ProjectView(project.getName());
