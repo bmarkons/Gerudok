@@ -17,6 +17,9 @@ public class CommandUndoAction extends AbstractActionIcon implements Serializabl
 	private SlotGraphic slot;
 
 	public CommandUndoAction(SlotGraphic slot) {
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+		putValue(SMALL_ICON, iconGetter("/menu/undo.png"));
+		putValue(NAME, "Undo");
 		this.slot = slot;
 	}
 

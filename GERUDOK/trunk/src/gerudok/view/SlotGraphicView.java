@@ -2,14 +2,8 @@ package gerudok.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
@@ -18,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 
@@ -29,6 +21,10 @@ import gerudok.gui.MainFrameGerudok;
 import gerudok.model.GraphicSlotElement;
 import gerudok.model.Slot;
 import gerudok.model.SlotGraphic;
+import gerudok.slot.actions.NewFrowney;
+import gerudok.slot.actions.NewSmiley;
+import gerudok.slot.actions.NewStar;
+import gerudok.slot.actions.SelectAction;
 import gerudok.states.StateManager;
 import gerudok.view.painters.ElementPainter;
 
@@ -46,13 +42,13 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 		addMouseListener(this);
 
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-		toolBar = new GraphicSlotToolbar();
-		add(toolBar, BorderLayout.EAST);
-
+		
 		stateManager = new StateManager(this);
+		
+		toolBar = new GraphicSlotToolbar();
+		add(toolBar, BorderLayout.EAST);		
 	}
-
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -119,93 +115,20 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 			super(JToolBar.VERTICAL);
 			setFloatable(false);
 			setCursor(getCursor());
-
-			JButton starBtn = new JButton();
-			starBtn.setToolTipText("Star");
-			starBtn.setIcon(new ImageIcon("images/toolbar_slotview/star.png"));
-			starBtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					stateManager.setStarState();
-					// Promena izgleda kursora
-					Toolkit kit = Toolkit.getDefaultToolkit();
-					Image img = kit
-							.getImage("images/toolbar_slotview/star.png");
-					Cursor cursor = kit.createCustomCursor(img,
-							new Point(0, 0), "Star");
-					getParent().setCursor(cursor);
-				}
-			});
-			add(starBtn);
-
-			JButton smileyBtn = new JButton();
-			smileyBtn.setToolTipText("Smiley");
-			smileyBtn.setIcon(new ImageIcon(
-					"images/toolbar_slotview/smiley.png"));
-			smileyBtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					stateManager.setSmileyState();
-					// Promena izgleda kursora
-					Toolkit kit = Toolkit.getDefaultToolkit();
-					Image img = kit
-							.getImage("images/toolbar_slotview/smiley.png");
-					Cursor cursor = kit.createCustomCursor(img,
-							new Point(0, 0), "Smiley");
-					getParent().setCursor(cursor);
-				}
-			});
-			add(smileyBtn);
-
-			JButton frowneyBtn = new JButton();
-			frowneyBtn.setToolTipText("Smiley");
-			frowneyBtn.setIcon(new ImageIcon(
-					"images/toolbar_slotview/frowney.png"));
-			frowneyBtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					stateManager.setFrowneyState();
-					// Promena izgleda kursora
-					Toolkit kit = Toolkit.getDefaultToolkit();
-					Image img = kit
-							.getImage("images/toolbar_slotview/frowney.png");
-					Cursor cursor = kit.createCustomCursor(img,
-							new Point(0, 0), "Frowney");
-					getParent().setCursor(cursor);
-				}
-			});
-			add(frowneyBtn);
-
-			JButton selectBtn = new JButton();
-			selectBtn.setToolTipText("Select");
-			selectBtn.setIcon(new ImageIcon(
-					"images/toolbar_slotview/select.png"));
-			selectBtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					stateManager.setSelectState();
-					getParent().setCursor(getCursor());
-				}
-			});
-			add(selectBtn);
-
+			
+			add(new NewStar(stateManager));
+			
+			add(new NewSmiley(stateManager));
+			
+			add(new NewFrowney(stateManager));
+			
+			add(new SelectAction(stateManager));
+			
 			addSeparator();
 
-			JButton undoBtn = new JButton();
-			undoBtn.setToolTipText("Undo");
-			undoBtn.setIcon(new ImageIcon("images/toolbar_slotview/undo.png"));
-			undoBtn.addActionListener(new CommandUndoAction((SlotGraphic) slot));
-			add(undoBtn);
+			add(new CommandUndoAction((SlotGraphic)slot));
 
-			JButton redoBtn = new JButton();
-			redoBtn.setToolTipText("Redo");
-			redoBtn.setIcon(new ImageIcon("images/toolbar_slotview/redo.png"));
-			redoBtn.addActionListener(new CommandRedoAction((SlotGraphic) slot));
-			add(redoBtn);
+			add(new CommandRedoAction((SlotGraphic)slot));
 		}
 	}
 }

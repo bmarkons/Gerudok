@@ -16,6 +16,10 @@ public class CommandRedoAction extends AbstractActionIcon implements Serializabl
 	SlotGraphic slot;
 
 	public CommandRedoAction(SlotGraphic slot) {
+		putValue(ACCELERATOR_KEY,
+				KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+		putValue(SMALL_ICON, iconGetter("/menu/redo.png"));
+		putValue(NAME, "Redo");
 		this.slot = slot;
 	}
 
