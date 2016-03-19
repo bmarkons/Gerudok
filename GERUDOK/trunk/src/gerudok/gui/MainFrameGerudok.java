@@ -59,10 +59,10 @@ public class MainFrameGerudok extends JFrame {
 		toolBar = new ToolBarGerudok();
 		add(toolBar, BorderLayout.NORTH);
 
-		// SPLIT PANE (JTREE + desktopPane)
-		tree = initTree();
-		JScrollPane sp = new JScrollPane(tree);
+		// SPLIT PANE (WorkspaceView + JTREE)
 		workspaceView = new WorkspaceView();
+		tree = initTree(workspaceView);
+		JScrollPane sp = new JScrollPane(tree);
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sp, workspaceView);
 		add(splitPane, BorderLayout.CENTER);
 
@@ -81,8 +81,10 @@ public class MainFrameGerudok extends JFrame {
 	}
 
 	// Inicijalizacija JTreeGerudok
-	private JTree initTree() {
-		JTree tree = new JTree(new Workspace());
+	private JTree initTree(WorkspaceView workspaceView) {
+		Workspace root = new Workspace();
+		root.addObserver(workspaceView);
+		JTree tree = new JTree(root);
 		tree.addTreeSelectionListener(new JTreeControllerGerudok());
 		tree.setCellEditor(new TreeEditor(tree, new DefaultTreeCellRenderer()));
 		tree.setCellRenderer(new TreeCellRendered());
