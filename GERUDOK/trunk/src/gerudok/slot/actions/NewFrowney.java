@@ -16,7 +16,7 @@ public class NewFrowney extends AbstractActionIcon {
 	private StateManager s;
 
 	public NewFrowney(StateManager s) {
-		putValue(SMALL_ICON, iconGetter("/toolbar_slotview/frowney.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar_slotview/frowney.png", AbstractActionIcon.small));
 		putValue(NAME, "Frowney");
 		putValue(SHORT_DESCRIPTION, "Frowney");
 

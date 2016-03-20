@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -17,10 +18,10 @@ import gerudok.view.DocumentView;
 @SuppressWarnings("serial")
 public class NewDocumentAction extends AbstractActionIcon {
 
-	public NewDocumentAction() {
+	public NewDocumentAction(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
-		putValue(SMALL_ICON, iconGetter("/toolbar/adddoc.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/adddoc.png", d));
 		putValue(NAME, rb.getString("NewDocument"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewDocumentH"));
 

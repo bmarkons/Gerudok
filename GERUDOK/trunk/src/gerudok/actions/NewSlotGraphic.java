@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -18,10 +19,10 @@ import gerudok.view.PageView;
 @SuppressWarnings("serial")
 public class NewSlotGraphic extends AbstractActionIcon {
 	
-	public NewSlotGraphic() {
+	public NewSlotGraphic(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_G);
-		putValue(SMALL_ICON, iconGetter("/toolbar/newgslot.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/newgslot.png", d));
 		putValue(NAME, rb.getString("NewGSlot"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewGSlotH"));
 

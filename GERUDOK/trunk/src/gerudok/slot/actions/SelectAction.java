@@ -12,7 +12,7 @@ public class SelectAction extends AbstractActionIcon{
 	private StateManager s;
 	
 	public SelectAction(StateManager s) {
-		putValue(SMALL_ICON, iconGetter("/toolbar_slotview/select.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar_slotview/select.png", AbstractActionIcon.small));
 		putValue(NAME, "Select");
 		putValue(SHORT_DESCRIPTION, "Select");
 

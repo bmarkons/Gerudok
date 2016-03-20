@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
@@ -16,17 +17,17 @@ public class CommandUndoAction extends AbstractActionIcon implements Serializabl
 
 	private SlotGraphic slot;
 
-	public CommandUndoAction(SlotGraphic slot) {
+	public CommandUndoAction(SlotGraphic slot, Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, iconGetter("/menu/undo.png"));
+		putValue(SMALL_ICON, iconGetter("/menu/undo.png", d));
 		putValue(NAME, rb.getString("Undo"));
 		putValue(SHORT_DESCRIPTION, rb.getString("UndoH"));
 		this.slot = slot;
 	}
 
-	public CommandUndoAction() {
+	public CommandUndoAction(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, iconGetter("/menu/undo.png"));
+		putValue(SMALL_ICON, iconGetter("/menu/undo.png", d));
 		putValue(NAME, rb.getString("Undo"));
 		putValue(SHORT_DESCRIPTION, rb.getString("UndoH"));
 	}

@@ -14,10 +14,10 @@ import javax.swing.KeyStroke;
 @SuppressWarnings("serial")
 public class CascadeProjectAction extends AbstractActionIcon {
 	
-	public CascadeProjectAction() {
+	public CascadeProjectAction(Dimension d) {
 		
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
-		putValue(SMALL_ICON, iconGetter("/toolbar/ch.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/ch.png",d));
 		putValue(NAME, rb.getString("Cascade"));
 		putValue(SHORT_DESCRIPTION, rb.getString("CascadeH"));
 

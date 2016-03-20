@@ -9,8 +9,12 @@ import java.util.ResourceBundle;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import gerudok.actions.manager.ActionManager;
 import gerudok.gui.MainFrameGerudok;
@@ -24,12 +28,12 @@ public class MenuBarGerudok extends JMenuBar {
 	private JMenu edit;
 	private JMenu view;
 	private JMenu language;
+	private JMenu lookandfeel;
 	private JMenu help;
 	
 	private ResourceBundle rb = MainFrameGerudok.getInstance().getResourceBundle();
 	
 	public MenuBarGerudok() {
-		
 		file = new JMenu(rb.getString("File"));
 		file.setMnemonic(KeyEvent.VK_F);
 
@@ -137,6 +141,88 @@ public class MenuBarGerudok extends JMenuBar {
 		
 		view.add(language);
 		
+		
+		lookandfeel = new JMenu(rb.getString("Theme"));
+		JCheckBoxMenuItem alu = new JCheckBoxMenuItem(rb.getString("Modern"));
+		alu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel");
+					JFrame frame = MainFrameGerudok.getInstance();
+                    SwingUtilities.updateComponentTreeUI(frame);
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		JCheckBoxMenuItem sys = new JCheckBoxMenuItem(rb.getString("System"));
+		sys.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					JFrame frame = MainFrameGerudok.getInstance();
+                    SwingUtilities.updateComponentTreeUI(frame);
+                    
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		JCheckBoxMenuItem cp = new JCheckBoxMenuItem(rb.getString("Classic"));
+		cp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+					JFrame frame = MainFrameGerudok.getInstance();
+                    SwingUtilities.updateComponentTreeUI(frame);
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		JCheckBoxMenuItem nimbus = new JCheckBoxMenuItem(rb.getString("Nimbus"));
+		nimbus.setSelected(true);
+		nimbus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					try {
+						UIManager.setLookAndFeel(new javax.swing.plaf.nimbus.NimbusLookAndFeel());
+					} catch (UnsupportedLookAndFeelException e1) {
+						e1.printStackTrace();
+					}
+					JFrame frame = MainFrameGerudok.getInstance();
+                    SwingUtilities.updateComponentTreeUI(frame);
+				
+			}
+		});
+		
+		ButtonGroup group1 = new ButtonGroup();
+		group1.add(alu);
+		group1.add(sys);
+		group1.add(cp);
+		group1.add(nimbus);
+		
+		lookandfeel.add(alu);
+		lookandfeel.add(sys);
+		lookandfeel.add(cp);
+		lookandfeel.add(nimbus);
+		
+		view.add(lookandfeel);
+		
 		help = new JMenu(rb.getString("Help"));
 		help.setMnemonic(KeyEvent.VK_H);
 		// dodavanje podmenija i menuitem-a
@@ -157,7 +243,12 @@ public class MenuBarGerudok extends JMenuBar {
 		project.setText(rb.getString("Project"));;
 		edit.setText(rb.getString("Edit"));;
 		view.setText(rb.getString("View"));;
-		language.setText(rb.getString("Language"));;
+		language.setText(rb.getString("Language"));
+		lookandfeel.setText(rb.getString("Theme"));
+		lookandfeel.getItem(0).setText(rb.getString("Modern"));
+		lookandfeel.getItem(1).setText(rb.getString("System"));
+		lookandfeel.getItem(2).setText(rb.getString("Classic"));
+		lookandfeel.getItem(3).setText(rb.getString("Nimbus"));
 		help.setText(rb.getString("Help"));;
 	}
 }

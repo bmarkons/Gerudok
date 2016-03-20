@@ -13,6 +13,7 @@ import gerudok.view.PageView;
 import gerudok.view.ProjectView;
 import gerudok.view.SlotView;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -31,10 +32,10 @@ import javax.swing.tree.TreePath;
 @SuppressWarnings("serial")
 public class OpenProjectAction extends AbstractActionIcon {
 
-	public OpenProjectAction() {
+	public OpenProjectAction(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_P);
-		putValue(SMALL_ICON, iconGetter("/toolbar/openproj.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/openproj.png", d));
 		putValue(NAME, rb.getString("Open"));
 		putValue(SHORT_DESCRIPTION, rb.getString("OpenH"));
 

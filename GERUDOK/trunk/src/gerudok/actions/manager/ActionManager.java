@@ -46,24 +46,24 @@ public class ActionManager {
 	private static ActionManager instance = null;
 	
 	private ActionManager() {
-		about = new AboutAction();
-		cascade = new CascadeProjectAction();
-		redo = new CommandRedoAction();
-		undo = new CommandUndoAction();
-		deletenode = new DeleteNode();
+		about = new AboutAction(AbstractActionIcon.small);
+		cascade = new CascadeProjectAction(AbstractActionIcon.small);
+		redo = new CommandRedoAction(AbstractActionIcon.small);
+		undo = new CommandUndoAction(AbstractActionIcon.small);
+		deletenode = new DeleteNode(AbstractActionIcon.small);
 		displayproject = new DisplayProject();
-		gridaction = new GridProjectAction();
-		newdocument = new NewDocumentAction();
-		newpage = new NewPageAction();
-		newproject = new NewProjectAction();
-		newgraphicslot = new NewSlotGraphic();
-		newtextslot = new NewSlotText();
-		openproject = new OpenProjectAction();
+		gridaction = new GridProjectAction(AbstractActionIcon.small);
+		newdocument = new NewDocumentAction(AbstractActionIcon.small);
+		newpage = new NewPageAction(AbstractActionIcon.small);
+		newproject = new NewProjectAction(AbstractActionIcon.small);
+		newgraphicslot = new NewSlotGraphic(AbstractActionIcon.small);
+		newtextslot = new NewSlotText(AbstractActionIcon.small);
+		openproject = new OpenProjectAction(AbstractActionIcon.small);
 		renamenode = new RenameNode();
-		saveas = new SaveAsProjectAction();
-		save = new SaveProjectAction();
-		tilehorizontally = new TileHorizontallyAction();
-		tilevertically = new TileVerticallyAction();
+		saveas = new SaveAsProjectAction(AbstractActionIcon.small);
+		save = new SaveProjectAction(AbstractActionIcon.small);
+		tilehorizontally = new TileHorizontallyAction(AbstractActionIcon.small);
+		tilevertically = new TileVerticallyAction(AbstractActionIcon.small);
 	}
 
 	public AboutAction getAbout() {

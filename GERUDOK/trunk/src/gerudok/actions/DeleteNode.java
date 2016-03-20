@@ -12,6 +12,7 @@ import gerudok.view.PageView;
 import gerudok.view.ProjectView;
 import gerudok.view.SlotView;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
@@ -23,9 +24,9 @@ import javax.swing.SwingUtilities;
 @SuppressWarnings("serial")
 public class DeleteNode extends AbstractActionIcon {
 
-	public DeleteNode() {
+	public DeleteNode(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
-		putValue(SMALL_ICON, iconGetter("/menu/deleteAll.png"));
+		putValue(SMALL_ICON, iconGetter("/menu/deleteAll.png", d));
 		putValue(NAME, rb.getString("Delete"));
 		putValue(SHORT_DESCRIPTION, rb.getString("DeleteH"));
 	}

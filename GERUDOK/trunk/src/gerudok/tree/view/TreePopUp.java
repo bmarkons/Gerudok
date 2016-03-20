@@ -3,6 +3,7 @@ package gerudok.tree.view;
 import gerudok.actions.DeleteNode;
 import gerudok.actions.DisplayProject;
 import gerudok.actions.RenameNode;
+import gerudok.actions.manager.AbstractActionIcon;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -24,7 +25,7 @@ public class TreePopUp extends JPopupMenu {
 		this.Rename.addActionListener(new RenameNode());
 
 		this.Delete = new JMenuItem("Delete");
-		this.Delete.addActionListener(new DeleteNode());
+		this.Delete.addActionListener(new DeleteNode(AbstractActionIcon.small));
 
 		this.Open = new JMenuItem("Display");
 		this.Open.addActionListener(new DisplayProject());

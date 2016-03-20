@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -18,10 +19,10 @@ import gerudok.view.SlotTextView;
 @SuppressWarnings("serial")
 public class NewSlotText extends AbstractActionIcon {
 	
-	public NewSlotText() {
+	public NewSlotText(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_T);
-		putValue(SMALL_ICON, iconGetter("/toolbar/newtxt.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/newtxt.png", d));
 		putValue(NAME, rb.getString("NewTSlot"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewTSlotH"));
 

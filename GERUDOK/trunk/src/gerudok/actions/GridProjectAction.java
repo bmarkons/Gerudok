@@ -15,10 +15,10 @@ import javax.swing.KeyStroke;
 @SuppressWarnings("serial")
 public class GridProjectAction extends AbstractActionIcon {
 
-	public GridProjectAction() {
+	public GridProjectAction(Dimension d) {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.ALT_MASK));
-		putValue(SMALL_ICON, iconGetter("/toolbar/grid.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/grid.png", d));
 		putValue(NAME, rb.getString("Grid"));
 		putValue(SHORT_DESCRIPTION, rb.getString("GridH"));
 

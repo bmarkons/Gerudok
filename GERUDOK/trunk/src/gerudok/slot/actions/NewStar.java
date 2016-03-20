@@ -16,7 +16,7 @@ public class NewStar extends AbstractActionIcon {
 	private StateManager s;
 
 	public NewStar(StateManager s) {
-		putValue(SMALL_ICON, iconGetter("/toolbar_slotview/star.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar_slotview/star.png", AbstractActionIcon.small));
 		putValue(NAME, "Star");
 		putValue(SHORT_DESCRIPTION, "Star");
 

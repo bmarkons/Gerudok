@@ -16,7 +16,7 @@ public class NewSmiley extends AbstractActionIcon {
 	private StateManager s;
 
 	public NewSmiley(StateManager s) {
-		putValue(SMALL_ICON, iconGetter("/toolbar_slotview/smiley.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar_slotview/smiley.png", AbstractActionIcon.small));
 		putValue(NAME, "Smiley");
 		putValue(SHORT_DESCRIPTION, "Smiley");
 

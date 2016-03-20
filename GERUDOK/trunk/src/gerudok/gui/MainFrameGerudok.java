@@ -28,7 +28,7 @@ public class MainFrameGerudok extends JFrame {
 	private static final long serialVersionUID = 2022795997717084907L;
 
 	private static MainFrameGerudok instance = null;
-
+	
 	private JTree tree = null;
 	private WorkspaceView workspaceView = null;
 	private MenuBarGerudok menuBar = null;
@@ -70,6 +70,7 @@ public class MainFrameGerudok extends JFrame {
 
 		// SPLIT PANE (WorkspaceView + JTREE)
 		workspaceView = new WorkspaceView();
+		workspaceView.setBackground(getBackground());
 		tree = initTree(workspaceView);
 		JScrollPane sp = new JScrollPane(tree);
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sp, workspaceView);

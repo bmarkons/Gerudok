@@ -2,8 +2,6 @@ package gerudok.gui.segments;
 
 import gerudok.actions.manager.ActionManager;
 
-import java.awt.Color;
-
 import javax.swing.JToolBar;
 
 @SuppressWarnings("serial")
@@ -11,9 +9,9 @@ public class ToolBarGerudok extends JToolBar {
 
 	public ToolBarGerudok() {
 		super(JToolBar.HORIZONTAL);
-		setBackground(Color.decode("#eeeeee"));
+		//setBackground(Color.decode("#eeeeee"));
 		setFloatable(false);
-
+		
 		add(ActionManager.getInstance().getNewproject());
 
 		add(ActionManager.getInstance().getNewdocument());

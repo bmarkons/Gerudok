@@ -15,9 +15,9 @@ import javax.swing.KeyStroke;
 @SuppressWarnings("serial")
 public class TileVerticallyAction extends AbstractActionIcon {
 	
-	public TileVerticallyAction() {
+	public TileVerticallyAction(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
-		putValue(SMALL_ICON, iconGetter("/toolbar/tv.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/tv.png", d));
 		putValue(NAME, rb.getString("TV"));
 		putValue(SHORT_DESCRIPTION, rb.getString("TVH"));
 

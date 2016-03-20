@@ -15,9 +15,9 @@ import javax.swing.KeyStroke;
 @SuppressWarnings("serial")
 public class TileHorizontallyAction extends AbstractActionIcon {
 	
-	public TileHorizontallyAction() {
+	public TileHorizontallyAction(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
-		putValue(SMALL_ICON, iconGetter("/toolbar/th.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/th.png", d));
 		putValue(NAME, rb.getString("TH"));
 		putValue(SHORT_DESCRIPTION, rb.getString("THH"));
 

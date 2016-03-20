@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -20,9 +21,9 @@ import gerudok.model.Project;
 @SuppressWarnings("serial")
 public class SaveAsProjectAction extends AbstractActionIcon {
 	
-	public SaveAsProjectAction() {
+	public SaveAsProjectAction(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F1, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, iconGetter("/toolbar/save.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/save.png", d));
 		putValue(NAME, rb.getString("SaveAs"));
 		putValue(SHORT_DESCRIPTION, rb.getString("SaveAsH"));
 

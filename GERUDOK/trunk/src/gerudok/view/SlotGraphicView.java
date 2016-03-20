@@ -17,6 +17,7 @@ import javax.swing.SwingUtilities;
 
 import gerudok.actions.CommandRedoAction;
 import gerudok.actions.CommandUndoAction;
+import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.GraphicSlotElement;
 import gerudok.model.Slot;
@@ -126,9 +127,9 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 			
 			addSeparator();
 
-			add(new CommandUndoAction((SlotGraphic)slot));
+			add(new CommandUndoAction((SlotGraphic)slot, AbstractActionIcon.small));
 
-			add(new CommandRedoAction((SlotGraphic)slot));
+			add(new CommandRedoAction((SlotGraphic)slot, AbstractActionIcon.small));
 		}
 	}
 }

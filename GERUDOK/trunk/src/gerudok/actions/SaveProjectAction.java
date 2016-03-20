@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -12,16 +13,17 @@ import javax.swing.JTree;
 import javax.swing.KeyStroke;
 
 import gerudok.actions.manager.AbstractActionIcon;
+import gerudok.actions.manager.ActionManager;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Project;
 
 @SuppressWarnings("serial")
 public class SaveProjectAction extends AbstractActionIcon {
 
-	public SaveProjectAction() {
+	public SaveProjectAction(Dimension d) {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, iconGetter("/menu/save.png"));
+		putValue(SMALL_ICON, iconGetter("/menu/save.png", d));
 		putValue(NAME, rb.getString("Save"));
 		putValue(SHORT_DESCRIPTION, rb.getString("SaveH"));
 
@@ -38,7 +40,8 @@ public class SaveProjectAction extends AbstractActionIcon {
 
 			// Ukoliko fajl nije prethodno sniman, poziva se Save As
 			if (projectFile == null) {
-				new SaveAsProjectAction().actionPerformed(e);
+				ActionManager.getInstance().getSaveas().actionPerformed(e);
+				//new SaveAsProjectAction().actionPerformed(e);
 				return;
 			}
 

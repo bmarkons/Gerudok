@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -15,11 +16,11 @@ import gerudok.model.Workspace;
 @SuppressWarnings("serial")
 public class NewProjectAction extends AbstractActionIcon {
 
-	public NewProjectAction() {
+	public NewProjectAction(Dimension d) {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
-		putValue(SMALL_ICON, iconGetter("/toolbar/addproj.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/addproj.png", d));
 		putValue(NAME, rb.getString("NewProject"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewProjectH"));
 

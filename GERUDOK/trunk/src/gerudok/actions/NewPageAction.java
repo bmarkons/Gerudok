@@ -1,5 +1,6 @@
 package gerudok.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -18,10 +19,10 @@ import gerudok.view.PageView;
 @SuppressWarnings("serial")
 public class NewPageAction extends AbstractActionIcon {
 	
-	public NewPageAction() {
+	public NewPageAction(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_P);
-		putValue(SMALL_ICON, iconGetter("/toolbar/addpage.png"));
+		putValue(SMALL_ICON, iconGetter("/toolbar/addpage.png", d));
 		putValue(NAME, rb.getString("NewPage"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewPageH"));
 
