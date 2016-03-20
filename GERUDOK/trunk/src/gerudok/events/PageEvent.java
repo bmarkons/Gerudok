@@ -3,23 +3,23 @@ package gerudok.events;
 import gerudok.model.Slot;
 
 public class PageEvent {
-	private Type type = null;
+	private PageEventType type = null;
 	private Slot slot = null;
 
-	public PageEvent(Type type, Slot slot) {
+	public PageEvent(PageEventType type, Slot slot) {
 		this.type = type;
 		this.slot = slot;
 	}
 
-	public Type getType() {
+	public PageEventType getType() {
 		return type;
 	}
 
-	public Slot getPage() {
+	public Slot getSlot() {
 		return this.slot;
 	}
 
-	public enum Type {
+	public enum PageEventType {
 		ADD_SLOT, REMOVE_SLOT, RENAME_PAGE
 	}
 }

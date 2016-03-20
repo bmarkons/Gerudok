@@ -34,8 +34,8 @@ public class SlotGraphic extends Slot {
 
 		// Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg
 		// slotView-a
-		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-		this.slotView.repaint();
+//		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+//		this.slotView.repaint();
 	}
 
 	public void removeGraphicSlotElement(GraphicSlotElement element) {
@@ -47,12 +47,12 @@ public class SlotGraphic extends Slot {
 
 		// Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg
 		// slotView-a
-		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-		this.slotView.repaint();
+//		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+//		this.slotView.repaint();
 	}
 
 	public Object readResolve() {
-		slotView = new SlotGraphicView(this);
+		//slotView = new SlotGraphicView(this);
 		addObserver((Page) getParent());
 		return this;
 	}

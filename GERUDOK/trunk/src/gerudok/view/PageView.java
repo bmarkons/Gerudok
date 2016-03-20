@@ -2,7 +2,6 @@ package gerudok.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -11,9 +10,15 @@ import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 
+import gerudok.events.PageEvent;
+import gerudok.events.PageEvent.PageEventType;
+import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Page;
+import gerudok.model.SlotGraphic;
+import gerudok.model.SlotText;
 import net.miginfocom.swing.MigLayout;
 
 public class PageView extends JPanel implements FocusListener, Observer {
@@ -26,9 +31,10 @@ public class PageView extends JPanel implements FocusListener, Observer {
 	String name = null;
 	ArrayList<SlotView> slotViews = new ArrayList<SlotView>();
 
-	public PageView(String name) {
+	public PageView(Page page) {
 		super(new MigLayout());
-		this.name = name;
+		this.page = page;
+		this.name = page.getName();
 		setPreferredSize(new Dimension(PAGE_WIDTH, PAGE_HEIGHT));
 		TitledBorder border = BorderFactory.createTitledBorder(name);
 		border.setTitleColor(Color.BLACK);
@@ -51,9 +57,9 @@ public class PageView extends JPanel implements FocusListener, Observer {
 		return page;
 	}
 
-	public void setPage(Page page) {
-		this.page = page;
-	}
+	// public void setPage(Page page) {
+	// this.page = page;
+	// }
 
 	public void addSlotView(SlotView view) {
 		slotViews.add(view);
@@ -61,7 +67,7 @@ public class PageView extends JPanel implements FocusListener, Observer {
 		validate();
 		// Skroluj na dodati slot.
 		// NAPOMENA: nije konzistentna funkcionalnost.
-		view.scrollRectToVisible(new Rectangle(view.getLocation()));
+		// view.scrollRectToVisible(new Rectangle(view.getLocation()));
 	}
 
 	public void removeSlotView(SlotView view) {
@@ -86,7 +92,34 @@ public class PageView extends JPanel implements FocusListener, Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-
+		if(arg == null)
+			return;
+		
+		PageEvent eventObject = (PageEvent) arg;
+		
+		if(eventObject.getType() == PageEventType.ADD_SLOT){
+			
+			SlotView slotView = null;
+			if(eventObject.getSlot() instanceof SlotGraphic)
+				slotView = new SlotGraphicView(eventObject.getSlot());
+			else if(eventObject.getSlot() instanceof SlotText)
+				slotView = new SlotTextView(eventObject.getSlot());
+			addSlotView(slotView);
+			eventObject.getSlot().addObserver(slotView);
+			
+		}else if(eventObject.getType() == PageEventType.REMOVE_SLOT){
+			
+			for(SlotView view : slotViews){
+				if(eventObject.getSlot().equals(view.getSlot()))
+					removeSlotView(view);
+			}
+			
+		}else if(eventObject.getType() == PageEventType.RENAME_PAGE){
+			
+			setName(eventObject.getSlot().getName());
+			
+		}
+		
+		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
 }

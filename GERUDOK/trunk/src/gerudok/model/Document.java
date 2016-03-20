@@ -10,7 +10,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.events.DocumentEvent;
-import gerudok.events.DocumentEvent.Type;
+import gerudok.events.DocumentEvent.DocumentEventType;
 import gerudok.view.DocumentView;
 
 public class Document extends Observable implements MutableTreeNode, Serializable, Observer {
@@ -19,7 +19,7 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	private Project parent = null;
 	private String name = null;
 	private ArrayList<Page> pages = new ArrayList<Page>();
-	transient DocumentView documentView = null;
+	//transient DocumentView documentView = null;
 
 	public Document(Project parent) {
 		super();
@@ -32,18 +32,18 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	}
 
 	private Object readResolve() {
-		documentView = new DocumentView(this.name);
+		//documentView = new DocumentView(this.name);
 		addObserver(parent);
 		return this;
 	}
 
-	public DocumentView getDocumentView() {
-		return documentView;
-	}
-
-	public void setDocumentView(DocumentView documentView) {
-		this.documentView = documentView;
-	}
+//	public DocumentView getDocumentView() {
+//		return documentView;
+//	}
+//
+//	public void setDocumentView(DocumentView documentView) {
+//		this.documentView = documentView;
+//	}
 
 	public void addPage(Page page) {
 		pages.add(page);
@@ -51,23 +51,22 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 			page.setName("Page - " + pages.size());
 		// dogodila se modifikacija dokumenta
 		setChanged();
-		notifyObservers(new DocumentEvent(Type.ADD_PAGE, page));
+		notifyObservers(new DocumentEvent(DocumentEventType.ADD_PAGE, page));
 	}
 
 	public void deletePage(Page page) {
 		pages.remove(page);
 		// dogodila se modifikacija dokumenta
 		setChanged();
-		notifyObservers(new DocumentEvent(Type.REMOVE_PAGE, page));
+		notifyObservers(new DocumentEvent(DocumentEventType.REMOVE_PAGE, page));
 	}
 
 	public void setName(String name) {
 		this.name = name;
-		if (documentView != null)
-			documentView.setName(name);
+		
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers(new DocumentEvent(Type.RENAME_DOCUMENT, null));
+		notifyObservers(new DocumentEvent(DocumentEventType.RENAME_DOCUMENT, null));
 	}
 
 	public String getName() {

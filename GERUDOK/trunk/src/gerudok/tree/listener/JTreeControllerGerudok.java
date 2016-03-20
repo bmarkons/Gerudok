@@ -31,13 +31,13 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 		 */
 		if (selectedComponent instanceof Project) {
 			Project project = (Project) selectedComponent;
-			ProjectView view = project.getProjectView();
+			//ProjectView view = project.getProjectView();
 			// Postavljanje internog prozora projekta u fokus
-			try {
-				view.setSelected(true);
-			} catch (PropertyVetoException e1) {
-				e1.printStackTrace();
-			}
+			// try {
+			// view.setSelected(true);
+			// } catch (PropertyVetoException e1) {
+			// e1.printStackTrace();
+			// }
 
 		} else if (selectedComponent instanceof Document) {
 			/*
@@ -46,16 +46,16 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			 */
 			Document document = (Document) selectedComponent;
 			Project parent = (Project) document.getParent();
-			ProjectView pView = parent.getProjectView();
-			// Postavljanje internog prozora projekta u fokus
-			try {
-				pView.setSelected(true);
-			} catch (PropertyVetoException e1) {
-				e1.printStackTrace();
-			}
-			// Postavljanje tab-a documenta u fokus
-			DocumentView dView = document.getDocumentView();
-			pView.getTabbedPane().setSelectedComponent(dView);
+//			ProjectView pView = parent.getProjectView();
+//			// Postavljanje internog prozora projekta u fokus
+//			try {
+//				pView.setSelected(true);
+//			} catch (PropertyVetoException e1) {
+//				e1.printStackTrace();
+//			}
+//			// Postavljanje tab-a documenta u fokus
+//			DocumentView dView = document.getDocumentView();
+//			pView.getTabbedPane().setSelectedComponent(dView);
 
 		} else if (selectedComponent instanceof Page) {
 			/*
@@ -68,17 +68,17 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			Document document = (Document) page.getParent();
 			Project project = (Project) document.getParent();
 			// Postavljanje internog prozora projekta u fokus
-			ProjectView projectView = project.getProjectView();
-			try {
-				projectView.setSelected(true);
-			} catch (PropertyVetoException e1) {
-				e1.printStackTrace();
-			}
-			// Postavljanje tab-a documenta u fokus
-			DocumentView documentView = document.getDocumentView();
-			projectView.getTabbedPane().setSelectedComponent(documentView);
-			PageView pageView = page.getPageView();
-			pageView.requestFocus();
+//			ProjectView projectView = project.getProjectView();
+//			try {
+//				projectView.setSelected(true);
+//			} catch (PropertyVetoException e1) {
+//				e1.printStackTrace();
+//			}
+//			// Postavljanje tab-a documenta u fokus
+//			DocumentView documentView = document.getDocumentView();
+//			projectView.getTabbedPane().setSelectedComponent(documentView);
+//			PageView pageView = page.getPageView();
+//			pageView.requestFocus();
 
 		} else if (selectedComponent instanceof Slot) {
 			/*
@@ -93,17 +93,17 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			Document document = (Document) page.getParent();
 			Project project = (Project) document.getParent();
 			// Postavljanje internog prozora projekta u fokus
-			ProjectView pView = project.getProjectView();
-			try {
-				pView.setSelected(true);
-			} catch (PropertyVetoException e1) {
-				e1.printStackTrace();
-			}
-			// Postavljanje tab-a documenta u fokus
-			DocumentView dView = document.getDocumentView();
-			pView.getTabbedPane().setSelectedComponent(dView);
-			SlotView sView = slot.getSlotView();
-			sView.requestFocus();
+			// ProjectView pView = project.getProjectView();
+			// try {
+			// pView.setSelected(true);
+			// } catch (PropertyVetoException e1) {
+			// e1.printStackTrace();
+			// }
+			// // Postavljanje tab-a documenta u fokus
+			// DocumentView dView = document.getDocumentView();
+			// pView.getTabbedPane().setSelectedComponent(dView);
+			// SlotView sView = slot.getSlotView();
+			// sView.requestFocus();
 		}
 	}
 }

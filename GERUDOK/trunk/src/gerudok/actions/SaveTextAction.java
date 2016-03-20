@@ -11,19 +11,18 @@ import javax.swing.JOptionPane;
 
 public class SaveTextAction implements ActionListener {
 
-	private SlotText slot = null;
-	// private TextSlotView slotView = null;
+	private SlotTextView slotView = null;
 
-	public SaveTextAction(SlotText slot) {
-		this.slot = slot;
+	public SaveTextAction(SlotTextView slotView) {
+		this.slotView = slotView;
 		// this.slotView = (TextSlotView) slot.getSlotView();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JEditorPane textArea = ((SlotTextView) slot.getSlotView()).getTextArea();
+		JEditorPane textArea = this.slotView.getTextArea();
 		String txt = textArea.getText();
-		slot.setText(txt);
-		JOptionPane.showMessageDialog(textArea, "Text saved!", slot.getName(), JOptionPane.INFORMATION_MESSAGE);
+		((SlotText)slotView.getSlot()).setText(txt);
+		JOptionPane.showMessageDialog(textArea, "Text saved!", slotView.getName(), JOptionPane.INFORMATION_MESSAGE);
 	}
 }

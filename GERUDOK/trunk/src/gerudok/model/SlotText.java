@@ -23,8 +23,8 @@ public class SlotText extends Slot {
 	}
 
 	public Object readResolve() {
-		slotView = new SlotTextView(this);
-		((SlotTextView) slotView).getTextArea().setText(this.text);
+		//slotView = new SlotTextView(this);
+		//((SlotTextView) slotView).getTextArea().setText(this.text);
 		addObserver((Page)getParent());
 		return this;
 	}

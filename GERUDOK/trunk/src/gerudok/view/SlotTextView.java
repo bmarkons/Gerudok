@@ -50,7 +50,7 @@ public class SlotTextView extends SlotView {
 		
 		// Dugme za pamcenje unetog teksta
 		JButton saveBtn = new JButton("Save text");
-		saveBtn.addActionListener(new SaveTextAction((SlotText)slot));
+		//saveBtn.addActionListener(new SaveTextAction((SlotText)slot));
 		add(saveBtn, BorderLayout.SOUTH);
 		toolbar = new TextSlotToolbar();
 		add(toolbar, BorderLayout.EAST);

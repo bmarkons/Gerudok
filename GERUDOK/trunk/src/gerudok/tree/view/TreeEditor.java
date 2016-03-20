@@ -21,8 +21,7 @@ import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellEditor;
 
-public class TreeEditor extends DefaultTreeCellEditor implements
-		ActionListener, TreeCellEditor {
+public class TreeEditor extends DefaultTreeCellEditor implements ActionListener, TreeCellEditor {
 
 	private Object stavka = null;
 	private JTextField edit = null;
@@ -31,8 +30,8 @@ public class TreeEditor extends DefaultTreeCellEditor implements
 		super(arg0, arg1);
 	}
 
-	public Component getTreeCellEditorComponent(JTree arg0, Object arg1,
-			boolean arg2, boolean arg3, boolean arg4, int arg5) {
+	public Component getTreeCellEditorComponent(JTree arg0, Object arg1, boolean arg2, boolean arg3, boolean arg4,
+			int arg5) {
 
 		// super.getTreeCellEditorComponent(arg0,arg1,arg2,arg3,arg4,arg5);
 		stavka = arg1;
@@ -60,33 +59,33 @@ public class TreeEditor extends DefaultTreeCellEditor implements
 
 			project.setName(newName);
 
-			project.getProjectView().setTitle(newName);
+			// project.getProjectView().setTitle(newName);
 		}
 		if (stavka instanceof Document) {
 			Document document = (Document) stavka;
 
 			document.setName(newName);
 
-			DocumentView view = document.getDocumentView();
-			view.setName(newName);
-			JTabbedPane tabbedPane = (JTabbedPane) view.getParent();
-			tabbedPane.setTitleAt(tabbedPane.getSelectedIndex(), newName);
+			// DocumentView view = document.getDocumentView();
+			// view.setName(newName);
+			// JTabbedPane tabbedPane = (JTabbedPane) view.getParent();
+			// tabbedPane.setTitleAt(tabbedPane.getSelectedIndex(), newName);
 		}
 		if (stavka instanceof Page) {
 			Page page = (Page) stavka;
 
 			page.setName(newName);
 
-			PageView view = page.getPageView();
-			view.setName(newName);
+			// PageView view = page.getPageView();
+			// view.setName(newName);
 		}
 		if (stavka instanceof Slot) {
 			Slot slot = (Slot) stavka;
 
 			slot.setName(newName);
 
-			SlotView view = slot.getSlotView();
-			view.setName(newName);
+			// SlotView view = slot.getSlotView();
+			// view.setName(newName);
 		}
 
 		// Otkomentarisati ovaj deo koda na kraju, i obavezno testirati

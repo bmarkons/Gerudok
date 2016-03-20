@@ -38,15 +38,14 @@ public class NewSlotGraphic extends AbstractActionIcon {
 			Page page = (Page) selectedComponent;
 			SlotGraphic slot = new SlotGraphic(page);
 			page.addSlot(slot);
-			SwingUtilities.updateComponentTreeUI(tree);
-
+			
+			//SwingUtilities.updateComponentTreeUI(tree);
 			// Pravi novi SlotView i uvezuje se sa njim
-			SlotGraphicView slotView = new SlotGraphicView(slot);
-			slot.setSlotView(slotView);
-
+			//SlotGraphicView slotView = new SlotGraphicView(slot);
+			//slot.setSlotView(slotView);
 			// Prikaz stranice u koji se dodaje prikaz slota
-			PageView pageView = page.getPageView();
-			pageView.addSlotView(slotView);
+			//PageView pageView = page.getPageView();
+			//pageView.addSlotView(slotView);
 		}
 	}
 }

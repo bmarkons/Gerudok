@@ -3,10 +3,10 @@ package gerudok.events;
 import gerudok.model.Project;
 
 public class WorkspaceEvent {
-	private Type type = null;
+	private WorkspaceEventType type = null;
 	private Project project = null;
 	
-	public WorkspaceEvent(Type type, Project project){
+	public WorkspaceEvent(WorkspaceEventType type, Project project){
 		this.type = type;
 		this.project = project;
 	}
@@ -15,11 +15,11 @@ public class WorkspaceEvent {
 		return project;
 	}
 
-	public Type getType() {
+	public WorkspaceEventType getType() {
 		return type;
 	}
 
-	public enum Type{
+	public enum WorkspaceEventType{
 		ADD_PROJECT,
 		REMOVE_PROJECT
 	}

@@ -22,67 +22,65 @@ import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class DeleteNode extends AbstractActionIcon {
-	
+
 	public DeleteNode() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
 		putValue(SMALL_ICON, iconGetter("/menu/deleteAll.png"));
 		putValue(NAME, rb.getString("Delete"));
 		putValue(SHORT_DESCRIPTION, rb.getString("DeleteH"));
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JTree tree = MainFrameGerudok.getInstance().getTree();
 		Object selectedComponent = tree.getLastSelectedPathComponent();
 
-		if (((selectedComponent instanceof Workspace))
-				|| (selectedComponent == null)) {
+		if (((selectedComponent instanceof Workspace)) || (selectedComponent == null)) {
 			return;
 
 		} else if (selectedComponent instanceof Project) {
-			ProjectView view = null;
+			// ProjectView view = null;
 			Project project = (Project) selectedComponent;
 			Workspace parent = (Workspace) project.getParent();
 			// preuzimanje reference na view izbrisanog projekta kako bi se
 			// mogao ukloniti iz prikaza
-			view = project.getProjectView();
+			// view = project.getProjectView();
 			parent.deleteProject(project);
-			SwingUtilities.updateComponentTreeUI(tree);
+			// SwingUtilities.updateComponentTreeUI(tree);
 
 			// Brisanje view-a za izbrisani projekat
-			try {
-				view.setClosed(true);
-			} catch (PropertyVetoException e1) {
-				e1.printStackTrace();
-			}
+			// try {
+			// view.setClosed(true);
+			// } catch (PropertyVetoException e1) {
+			// e1.printStackTrace();
+			// }
 		} else if (selectedComponent instanceof Document) {
 			Document document = (Document) selectedComponent;
 			Project parent = (Project) document.getParent();
 			parent.deleteDocument(document);
-			SwingUtilities.updateComponentTreeUI(tree);
 
+			// SwingUtilities.updateComponentTreeUI(tree);
 			// Brisanje view-a izbrisanog dokumumenta iz odgovarajuceg prozora
-			ProjectView projectView = parent.getProjectView();
-			DocumentView documentView = document.getDocumentView();
-			projectView.removeDocumentView(documentView);
+			// ProjectView projectView = parent.getProjectView();
+			// DocumentView documentView = document.getDocumentView();
+			// projectView.removeDocumentView(documentView);
 		} else if (selectedComponent instanceof Page) {
 			Page page = (Page) selectedComponent;
 			Document parent = (Document) page.getParent();
 			parent.deletePage(page);
-			SwingUtilities.updateComponentTreeUI(tree);
-
-			DocumentView docView = parent.getDocumentView();
-			docView.removePageView(page.getPageView());
+			//SwingUtilities.updateComponentTreeUI(tree);
+			//DocumentView docView = parent.getDocumentView();
+			//docView.removePageView(page.getPageView());
 		} else if (selectedComponent instanceof Slot) {
 			Slot slot = (Slot) selectedComponent;
 			Page parent = (Page) slot.getParent();
 			parent.deleteSlot(slot);
-			SwingUtilities.updateComponentTreeUI(tree);
-
+			
+			//SwingUtilities.updateComponentTreeUI(tree);
 			// Brisanje SlotView-a iz odgovarajuceg PageView-a
-			PageView pageView = parent.getPageView();
-			SlotView slotView = slot.getSlotView();
-			pageView.removeSlotView(slotView);
+			//PageView pageView = parent.getPageView();
+			//SlotView slotView = slot.getSlotView();
+			//pageView.removeSlotView(slotView);
 		}
 
 	}

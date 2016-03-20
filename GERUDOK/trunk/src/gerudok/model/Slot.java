@@ -16,7 +16,7 @@ public abstract class Slot extends Observable implements MutableTreeNode, Serial
 
 	private Page parent = null;
 	private String name = null;
-	transient SlotView slotView = null;
+	//transient SlotView slotView = null;
 	private CommandManager commandManager;
 
 	public Slot(Page parent) {
@@ -35,18 +35,18 @@ public abstract class Slot extends Observable implements MutableTreeNode, Serial
 		notifyObservers();
 	}
 
-	public SlotView getSlotView() {
-		return slotView;
-	}
-
-	public void setSlotView(SlotView slotView) {
-		this.slotView = slotView;
-	}
+	// public SlotView getSlotView() {
+	// return slotView;
+	// }
+	//
+	// public void setSlotView(SlotView slotView) {
+	// this.slotView = slotView;
+	// }
 
 	public void setName(String name) {
 		this.name = name;
-		if (slotView != null)
-			slotView.setName(name);
+//		if (slotView != null)
+//			slotView.setName(name);
 		// dogodila se modifikacija projekta
 		setChanged();
 		notifyObservers();

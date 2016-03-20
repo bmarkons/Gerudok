@@ -12,9 +12,8 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.events.ProjectEvent;
-import gerudok.events.ProjectEvent.Type;
+import gerudok.events.ProjectEvent.ProjectEventType;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.view.ProjectView;
 
 public class Project extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = -8713701240302899388L;
@@ -22,7 +21,7 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	private Workspace parent = null;
 	private String name = null;
 	private ArrayList<Document> documents = new ArrayList<Document>();
-	private transient ProjectView projectView = null;
+	//private transient ProjectView projectView = null;
 	private File projectFile = null;
 	private boolean projectModified;
 
@@ -40,7 +39,7 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	}
 
 	private Object readResolve() {
-		projectView = new ProjectView(this.name);
+		//projectView = new ProjectView(this.name);
 		addObserver(this);
 		return this;
 	}
@@ -62,13 +61,13 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 		this.projectFile = projectFile;
 	}
 
-	public ProjectView getProjectView() {
-		return projectView;
-	}
-
-	public void setProjectView(ProjectView projectView) {
-		this.projectView = projectView;
-	}
+//	public ProjectView getProjectView() {
+//		return projectView;
+//	}
+//
+//	public void setProjectView(ProjectView projectView) {
+//		this.projectView = projectView;
+//	}
 
 	public void addDocument(Document document) {
 		documents.add(document);
@@ -76,23 +75,22 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 			document.setName("Document - " + documents.size());
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers(new ProjectEvent(Type.ADD_DOCUMENT, document));
+		notifyObservers(new ProjectEvent(ProjectEventType.ADD_DOCUMENT, document));
 	}
 
 	public void deleteDocument(Document document) {
 		documents.remove(document);
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers(new ProjectEvent(Type.REMOVE_DOCUMENT, document));
+		notifyObservers(new ProjectEvent(ProjectEventType.REMOVE_DOCUMENT, document));
 	}
 
 	public void setName(String name) {
 		this.name = name;
-		if (projectView != null)
-			projectView.setName(name);
+		
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers(new ProjectEvent(Type.RENAME_PROJECT,null));
+		notifyObservers(new ProjectEvent(ProjectEventType.RENAME_PROJECT,null));
 	}
 
 	public String getName() {

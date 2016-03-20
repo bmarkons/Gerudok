@@ -38,15 +38,14 @@ public class NewSlotText extends AbstractActionIcon {
 			Page page = (Page) selectedComponent;
 			SlotText slot = new SlotText(page);
 			page.addSlot(slot);
-			SwingUtilities.updateComponentTreeUI(tree);
-
+			
+			//SwingUtilities.updateComponentTreeUI(tree);
 			// Pravi novi SlotView i uvezuje se sa njim
-			SlotTextView slotView = new SlotTextView(slot);
-			slot.setSlotView(slotView);
-
+			//SlotTextView slotView = new SlotTextView(slot);
+			//slot.setSlotView(slotView);
 			// Prikaz stranice u koji se dodaje prikaz slota
-			PageView pageView = page.getPageView();
-			pageView.addSlotView(slotView);
+			//PageView pageView = page.getPageView();
+			//pageView.addSlotView(slotView);
 		}
 	}
 }

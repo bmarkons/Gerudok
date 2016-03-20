@@ -9,7 +9,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.events.WorkspaceEvent;
-import gerudok.events.WorkspaceEvent.Type;
+import gerudok.events.WorkspaceEvent.WorkspaceEventType;
 
 public class Workspace extends Observable implements MutableTreeNode, Serializable {
 	private static final long serialVersionUID = -7676203044336567301L;
@@ -31,14 +31,14 @@ public class Workspace extends Observable implements MutableTreeNode, Serializab
 		}
 		
 		setChanged();
-		notifyObservers(new WorkspaceEvent(Type.ADD_PROJECT, project));
+		notifyObservers(new WorkspaceEvent(WorkspaceEventType.ADD_PROJECT, project));
 	}
 
 	public void deleteProject(Project project) {
 		projects.remove(project);
 
 		setChanged();
-		notifyObservers(new WorkspaceEvent(Type.REMOVE_PROJECT, project));
+		notifyObservers(new WorkspaceEvent(WorkspaceEventType.REMOVE_PROJECT, project));
 	}
 
 	public String getName() {

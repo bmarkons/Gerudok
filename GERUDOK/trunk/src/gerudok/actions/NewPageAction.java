@@ -38,15 +38,12 @@ public class NewPageAction extends AbstractActionIcon {
 			Document document = (Document) selectedComponent;
 			Page page = new Page(document);
 			document.addPage(page);
-			SwingUtilities.updateComponentTreeUI(tree);
-
-			PageView view = new PageView(page.getName());
-
-			page.setPageView(view);
-			view.setPage(page);
-
-			DocumentView docView = document.getDocumentView();
-			docView.addPageView(view);
+			//SwingUtilities.updateComponentTreeUI(tree);
+			//PageView view = new PageView(page.getName());
+			//page.setPageView(view);
+			//view.setPage(page);
+			//DocumentView docView = document.getDocumentView();
+			//docView.addPageView(view);
 
 		}
 	}

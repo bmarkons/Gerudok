@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -122,7 +121,7 @@ public class MainFrameGerudok extends JFrame {
 		return rb;
 	}
 	
-	public JDesktopPane getWorkspaceView() {
+	public WorkspaceView getWorkspaceView() {
 		return workspaceView;
 	}
 

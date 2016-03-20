@@ -30,7 +30,7 @@ import javax.swing.tree.TreePath;
 
 @SuppressWarnings("serial")
 public class OpenProjectAction extends AbstractActionIcon {
-	
+
 	public OpenProjectAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_P);
@@ -39,10 +39,10 @@ public class OpenProjectAction extends AbstractActionIcon {
 		putValue(SHORT_DESCRIPTION, rb.getString("OpenH"));
 
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new GerudokFileFilter());
 		jfc.setDialogTitle("Open Gerudok project");
@@ -67,7 +67,7 @@ public class OpenProjectAction extends AbstractActionIcon {
 
 			if (project != null) {
 				JTree tree = MainFrameGerudok.getInstance().getTree();
-				JDesktopPane desktopPane = MainFrameGerudok.getInstance().getWorkspaceView();
+				//JDesktopPane desktopPane = MainFrameGerudok.getInstance().getWorkspaceView();
 
 				TreePath path = tree.getSelectionPath();
 				tree.expandPath(path);
@@ -78,27 +78,27 @@ public class OpenProjectAction extends AbstractActionIcon {
 
 				// Prikaz kompletnog projekta u delu prikaza
 
-				ProjectView projectView = project.getProjectView();
-				desktopPane.add(projectView);
-				projectView.setVisible(true);
+				// ProjectView projectView = project.getProjectView();
+				// desktopPane.add(projectView);
+				// projectView.setVisible(true);
+				//
+				// // Dodavanje svih prikaza dokumenata u prikaz projekta
+				// for (Document doc : project.getDocuments()) {
+				// DocumentView docView = doc.getDocumentView();
+				// projectView.addDocumentView(docView);
+				// // Dodavanje svih prikaza stranica u prikaz svakog dokumenta
+				// for (Page page : doc.getPages()) {
+				// PageView pageView = page.getPageView();
+				// docView.addPageView(pageView);
+				// // Dodavanje svih prikaza slotova u prikaz svake
+				// // stranice
+				// for (Slot slot : page.getSlots()) {
+				// SlotView slotView = slot.getSlotView();
+				// pageView.addSlotView(slotView);
+				// }
+				// }
+				// }
 
-				// Dodavanje svih prikaza dokumenata u prikaz projekta
-				for (Document doc : project.getDocuments()) {
-					DocumentView docView = doc.getDocumentView();
-					projectView.addDocumentView(docView);
-					// Dodavanje svih prikaza stranica u prikaz svakog dokumenta
-					for (Page page : doc.getPages()) {
-						PageView pageView = page.getPageView();
-						docView.addPageView(pageView);
-						// Dodavanje svih prikaza slotova u prikaz svake
-						// stranice
-						for (Slot slot : page.getSlots()) {
-							SlotView slotView = slot.getSlotView();
-							pageView.addSlotView(slotView);
-						}
-					}
-				}
-				
 				project.setProjectFile(projectFile);
 
 			}

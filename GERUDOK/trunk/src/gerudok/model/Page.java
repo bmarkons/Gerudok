@@ -10,7 +10,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.events.PageEvent;
-import gerudok.events.PageEvent.Type;
+import gerudok.events.PageEvent.PageEventType;
 import gerudok.view.PageView;
 
 public class Page extends Observable implements MutableTreeNode, Serializable, Observer {
@@ -19,7 +19,7 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 	private Document parent = null;
 	private String name = null;
 	private ArrayList<Slot> slots = new ArrayList<Slot>();
-	transient PageView pageView = null;
+	//transient PageView pageView = null;
 
 	public Page(Document parent) {
 		super();
@@ -32,18 +32,18 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 	}
 
 	public Object readResolve() {
-		pageView = new PageView(this.name);
+		//pageView = new PageView(this.name);
 		addObserver(parent);
 		return this;
 	}
 
-	public PageView getPageView() {
-		return pageView;
-	}
-
-	public void setPageView(PageView pageView) {
-		this.pageView = pageView;
-	}
+//	public PageView getPageView() {
+//		return pageView;
+//	}
+//
+//	public void setPageView(PageView pageView) {
+//		this.pageView = pageView;
+//	}
 
 	public void addSlot(Slot slot) {
 		slots.add(slot);
@@ -51,23 +51,22 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 			slot.setName("slot - " + slots.size());
 		// dogodila se modifikacija stranice
 		setChanged();
-		notifyObservers(new PageEvent(Type.ADD_SLOT, slot));
+		notifyObservers(new PageEvent(PageEventType.ADD_SLOT, slot));
 	}
 
 	public void deleteSlot(Slot slot) {
 		slots.remove(slot);
 		// dogodila se modifikacija stranice
 		setChanged();
-		notifyObservers(new PageEvent(Type.REMOVE_SLOT, slot));
+		notifyObservers(new PageEvent(PageEventType.REMOVE_SLOT, slot));
 	}
 
 	public void setName(String name) {
 		this.name = name;
-		if (pageView != null)
-			pageView.setName(name);
+		
 		// dogodila se modifikacija projekta
 		setChanged();
-		notifyObservers(new PageEvent(Type.RENAME_PAGE, null));
+		notifyObservers(new PageEvent(PageEventType.RENAME_PAGE, null));
 	}
 
 	public String getName() {
@@ -121,10 +120,10 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 		notifyObservers();
 	}
 
-	public void notifyObservers(Object arg) {
-		setChanged();
-		super.notifyObservers(arg);
-	}
+//	public void notifyObservers(Object arg) {
+//		setChanged();
+//		super.notifyObservers(arg);
+//	}
 
 	@Override
 	public void insert(MutableTreeNode child, int index) {

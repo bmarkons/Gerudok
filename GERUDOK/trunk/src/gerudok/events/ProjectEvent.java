@@ -3,15 +3,15 @@ package gerudok.events;
 import gerudok.model.Document;
 
 public class ProjectEvent {
-	private Type type = null;
+	private ProjectEventType type = null;
 	private Document document = null;
 	
-	public ProjectEvent(Type type,Document document){
+	public ProjectEvent(ProjectEventType type,Document document){
 		this.type = type;
 		this.document = document;
 	}
 	
-	public Type getType() {
+	public ProjectEventType getType() {
 		return type;
 	}
 
@@ -19,7 +19,7 @@ public class ProjectEvent {
 		return document;
 	}
 
-	public enum Type{
+	public enum ProjectEventType{
 		ADD_DOCUMENT,
 		REMOVE_DOCUMENT,
 		RENAME_PROJECT

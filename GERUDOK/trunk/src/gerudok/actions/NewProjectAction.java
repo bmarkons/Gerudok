@@ -3,17 +3,14 @@ package gerudok.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Project;
 import gerudok.model.Workspace;
-import gerudok.view.ProjectView;
 
 @SuppressWarnings("serial")
 public class NewProjectAction extends AbstractActionIcon {
@@ -36,25 +33,24 @@ public class NewProjectAction extends AbstractActionIcon {
 		tree.expandPath(path);
 		Project project = new Project();
 		((Workspace) tree.getModel().getRoot()).addProject(project);
-		SwingUtilities.updateComponentTreeUI(tree);
-		createProjectViewer(project);
+		//		createProjectViewer(project);
 		// Prikazi dodati projekat u prikaznom delu
 
 	}
-
-	public static void createProjectViewer(Project project) {
-		JDesktopPane desktopPane = MainFrameGerudok.getInstance()
-				.getWorkspaceView();
-		ProjectView view = new ProjectView(project.getName());
-
-		// Medjusobno uvezivanje dodatog projekta i njegovog view-a
-		project.setProjectView(view);
-		view.setProject(project);
-		// Postavljanje naslova dodatog projectView-a
-		view.setTitle(project.getName());
-		// Dodavanje u desktopPane i prikazivanje
-		desktopPane.add(view);
-		view.setVisible(true);
-
-	}
+//
+//	public static void createProjectViewer(Project project) {
+//		JDesktopPane desktopPane = MainFrameGerudok.getInstance()
+//				.getWorkspaceView();
+//		ProjectView view = new ProjectView(project.getName());
+//
+//		// Medjusobno uvezivanje dodatog projekta i njegovog view-a
+//		project.setProjectView(view);
+//		view.setProject(project);
+//		// Postavljanje naslova dodatog projectView-a
+//		view.setTitle(project.getName());
+//		// Dodavanje u desktopPane i prikazivanje
+//		desktopPane.add(view);
+//		view.setVisible(true);
+//
+//	}
 }

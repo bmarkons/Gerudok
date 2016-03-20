@@ -37,17 +37,14 @@ public class NewDocumentAction extends AbstractActionIcon {
 			Project project = (Project) selectedComponent;
 			Document document = new Document(project);
 			project.addDocument(document);
-			SwingUtilities.updateComponentTreeUI(tree);
-
+			//SwingUtilities.updateComponentTreeUI(tree);
 			// Kreiranje prikaza dokumenta
-			DocumentView view = new DocumentView(document.getName());
-
+			//DocumentView view = new DocumentView(document.getName());
 			// Medjusovno uvezivanje dodatog dokumenta i njegovog view-a
-			document.setDocumentView(view);
-			view.setDocument(document);
-
+			//document.setDocumentView(view);
+			//view.setDocument(document);
 			// dodavanje DocumentView-a u odgovarajuci interni prozor
-			project.getProjectView().addDocumentView(view);
+			//project.getProjectView().addDocumentView(view);
 		}
 	}
 }

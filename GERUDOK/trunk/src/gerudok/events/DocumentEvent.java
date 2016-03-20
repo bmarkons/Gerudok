@@ -3,15 +3,15 @@ package gerudok.events;
 import gerudok.model.Page;
 
 public class DocumentEvent {
-	private Type type = null;
+	private DocumentEventType type = null;
 	private Page page = null;
 	
-	public DocumentEvent(Type type,Page page){
+	public DocumentEvent(DocumentEventType type,Page page){
 		this.type = type;
 		this.page = page;
 	}
 	
-	public Type getType() {
+	public DocumentEventType getType() {
 		return type;
 	}
 
@@ -19,7 +19,7 @@ public class DocumentEvent {
 		return page;
 	}
 
-	public enum Type{
+	public enum DocumentEventType{
 		ADD_PAGE,
 		REMOVE_PAGE,
 		RENAME_DOCUMENT
