@@ -18,8 +18,8 @@ public class TileVerticallyAction extends AbstractActionIcon {
 	public TileVerticallyAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
 		putValue(SMALL_ICON, iconGetter("/toolbar/tv.png"));
-		putValue(NAME, "Tile vertically");
-		putValue(SHORT_DESCRIPTION, "Tile vertically (ALT+V)");
+		putValue(NAME, rb.getString("TV"));
+		putValue(SHORT_DESCRIPTION, rb.getString("TVH"));
 
 	}
 	

@@ -21,8 +21,8 @@ public class NewDocumentAction extends AbstractActionIcon {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
 		putValue(SMALL_ICON, iconGetter("/toolbar/adddoc.png"));
-		putValue(NAME, "New document");
-		putValue(SHORT_DESCRIPTION, "New document (CTRL+D)");
+		putValue(NAME, rb.getString("NewDocument"));
+		putValue(SHORT_DESCRIPTION, rb.getString("NewDocumentH"));
 
 	}
 	

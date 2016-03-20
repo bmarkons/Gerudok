@@ -26,8 +26,8 @@ public class DeleteNode extends AbstractActionIcon {
 	public DeleteNode() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
 		putValue(SMALL_ICON, iconGetter("/menu/deleteAll.png"));
-		putValue(NAME, "Universal delete");
-		putValue(SHORT_DESCRIPTION, "Universal delete (DELETE)");
+		putValue(NAME, rb.getString("Delete"));
+		putValue(SHORT_DESCRIPTION, rb.getString("DeleteH"));
 	}
 	
 	@Override

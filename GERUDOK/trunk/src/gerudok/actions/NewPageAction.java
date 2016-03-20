@@ -22,8 +22,8 @@ public class NewPageAction extends AbstractActionIcon {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_P);
 		putValue(SMALL_ICON, iconGetter("/toolbar/addpage.png"));
-		putValue(NAME, "New page");
-		putValue(SHORT_DESCRIPTION, "New page (CTRL+P)");
+		putValue(NAME, rb.getString("NewPage"));
+		putValue(SHORT_DESCRIPTION, rb.getString("NewPageH"));
 
 	}
 	

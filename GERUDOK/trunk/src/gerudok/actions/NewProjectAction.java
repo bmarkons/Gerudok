@@ -23,8 +23,8 @@ public class NewProjectAction extends AbstractActionIcon {
 				KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
 		putValue(SMALL_ICON, iconGetter("/toolbar/addproj.png"));
-		putValue(NAME, "New project");
-		putValue(SHORT_DESCRIPTION, "New project (CTRL+N)");
+		putValue(NAME, rb.getString("NewProject"));
+		putValue(SHORT_DESCRIPTION, rb.getString("NewProjectH"));
 
 	}
 

@@ -22,8 +22,8 @@ public class SaveProjectAction extends AbstractActionIcon {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, iconGetter("/menu/save.png"));
-		putValue(NAME, "Save");
-		putValue(SHORT_DESCRIPTION, "Save (CTRL+S)");
+		putValue(NAME, rb.getString("Save"));
+		putValue(SHORT_DESCRIPTION, rb.getString("SaveH"));
 
 	}
 

@@ -1,5 +1,7 @@
 package gerudok.actions.manager;
 
+import java.util.ResourceBundle;
+
 import gerudok.actions.AboutAction;
 import gerudok.actions.CascadeProjectAction;
 import gerudok.actions.CommandRedoAction;
@@ -18,6 +20,7 @@ import gerudok.actions.SaveAsProjectAction;
 import gerudok.actions.SaveProjectAction;
 import gerudok.actions.TileHorizontallyAction;
 import gerudok.actions.TileVerticallyAction;
+import gerudok.gui.MainFrameGerudok;
 
 public class ActionManager {
 
@@ -133,6 +136,59 @@ public class ActionManager {
 
 	public TileVerticallyAction getTilevertically() {
 		return tilevertically;
+	}
+	
+	public void changeLanguage() {
+		ResourceBundle rb = MainFrameGerudok.getInstance().getResourceBundle();
+		
+		about.putValue(AbstractActionIcon.NAME, rb.getString("About"));
+		about.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("AboutH"));
+		
+		cascade.putValue(AbstractActionIcon.NAME, rb.getString("Cascade"));
+		cascade.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("CascadeH"));
+		
+		redo.putValue(AbstractActionIcon.NAME, rb.getString("Redo"));
+		redo.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("RedoH"));
+		
+		undo.putValue(AbstractActionIcon.NAME, rb.getString("Undo"));
+		undo.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("UndoH"));
+		
+		deletenode.putValue(AbstractActionIcon.NAME, rb.getString("Delete"));
+		deletenode.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("DeleteH"));
+		
+		gridaction.putValue(AbstractActionIcon.NAME, rb.getString("Grid"));
+		gridaction.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("GridH"));
+		
+		newdocument.putValue(AbstractActionIcon.NAME, rb.getString("NewDocument"));
+		newdocument.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewDocumentH"));
+		
+		newpage.putValue(AbstractActionIcon.NAME, rb.getString("NewPage"));
+		newpage.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewPageH"));
+		
+		newproject.putValue(AbstractActionIcon.NAME, rb.getString("NewProject"));
+		newproject.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewProjectH"));
+		
+		newgraphicslot.putValue(AbstractActionIcon.NAME, rb.getString("NewGSlot"));
+		newgraphicslot.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewGSlotH"));
+		
+		newtextslot.putValue(AbstractActionIcon.NAME, rb.getString("NewTSlot"));
+		newtextslot.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewTSlotH"));
+		
+		openproject.putValue(AbstractActionIcon.NAME, rb.getString("Open"));
+		openproject.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("OpenH"));
+		
+		saveas.putValue(AbstractActionIcon.NAME, rb.getString("SaveAs"));
+		saveas.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("SaveAsH"));
+		
+		save.putValue(AbstractActionIcon.NAME, rb.getString("Save"));
+		save.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("SaveH"));
+		
+		tilehorizontally.putValue(AbstractActionIcon.NAME, rb.getString("TH"));
+		tilehorizontally.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("THH"));
+		
+		tilevertically.putValue(AbstractActionIcon.NAME, rb.getString("TV"));
+		tilevertically.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("TVH"));
+		
 	}
 	
 	public static ActionManager getInstance() {

@@ -1,23 +1,41 @@
 package gerudok.gui.segments;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import gerudok.actions.manager.ActionManager;
+import gerudok.gui.MainFrameGerudok;
 
 @SuppressWarnings("serial")
 public class MenuBarGerudok extends JMenuBar {
-
+	
+	private JMenu file;
+	private JMenu newSlot;
+	private JMenu project;
+	private JMenu edit;
+	private JMenu view;
+	private JMenu language;
+	private JMenu help;
+	
+	private ResourceBundle rb = MainFrameGerudok.getInstance().getResourceBundle();
+	
 	public MenuBarGerudok() {
-		JMenu file = new JMenu("File");
+		
+		file = new JMenu(rb.getString("File"));
 		file.setMnemonic(KeyEvent.VK_F);
 
 		// dodavanje podmenija i menuitem-a
 
-		JMenu newSlot = new JMenu("New Slot");
+		newSlot = new JMenu(rb.getString("NewSlot"));
 		ImageIcon iconas = new ImageIcon("images/menu/addslot.png");
 		newSlot.setIcon(iconas);
 		
@@ -30,7 +48,7 @@ public class MenuBarGerudok extends JMenuBar {
 		file.addSeparator();
 		file.add(newSlot);
 
-		JMenu project = new JMenu("Project");
+		project = new JMenu(rb.getString("Project"));
 		project.setMnemonic(KeyEvent.VK_P);
 		// dodavanje podmenija i menu item-a
 
@@ -43,25 +61,83 @@ public class MenuBarGerudok extends JMenuBar {
 		project.addSeparator();
 		project.add(ActionManager.getInstance().getDeletenode());
 
-		JMenu edit = new JMenu("Edit");
+		edit = new JMenu(rb.getString("Edit"));
 		edit.setMnemonic(KeyEvent.VK_E);
 
 		edit.add(ActionManager.getInstance().getUndo());
 		edit.add(ActionManager.getInstance().getRedo());
 
-		JMenu window = new JMenu("View");
-		window.setMnemonic(KeyEvent.VK_V);
+		view = new JMenu(rb.getString("View"));
+		view.setMnemonic(KeyEvent.VK_V);
 		// dodavanje podmenija i menuitem-a
 		
-		window.add(ActionManager.getInstance().getCascade());
+		view.add(ActionManager.getInstance().getCascade());
 
-		window.add(ActionManager.getInstance().getTilehorizontally());
+		view.add(ActionManager.getInstance().getTilehorizontally());
 
-		window.add(ActionManager.getInstance().getTilevertically());
+		view.add(ActionManager.getInstance().getTilevertically());
 
-		window.add(ActionManager.getInstance().getGridaction());
-
-		JMenu help = new JMenu("Help");
+		view.add(ActionManager.getInstance().getGridaction());
+		
+		view.addSeparator();
+		
+		language = new JMenu(rb.getString("Language"));
+		
+		JCheckBoxMenuItem en = new JCheckBoxMenuItem("English");
+		en.setSelected(true);
+		en.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Locale.setDefault(new Locale("en","US"));
+				MainFrameGerudok.getInstance().changeLanguage();
+			}
+		});
+		JCheckBoxMenuItem sr = new JCheckBoxMenuItem("Srpski");
+		sr.addActionListener(new ActionListener() {
+			
+			@SuppressWarnings("static-access")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainFrameGerudok.getInstance().getLocale().setDefault(new Locale("sr","RS"));
+				MainFrameGerudok.getInstance().changeLanguage();
+			}
+		});
+		JCheckBoxMenuItem sr_cyr = new JCheckBoxMenuItem("Српски");
+		sr_cyr.addActionListener(new ActionListener() {
+			
+			@SuppressWarnings("static-access")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainFrameGerudok.getInstance().getLocale().setDefault(new Locale("sr","RS","Cyrl"));
+				MainFrameGerudok.getInstance().changeLanguage();
+			}
+		});
+		JCheckBoxMenuItem hu = new JCheckBoxMenuItem("Magyar");
+		hu.addActionListener(new ActionListener() {
+			
+			@SuppressWarnings("static-access")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainFrameGerudok.getInstance().getLocale().setDefault(new Locale("hu","HU"));
+				MainFrameGerudok.getInstance().changeLanguage();
+			}
+		});
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(en);
+		group.add(sr);
+		group.add(sr_cyr);
+		group.add(hu);
+		
+		language.add(en);
+		language.add(sr);
+		language.add(sr_cyr);
+		language.add(hu);
+		
+		view.add(language);
+		
+		help = new JMenu(rb.getString("Help"));
 		help.setMnemonic(KeyEvent.VK_H);
 		// dodavanje podmenija i menuitem-a
 		help.add(ActionManager.getInstance().getAbout());
@@ -69,7 +145,19 @@ public class MenuBarGerudok extends JMenuBar {
 		add(file);
 		add(project);
 		add(edit);
-		add(window);
+		add(view);
 		add(help);
+	}
+	
+	public void changeLanguage(){
+		rb = MainFrameGerudok.getInstance().getResourceBundle();
+		
+		file.setText(rb.getString("File"));
+		newSlot.setText(rb.getString("NewSlot"));;
+		project.setText(rb.getString("Project"));;
+		edit.setText(rb.getString("Edit"));;
+		view.setText(rb.getString("View"));;
+		language.setText(rb.getString("Language"));;
+		help.setText(rb.getString("Help"));;
 	}
 }

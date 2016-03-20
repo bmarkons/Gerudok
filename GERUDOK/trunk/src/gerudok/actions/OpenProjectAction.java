@@ -35,8 +35,8 @@ public class OpenProjectAction extends AbstractActionIcon {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_P);
 		putValue(SMALL_ICON, iconGetter("/toolbar/openproj.png"));
-		putValue(NAME, "Open");
-		putValue(SHORT_DESCRIPTION, "Open project (CTRL+O)");
+		putValue(NAME, rb.getString("Open"));
+		putValue(SHORT_DESCRIPTION, rb.getString("OpenH"));
 
 	}
 	

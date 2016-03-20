@@ -23,8 +23,8 @@ public class SaveAsProjectAction extends AbstractActionIcon {
 	public SaveAsProjectAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F1, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, iconGetter("/toolbar/save.png"));
-		putValue(NAME, "Save as");
-		putValue(SHORT_DESCRIPTION, "Save as (CTRL+F1)");
+		putValue(NAME, rb.getString("SaveAs"));
+		putValue(SHORT_DESCRIPTION, rb.getString("SaveAsH"));
 
 	}
 	

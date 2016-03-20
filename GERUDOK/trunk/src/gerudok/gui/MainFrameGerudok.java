@@ -3,6 +3,8 @@ package gerudok.gui;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -11,6 +13,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import gerudok.actions.manager.ActionManager;
 import gerudok.gui.segments.MenuBarGerudok;
 import gerudok.gui.segments.StatusBarGerudok;
 import gerudok.gui.segments.ToolBarGerudok;
@@ -33,10 +36,17 @@ public class MainFrameGerudok extends JFrame {
 	private StatusBarGerudok statusBar = null;
 	private ToolBarGerudok toolBar = null;
 
+	private ResourceBundle rb = null;
+	
 	private MainFrameGerudok() {
 		super();
+	}
+	
+	private void initMainFrameGerudok() {
+		
+		rb = ResourceBundle.getBundle("gerudok.locale.gerudok", Locale.getDefault());
 
-		setTitle("GeRuDok T1.1");
+		setTitle(rb.getString("Title"));
 
 		// podesavanje velicine i pozicije prozora
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -96,7 +106,10 @@ public class MainFrameGerudok extends JFrame {
 
 	public static MainFrameGerudok getInstance() {
 		if (instance == null)
+		{
 			instance = new MainFrameGerudok();
+			instance.initMainFrameGerudok();
+		}
 
 		return instance;
 	}
@@ -105,6 +118,10 @@ public class MainFrameGerudok extends JFrame {
 		return tree;
 	}
 
+	public ResourceBundle getResourceBundle() {
+		return rb;
+	}
+	
 	public JDesktopPane getWorkspaceView() {
 		return workspaceView;
 	}
@@ -119,5 +136,13 @@ public class MainFrameGerudok extends JFrame {
 
 	public ToolBarGerudok getToolBar() {
 		return toolBar;
+	}
+	
+	public void changeLanguage() {
+		rb = ResourceBundle.getBundle("gerudok.locale.gerudok", Locale.getDefault());
+		setTitle(rb.getString("Title"));
+		ActionManager.getInstance().changeLanguage();
+		menuBar.changeLanguage();
+		statusBar.changeLanguage();
 	}
 }

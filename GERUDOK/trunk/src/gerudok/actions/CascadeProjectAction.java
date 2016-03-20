@@ -15,10 +15,11 @@ import javax.swing.KeyStroke;
 public class CascadeProjectAction extends AbstractActionIcon {
 	
 	public CascadeProjectAction() {
+		
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.ALT_MASK));
 		putValue(SMALL_ICON, iconGetter("/toolbar/ch.png"));
-		putValue(NAME, "Cascade horizontally");
-		putValue(SHORT_DESCRIPTION, "Cascade horizontally (ALT+C)");
+		putValue(NAME, rb.getString("Cascade"));
+		putValue(SHORT_DESCRIPTION, rb.getString("CascadeH"));
 
 	}
 

@@ -19,14 +19,16 @@ public class CommandUndoAction extends AbstractActionIcon implements Serializabl
 	public CommandUndoAction(SlotGraphic slot) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, iconGetter("/menu/undo.png"));
-		putValue(NAME, "Undo");
+		putValue(NAME, rb.getString("Undo"));
+		putValue(SHORT_DESCRIPTION, rb.getString("UndoH"));
 		this.slot = slot;
 	}
 
 	public CommandUndoAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, iconGetter("/menu/undo.png"));
-		putValue(NAME, "Undo");
+		putValue(NAME, rb.getString("Undo"));
+		putValue(SHORT_DESCRIPTION, rb.getString("UndoH"));
 	}
 
 	@Override

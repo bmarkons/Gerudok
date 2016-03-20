@@ -16,8 +16,8 @@ public class AboutAction extends AbstractActionIcon {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_A);
 		putValue(SMALL_ICON, iconGetter("/toolbar/about.png"));
-		putValue(NAME, "About GeRuDok");
-		putValue(SHORT_DESCRIPTION, "About GeRuDok (ALT+A)");
+		putValue(NAME, rb.getString("About"));
+		putValue(SHORT_DESCRIPTION, rb.getString("AboutH"));
 
 	}
 	

@@ -22,8 +22,8 @@ public class NewSlotGraphic extends AbstractActionIcon {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_G);
 		putValue(SMALL_ICON, iconGetter("/toolbar/newgslot.png"));
-		putValue(NAME, "New graphic slot");
-		putValue(SHORT_DESCRIPTION, "New graphic slot (CTRL+G)");
+		putValue(NAME, rb.getString("NewGSlot"));
+		putValue(SHORT_DESCRIPTION, rb.getString("NewGSlotH"));
 
 	}
 	

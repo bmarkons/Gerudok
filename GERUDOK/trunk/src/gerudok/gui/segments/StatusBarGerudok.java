@@ -2,24 +2,33 @@ package gerudok.gui.segments;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.ResourceBundle;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import gerudok.gui.MainFrameGerudok;
+
 public class StatusBarGerudok extends JPanel {
 	private static final long serialVersionUID = -9168377466538098360L;
-
+	
+	JLabel status1;
+	JLabel status2;
+	JLabel status3;
+	
+	private ResourceBundle rb = MainFrameGerudok.getInstance().getResourceBundle();
+	
 	public StatusBarGerudok() {
 		super(new BorderLayout());
 
 		//setBackground(Color.decode("#bbbbbb"));
 		setPreferredSize(new Dimension(200, 20));
 
-		JLabel status1 = new JLabel("Your application is running. ");
-		JLabel status2 = new JLabel("Language: English", SwingConstants.CENTER);
-		JLabel status3 = new JLabel("Ready");
+		status1 = new JLabel(rb.getString("SBMessage1"));
+		status2 = new JLabel(rb.getString("SBMessage2"), SwingConstants.CENTER);
+		status3 = new JLabel(rb.getString("SBMessage3"));
 
 		JSeparator sep = new JSeparator(JSeparator.HORIZONTAL);
 
@@ -29,5 +38,13 @@ public class StatusBarGerudok extends JPanel {
 		add(status3, BorderLayout.WEST);
 		add(sep, BorderLayout.NORTH);
 	}
-
+	
+	public void changeLanguage() {
+		rb = MainFrameGerudok.getInstance().getResourceBundle();
+		
+		status1.setText(rb.getString("SBMessage1"));
+		status2.setText(rb.getString("SBMessage2"));
+		status3.setText(rb.getString("SBMessage3"));
+	}
+	
 }

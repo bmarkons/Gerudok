@@ -19,8 +19,8 @@ public class GridProjectAction extends AbstractActionIcon {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.ALT_MASK));
 		putValue(SMALL_ICON, iconGetter("/toolbar/grid.png"));
-		putValue(NAME, "Grid layout");
-		putValue(SHORT_DESCRIPTION, "Grid layout (ALT+G)");
+		putValue(NAME, rb.getString("Grid"));
+		putValue(SHORT_DESCRIPTION, rb.getString("GridH"));
 
 	}
 

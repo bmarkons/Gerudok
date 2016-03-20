@@ -18,8 +18,8 @@ public class TileHorizontallyAction extends AbstractActionIcon {
 	public TileHorizontallyAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
 		putValue(SMALL_ICON, iconGetter("/toolbar/th.png"));
-		putValue(NAME, "Tile horizontally");
-		putValue(SHORT_DESCRIPTION, "Tile horizontally (ALT+C)");
+		putValue(NAME, rb.getString("TH"));
+		putValue(SHORT_DESCRIPTION, rb.getString("THH"));
 
 	}
 	

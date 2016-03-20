@@ -13,13 +13,14 @@ import javax.swing.KeyStroke;
 public class CommandRedoAction extends AbstractActionIcon implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	SlotGraphic slot;
+	private SlotGraphic slot;
 
 	public CommandRedoAction(SlotGraphic slot) {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, iconGetter("/menu/redo.png"));
-		putValue(NAME, "Redo");
+		putValue(NAME, rb.getString("Redo"));
+		putValue(SHORT_DESCRIPTION, rb.getString("RedoH"));
 		this.slot = slot;
 	}
 
@@ -27,7 +28,8 @@ public class CommandRedoAction extends AbstractActionIcon implements Serializabl
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		putValue(SMALL_ICON, iconGetter("/menu/redo.png"));
-		putValue(NAME, "Redo");
+		putValue(NAME, rb.getString("Redo"));
+		putValue(SHORT_DESCRIPTION, rb.getString("RedoH"));
 	}
 
 	@Override

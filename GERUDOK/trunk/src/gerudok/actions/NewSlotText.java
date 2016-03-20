@@ -22,8 +22,8 @@ public class NewSlotText extends AbstractActionIcon {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_T);
 		putValue(SMALL_ICON, iconGetter("/toolbar/newtxt.png"));
-		putValue(NAME, "New text slot");
-		putValue(SHORT_DESCRIPTION, "New text slot (CTRL+T)");
+		putValue(NAME, rb.getString("NewTSlot"));
+		putValue(SHORT_DESCRIPTION, rb.getString("NewTSlotH"));
 
 	}
 	
