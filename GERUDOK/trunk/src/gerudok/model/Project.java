@@ -73,15 +73,15 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 		documents.add(document);
 		if (document.getName() == null)
 			document.setName("Document - " + documents.size());
+		
 		// dogodila se modifikacija projekta
-		setChanged();
 		notifyObservers(new ProjectEvent(ProjectEventType.ADD_DOCUMENT, document));
 	}
 
 	public void deleteDocument(Document document) {
 		documents.remove(document);
+		
 		// dogodila se modifikacija projekta
-		setChanged();
 		notifyObservers(new ProjectEvent(ProjectEventType.REMOVE_DOCUMENT, document));
 	}
 
@@ -89,7 +89,6 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 		this.name = name;
 		
 		// dogodila se modifikacija projekta
-		setChanged();
 		notifyObservers(new ProjectEvent(ProjectEventType.RENAME_PROJECT,null));
 	}
 
@@ -174,5 +173,11 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	@Override
 	public void setParent(MutableTreeNode newParent) {
 		this.parent = (Workspace) newParent;
+	}
+	
+	@Override
+	public void notifyObservers(Object arg){
+		setChanged();
+		super.notifyObservers(arg);
 	}
 }

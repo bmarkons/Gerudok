@@ -30,14 +30,12 @@ public class Workspace extends Observable implements MutableTreeNode, Serializab
 			project.setProjectModified(true);
 		}
 		
-		setChanged();
 		notifyObservers(new WorkspaceEvent(WorkspaceEventType.ADD_PROJECT, project));
 	}
 
 	public void deleteProject(Project project) {
 		projects.remove(project);
 
-		setChanged();
 		notifyObservers(new WorkspaceEvent(WorkspaceEventType.REMOVE_PROJECT, project));
 	}
 
@@ -123,5 +121,11 @@ public class Workspace extends Observable implements MutableTreeNode, Serializab
 	public void setParent(MutableTreeNode newParent) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void notifyObservers(Object arg){
+		setChanged();
+		super.notifyObservers(arg);
 	}
 }

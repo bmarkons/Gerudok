@@ -2,7 +2,6 @@ package gerudok.model;
 
 import javax.swing.tree.MutableTreeNode;
 
-import gerudok.view.SlotTextView;
 
 public class SlotText extends Slot {
 	private static final long serialVersionUID = 3641546233772099557L;
@@ -23,7 +22,7 @@ public class SlotText extends Slot {
 	}
 
 	public Object readResolve() {
-		//slotView = new SlotTextView(this);
+
 		//((SlotTextView) slotView).getTextArea().setText(this.text);
 		addObserver((Page)getParent());
 		return this;

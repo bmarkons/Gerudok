@@ -11,7 +11,6 @@ import javax.swing.tree.TreeNode;
 
 import gerudok.events.PageEvent;
 import gerudok.events.PageEvent.PageEventType;
-import gerudok.view.PageView;
 
 public class Page extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = -8832891846966542402L;
@@ -49,15 +48,15 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 		slots.add(slot);
 		if (slot.getName() == null)
 			slot.setName("slot - " + slots.size());
+		
 		// dogodila se modifikacija stranice
-		setChanged();
 		notifyObservers(new PageEvent(PageEventType.ADD_SLOT, slot));
 	}
 
 	public void deleteSlot(Slot slot) {
 		slots.remove(slot);
+		
 		// dogodila se modifikacija stranice
-		setChanged();
 		notifyObservers(new PageEvent(PageEventType.REMOVE_SLOT, slot));
 	}
 
@@ -65,7 +64,6 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 		this.name = name;
 		
 		// dogodila se modifikacija projekta
-		setChanged();
 		notifyObservers(new PageEvent(PageEventType.RENAME_PAGE, null));
 	}
 
@@ -116,7 +114,6 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 	@Override
 	public void update(Observable o, Object arg) {
 		// Prosledjuje obavestenje o promeni ka parent-u
-		setChanged();
 		notifyObservers();
 	}
 
@@ -159,6 +156,12 @@ public class Page extends Observable implements MutableTreeNode, Serializable, O
 	public void setParent(MutableTreeNode newParent) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void notifyObservers(Object arg){
+		setChanged();
+		super.notifyObservers(arg);
 	}
 
 }

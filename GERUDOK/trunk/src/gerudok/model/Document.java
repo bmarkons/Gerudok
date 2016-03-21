@@ -11,7 +11,6 @@ import javax.swing.tree.TreeNode;
 
 import gerudok.events.DocumentEvent;
 import gerudok.events.DocumentEvent.DocumentEventType;
-import gerudok.view.DocumentView;
 
 public class Document extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = 3563415829958763008L;
@@ -49,15 +48,15 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 		pages.add(page);
 		if (page.getName() == null)
 			page.setName("Page - " + pages.size());
+		
 		// dogodila se modifikacija dokumenta
-		setChanged();
 		notifyObservers(new DocumentEvent(DocumentEventType.ADD_PAGE, page));
 	}
 
 	public void deletePage(Page page) {
 		pages.remove(page);
+		
 		// dogodila se modifikacija dokumenta
-		setChanged();
 		notifyObservers(new DocumentEvent(DocumentEventType.REMOVE_PAGE, page));
 	}
 
@@ -65,7 +64,6 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 		this.name = name;
 		
 		// dogodila se modifikacija projekta
-		setChanged();
 		notifyObservers(new DocumentEvent(DocumentEventType.RENAME_DOCUMENT, null));
 	}
 
@@ -154,5 +152,11 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	public void setParent(MutableTreeNode newParent) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public void notifyObservers(Object arg){
+		setChanged();
+		super.notifyObservers(arg);
 	}
 }

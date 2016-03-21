@@ -3,12 +3,8 @@ package gerudok.model;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
-import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
-
-import gerudok.gui.MainFrameGerudok;
-import gerudok.view.SlotGraphicView;
 
 public class SlotGraphic extends Slot {
 	private static final long serialVersionUID = -5018847687408131521L;
@@ -34,8 +30,8 @@ public class SlotGraphic extends Slot {
 
 		// Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg
 		// slotView-a
-//		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-//		this.slotView.repaint();
+		// SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+		// this.slotView.repaint();
 	}
 
 	public void removeGraphicSlotElement(GraphicSlotElement element) {
@@ -47,12 +43,12 @@ public class SlotGraphic extends Slot {
 
 		// Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg
 		// slotView-a
-//		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-//		this.slotView.repaint();
+		// SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+		// this.slotView.repaint();
 	}
 
 	public Object readResolve() {
-		//slotView = new SlotGraphicView(this);
+		// slotView = new SlotGraphicView(this);
 		addObserver((Page) getParent());
 		return this;
 	}
@@ -85,7 +81,7 @@ public class SlotGraphic extends Slot {
 
 	@Override
 	public boolean isLeaf() {
-		return false;
+		return graphicElements.size() == 0;
 	}
 
 	@Override

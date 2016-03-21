@@ -41,7 +41,8 @@ public class ProjectView extends JInternalFrame implements Observer {
 		this.setSize(d.width / 2, 2 * d.height / 3);
 
 		ImageIcon image = new ImageIcon("images/tree/treeproj.png");
-		setFrameIcon(new ImageIcon(image.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH)));
+		setFrameIcon(new ImageIcon(image.getImage().getScaledInstance(16, 16,
+				Image.SCALE_SMOOTH)));
 
 		tabbedPane = new JTabbedPane();
 		add(tabbedPane);
@@ -65,10 +66,6 @@ public class ProjectView extends JInternalFrame implements Observer {
 		return project;
 	}
 
-	// public void setProject(Project project) {
-	// this.project = project;
-	// }
-
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
 	}
@@ -86,29 +83,37 @@ public class ProjectView extends JInternalFrame implements Observer {
 		ProjectEvent eventObject = (ProjectEvent) arg;
 
 		if (eventObject.getType() == ProjectEventType.ADD_DOCUMENT) {
-			
+
 			DocumentView docView = new DocumentView(eventObject.getDocument());
 			addDocumentView(docView);
 			eventObject.getDocument().addObserver(docView);
-			
+
 			ArrayList<Page> pages = eventObject.getDocument().getPages();
-			for(Page page:pages)
-				eventObject.getDocument().notifyObservers(new DocumentEvent(DocumentEventType.ADD_PAGE, page));
-			
+			for (Page page : pages)
+				eventObject.getDocument().notifyObservers(
+						new DocumentEvent(DocumentEventType.ADD_PAGE, page));
+
 		} else if (eventObject.getType() == ProjectEventType.REMOVE_DOCUMENT) {
-			
+
+			//ubacivanje svih view-ova za brisanje u listu removeViews
+			ArrayList<DocumentView> removeViews = new ArrayList<DocumentView>();
 			int totalTabs = tabbedPane.getTabCount();
 			for (int i = 0; i < totalTabs; i++) {
-				DocumentView docView = (DocumentView) tabbedPane.getTabComponentAt(i);
-				if(docView.getDocument().equals(eventObject.getDocument())){
-					tabbedPane.remove(docView);
+				DocumentView docView = (DocumentView) tabbedPane
+						.getComponentAt(i);
+				if (docView.getDocument().equals(eventObject.getDocument())) {
+					removeViews.add(docView);
 				}
 			}
+			//brisanje view-ova iz liste
+			for(DocumentView docView:removeViews)
+				removeDocumentView(docView);
+			
 		} else if (eventObject.getType() == ProjectEventType.RENAME_PROJECT) {
 			this.title = project.getName();
 		}
 
-		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
+				.getTree());
 	}
-
 }

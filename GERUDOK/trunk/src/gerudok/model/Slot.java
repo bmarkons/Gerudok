@@ -9,14 +9,12 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.commands.CommandManager;
-import gerudok.view.SlotView;
 
 public abstract class Slot extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = 3756092790397970680L;
 
 	private Page parent = null;
 	private String name = null;
-	//transient SlotView slotView = null;
 	private CommandManager commandManager;
 
 	public Slot(Page parent) {
@@ -35,20 +33,10 @@ public abstract class Slot extends Observable implements MutableTreeNode, Serial
 		notifyObservers();
 	}
 
-	// public SlotView getSlotView() {
-	// return slotView;
-	// }
-	//
-	// public void setSlotView(SlotView slotView) {
-	// this.slotView = slotView;
-	// }
-
 	public void setName(String name) {
 		this.name = name;
-//		if (slotView != null)
-//			slotView.setName(name);
+
 		// dogodila se modifikacija projekta
-		setChanged();
 		notifyObservers();
 	}
 
@@ -98,7 +86,12 @@ public abstract class Slot extends Observable implements MutableTreeNode, Serial
 
 	@Override
 	public void update(Observable o, Object arg) {
-		setChanged();
 		notifyObservers();
+	}
+	
+	@Override
+	public void notifyObservers(Object arg){
+		setChanged();
+		super.notifyObservers(arg);
 	}
 }
