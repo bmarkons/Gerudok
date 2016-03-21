@@ -3,13 +3,17 @@ package gerudok.gui;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
+import javax.swing.WindowConstants;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 import gerudok.actions.manager.ActionManager;
@@ -21,7 +25,6 @@ import gerudok.tree.listener.JTreeControllerGerudok;
 import gerudok.tree.view.TreeCellRendered;
 import gerudok.tree.view.TreeEditor;
 import gerudok.view.WorkspaceView;
-
 import gerudok.tree.view.TreePopUp;
 
 public class MainFrameGerudok extends JFrame {
@@ -53,11 +56,61 @@ public class MainFrameGerudok extends JFrame {
 		int width = kit.getScreenSize().width;
 		setSize((int) (width * 0.6), (int) (height * 0.8));
 		setLocationRelativeTo(null);
+		addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				MainFrameGerudok frame = (MainFrameGerudok) e.getComponent();
+ 				int check = JOptionPane.showConfirmDialog(frame, rb.getString("Closing"),
+ 						rb.getString("CloseTitle"), JOptionPane.YES_NO_OPTION);
+				if (check != JOptionPane.YES_OPTION) {
+					frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				} else {
+					frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				}
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 		// Postavljanje ikone
 		Image img = kit.getImage("images/logo.png");
-		setIconImage(img);
-
+		setIconImage(img); 
+		
 		// dodavanje komponenti prozora
 
 		// MENUBAR

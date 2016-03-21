@@ -24,7 +24,6 @@ public class MenuBarGerudok extends JMenuBar {
 	
 	private JMenu file;
 	private JMenu newSlot;
-	private JMenu project;
 	private JMenu edit;
 	private JMenu view;
 	private JMenu language;
