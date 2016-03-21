@@ -45,32 +45,37 @@ public class MenuBarGerudok extends JMenuBar {
 		
 		newSlot.add(ActionManager.getInstance().getNewgraphicslot());
 		newSlot.add(ActionManager.getInstance().getNewtextslot());
-
+		
+		file.add(ActionManager.getInstance().getOpenproject());
+		file.addSeparator();
+		
+		file.add(ActionManager.getInstance().getSave());
+		file.add(ActionManager.getInstance().getSaveas());
+		file.addSeparator();
+		
 		file.add(ActionManager.getInstance().getNewproject());
 		file.add(ActionManager.getInstance().getNewdocument());
 		file.add(ActionManager.getInstance().getNewpage());
 		file.addSeparator();
 		file.add(newSlot);
+		
+		file.addSeparator();
+		file.add(ActionManager.getInstance().getQuitaction());
 
-		project = new JMenu(rb.getString("Project"));
-		project.setMnemonic(KeyEvent.VK_P);
+		//project = new JMenu(rb.getString("Project"));
+		//project.setMnemonic(KeyEvent.VK_P);
+		
 		// dodavanje podmenija i menu item-a
-
-		project.add(ActionManager.getInstance().getOpenproject());
-		project.addSeparator();
-		project.add(ActionManager.getInstance().getSave());
-		project.add(ActionManager.getInstance().getSaveas());
-		project.addSeparator();
-		project.addSeparator();
-		project.addSeparator();
-		project.add(ActionManager.getInstance().getDeletenode());
 
 		edit = new JMenu(rb.getString("Edit"));
 		edit.setMnemonic(KeyEvent.VK_E);
 
 		edit.add(ActionManager.getInstance().getUndo());
 		edit.add(ActionManager.getInstance().getRedo());
-
+		edit.addSeparator();
+		edit.add(ActionManager.getInstance().getDeletenode());
+		
+		
 		view = new JMenu(rb.getString("View"));
 		view.setMnemonic(KeyEvent.VK_V);
 		// dodavanje podmenija i menuitem-a
@@ -229,7 +234,7 @@ public class MenuBarGerudok extends JMenuBar {
 		help.add(ActionManager.getInstance().getAbout());
 
 		add(file);
-		add(project);
+		//add(project);
 		add(edit);
 		add(view);
 		add(help);
@@ -240,7 +245,7 @@ public class MenuBarGerudok extends JMenuBar {
 		
 		file.setText(rb.getString("File"));
 		newSlot.setText(rb.getString("NewSlot"));;
-		project.setText(rb.getString("Project"));;
+		//project.setText(rb.getString("Project"));;
 		edit.setText(rb.getString("Edit"));;
 		view.setText(rb.getString("View"));;
 		language.setText(rb.getString("Language"));

@@ -15,6 +15,7 @@ import gerudok.actions.NewProjectAction;
 import gerudok.actions.NewSlotGraphic;
 import gerudok.actions.NewSlotText;
 import gerudok.actions.OpenProjectAction;
+import gerudok.actions.QuitAction;
 import gerudok.actions.RenameNode;
 import gerudok.actions.SaveAsProjectAction;
 import gerudok.actions.SaveProjectAction;
@@ -42,6 +43,7 @@ public class ActionManager {
 	private SaveProjectAction save;
 	private TileHorizontallyAction tilehorizontally;
 	private TileVerticallyAction tilevertically;
+	private QuitAction quit;
 	
 	private static ActionManager instance = null;
 	
@@ -64,6 +66,7 @@ public class ActionManager {
 		save = new SaveProjectAction(AbstractActionIcon.small);
 		tilehorizontally = new TileHorizontallyAction(AbstractActionIcon.small);
 		tilevertically = new TileVerticallyAction(AbstractActionIcon.small);
+		quit = new QuitAction(AbstractActionIcon.small);
 	}
 
 	public AboutAction getAbout() {
@@ -138,6 +141,10 @@ public class ActionManager {
 		return tilevertically;
 	}
 	
+	public QuitAction getQuitaction() {
+		return quit;
+	}
+	
 	public void changeLanguage() {
 		ResourceBundle rb = MainFrameGerudok.getInstance().getResourceBundle();
 		
@@ -189,6 +196,8 @@ public class ActionManager {
 		tilevertically.putValue(AbstractActionIcon.NAME, rb.getString("TV"));
 		tilevertically.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("TVH"));
 		
+		quit.putValue(AbstractActionIcon.NAME, rb.getString("Quit"));
+		quit.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("QuitH"));
 	}
 	
 	public static ActionManager getInstance() {
