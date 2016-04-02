@@ -6,15 +6,12 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Page;
 import gerudok.model.SlotText;
-import gerudok.view.PageView;
-import gerudok.view.SlotTextView;
 
 @SuppressWarnings("serial")
 public class NewSlotText extends AbstractActionIcon {
@@ -39,14 +36,6 @@ public class NewSlotText extends AbstractActionIcon {
 			Page page = (Page) selectedComponent;
 			SlotText slot = new SlotText(page);
 			page.addSlot(slot);
-			
-			//SwingUtilities.updateComponentTreeUI(tree);
-			// Pravi novi SlotView i uvezuje se sa njim
-			//SlotTextView slotView = new SlotTextView(slot);
-			//slot.setSlotView(slotView);
-			// Prikaz stranice u koji se dodaje prikaz slota
-			//PageView pageView = page.getPageView();
-			//pageView.addSlotView(slotView);
 		}
 	}
 }

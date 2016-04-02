@@ -13,7 +13,6 @@ import javax.swing.JTextPane;
 import javax.swing.JToolBar;
 import javax.swing.text.StyledEditorKit;
 
-import gerudok.actions.SaveTextAction;
 import gerudok.model.Slot;
 import gerudok.model.SlotText;
 
@@ -47,11 +46,6 @@ public class SlotTextView extends SlotView {
 			}
 		});
 		
-		
-		// Dugme za pamcenje unetog teksta
-		JButton saveBtn = new JButton("Save text");
-		//saveBtn.addActionListener(new SaveTextAction((SlotText)slot));
-		add(saveBtn, BorderLayout.SOUTH);
 		toolbar = new TextSlotToolbar();
 		add(toolbar, BorderLayout.EAST);
 	}
@@ -86,7 +80,7 @@ public class SlotTextView extends SlotView {
 			underline.addActionListener(new StyledEditorKit.UnderlineAction());
 			add(underline);
 			
-			//buduca implementacija velicine fonta
+			//buduca implementacija velicine fonta sancagay
 //			JButton font = new JButton();
 //			font.setToolTipText("Font");
 //			font.setIcon(new ImageIcon(
@@ -106,7 +100,6 @@ public class SlotTextView extends SlotView {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		textArea.setText(((SlotText)slot).getText());
 	}
 }

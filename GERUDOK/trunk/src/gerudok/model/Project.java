@@ -21,7 +21,6 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	private Workspace parent = null;
 	private String name = null;
 	private ArrayList<Document> documents = new ArrayList<Document>();
-	//private transient ProjectView projectView = null;
 	private File projectFile = null;
 	private boolean projectModified;
 

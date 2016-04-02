@@ -6,15 +6,12 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Document;
 import gerudok.model.Page;
-import gerudok.view.DocumentView;
-import gerudok.view.PageView;
 
 @SuppressWarnings("serial")
 public class NewPageAction extends AbstractActionIcon {
@@ -39,13 +36,6 @@ public class NewPageAction extends AbstractActionIcon {
 			Document document = (Document) selectedComponent;
 			Page page = new Page(document);
 			document.addPage(page);
-			//SwingUtilities.updateComponentTreeUI(tree);
-			//PageView view = new PageView(page.getName());
-			//page.setPageView(view);
-			//view.setPage(page);
-			//DocumentView docView = document.getDocumentView();
-			//docView.addPageView(view);
-
 		}
 	}
 }

@@ -6,14 +6,12 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Document;
 import gerudok.model.Project;
-import gerudok.view.DocumentView;
 
 @SuppressWarnings("serial")
 public class NewDocumentAction extends AbstractActionIcon {
@@ -38,14 +36,6 @@ public class NewDocumentAction extends AbstractActionIcon {
 			Project project = (Project) selectedComponent;
 			Document document = new Document(project);
 			project.addDocument(document);
-			//SwingUtilities.updateComponentTreeUI(tree);
-			// Kreiranje prikaza dokumenta
-			//DocumentView view = new DocumentView(document.getName());
-			// Medjusovno uvezivanje dodatog dokumenta i njegovog view-a
-			//document.setDocumentView(view);
-			//view.setDocument(document);
-			// dodavanje DocumentView-a u odgovarajuci interni prozor
-			//project.getProjectView().addDocumentView(view);
 		}
 	}
 }

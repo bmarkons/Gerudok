@@ -28,9 +28,10 @@ public abstract class Slot extends Observable implements MutableTreeNode, Serial
 		return commandManager;
 	}
 	
-	public void slotChanged() {
+	@Override
+	public void notifyObservers() {
 		setChanged();
-		notifyObservers();
+		super.notifyObservers();
 	}
 
 	public void setName(String name) {

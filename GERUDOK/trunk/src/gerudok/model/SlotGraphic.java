@@ -26,7 +26,7 @@ public class SlotGraphic extends Slot {
 		}
 
 		// Dogodila se promena u slotu - obavestiti stranicu koja ga sadrzi
-		slotChanged();
+		notifyObservers();
 
 		// Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg
 		// slotView-a
@@ -39,7 +39,7 @@ public class SlotGraphic extends Slot {
 		graphicElements.remove(element);
 
 		// Dogodila se promena u slotu - obavestiti stranicu koja ga sadrzi
-		slotChanged();
+		notifyObservers();
 
 		// Osvezavanje prikaza stabla i ponovno iscrtavanje odgovarajuceg
 		// slotView-a

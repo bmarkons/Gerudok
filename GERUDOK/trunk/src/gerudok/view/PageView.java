@@ -17,6 +17,7 @@ import gerudok.events.PageEvent;
 import gerudok.events.PageEvent.PageEventType;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Page;
+import gerudok.model.Slot;
 import gerudok.model.SlotGraphic;
 import gerudok.model.SlotText;
 import net.miginfocom.swing.MigLayout;
@@ -92,34 +93,48 @@ public class PageView extends JPanel implements FocusListener, Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(arg == null)
+		if (arg == null)
 			return;
-		
+
 		PageEvent eventObject = (PageEvent) arg;
-		
-		if(eventObject.getType() == PageEventType.ADD_SLOT){
-			
+		Slot slot = eventObject.getSlot();
+
+		if (eventObject.getType() == PageEventType.ADD_SLOT) {
+
 			SlotView slotView = null;
-			if(eventObject.getSlot() instanceof SlotGraphic)
-				slotView = new SlotGraphicView(eventObject.getSlot());
-			else if(eventObject.getSlot() instanceof SlotText)
-				slotView = new SlotTextView(eventObject.getSlot());
-			addSlotView(slotView);
-			eventObject.getSlot().addObserver(slotView);
-			
-		}else if(eventObject.getType() == PageEventType.REMOVE_SLOT){
-			
-			for(SlotView view : slotViews){
-				if(eventObject.getSlot().equals(view.getSlot()))
-					removeSlotView(view);
+			if (slot instanceof SlotGraphic) {
+				slotView = new SlotGraphicView(slot);
+				addSlotView(slotView);
+				slot.addObserver(slotView);
+			} else if (slot instanceof SlotText) {
+				slotView = new SlotTextView(slot);
+				addSlotView(slotView);
+				slot.addObserver(slotView);
+
+				if (((SlotText) slot).getText() != null) {
+					slot.notifyObservers();
+				}
 			}
-			
-		}else if(eventObject.getType() == PageEventType.RENAME_PAGE){
-			
-			setName(eventObject.getSlot().getName());
-			
+
+		} else if (eventObject.getType() == PageEventType.REMOVE_SLOT) {
+
+			ArrayList<SlotView> toRemove = new ArrayList<SlotView>();
+
+			for (SlotView view : slotViews) {
+				if (slot.equals(view.getSlot()))
+					toRemove.add(view);
+			}
+
+			for (SlotView view : toRemove) {
+				removeSlotView(view);
+			}
+
+		} else if (eventObject.getType() == PageEventType.RENAME_PAGE) {
+
+			setName(slot.getName());
+
 		}
-		
+
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
 }
