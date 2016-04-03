@@ -15,6 +15,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.WindowConstants;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeSelectionModel;
 
 import gerudok.actions.manager.ActionManager;
 import gerudok.gui.segments.MenuBarGerudok;
@@ -148,11 +150,13 @@ public class MainFrameGerudok extends JFrame {
 		Workspace root = new Workspace();
 		root.addObserver(workspaceView);
 		JTree tree = new JTree(root);
+		tree.setModel(new DefaultTreeModel(root));	/*****/
 		tree.addTreeSelectionListener(new JTreeControllerGerudok());
 		tree.setCellEditor(new TreeEditor(tree, new DefaultTreeCellRenderer()));
 		tree.setCellRenderer(new TreeCellRendered());
 		tree.setComponentPopupMenu(new TreePopUp());
 		tree.setEditable(true);
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
 		return tree;
 	}

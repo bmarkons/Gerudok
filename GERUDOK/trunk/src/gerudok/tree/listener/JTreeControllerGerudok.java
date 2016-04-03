@@ -28,7 +28,7 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 		TreePath path = e.getPath();
 		// preuzima se poslednji cvor u putanji (selektovani cvor)
 		Object selectedComponent = path.getLastPathComponent();
-
+		
 		/*
 		 * Selektovanje slota u stablu dovodi u fokus interni prozor projekta.
 		 */
@@ -67,8 +67,8 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			Project project = (Project) document.getParent();
 
 			ProjectView projectView = setProjectViewInFront(project);
-			setDocumentViewInFront(document, projectView);
-
+			DocumentView documentView = setDocumentViewInFront(document, projectView);
+			setPageViewInFront(page, documentView);
 			// TODO Potrebno odraditi skrolovanje na izabranu stranicu
 
 			// Postavljanje internog prozora projekta u fokus
@@ -116,13 +116,23 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			// sView.requestFocus();
 		}
 	}
-
+	
+	private PageView setPageViewInFront(Page page, DocumentView documentView) {
+		for (PageView pageView : documentView.getDocumentPanel().getPageViews()) {
+			if (pageView.getPage().equals(page)) {
+				pageView.scrollRectToVisible(pageView.getBounds());
+				return pageView;
+			}
+		}
+		return null;
+	}
+	
 	private DocumentView setDocumentViewInFront(Document document, ProjectView projectView) {
 		JTabbedPane tabbedPane = projectView.getTabbedPane();
 		int tabCount = tabbedPane.getTabCount();
 		for (int i = 0; i < tabCount; i++) {
 			DocumentView documentView = (DocumentView) tabbedPane.getComponentAt(i);
-			if(document.equals(documentView.getDocument())){
+			if (document.equals(documentView.getDocument())) {
 				tabbedPane.setSelectedComponent(documentView);
 				return documentView;
 			}
@@ -137,6 +147,7 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			if (p.equals(project)) {
 				try {
 					frame.setSelected(true);
+					frame.show();
 				} catch (PropertyVetoException e) {
 					e.printStackTrace();
 				}

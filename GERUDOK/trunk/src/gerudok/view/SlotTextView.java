@@ -11,8 +11,13 @@ import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
 import javax.swing.text.StyledEditorKit;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
+import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Slot;
 import gerudok.model.SlotText;
 
@@ -41,8 +46,14 @@ public class SlotTextView extends SlotView {
 			
 			@Override
 			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
+				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+				TreeNode[] n = m.getPathToRoot(slot);
 				
+				
+				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));		
+				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
+						.getTree());
 			}
 		});
 		

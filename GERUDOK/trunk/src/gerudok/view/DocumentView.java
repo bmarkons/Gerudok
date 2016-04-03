@@ -1,11 +1,16 @@
 package gerudok.view;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import gerudok.events.DocumentEvent;
 import gerudok.events.DocumentEvent.DocumentEventType;
@@ -28,8 +33,50 @@ public class DocumentView extends JScrollPane implements Observer {
 		this.name = document.getName();
 		this.panel = new DocumentPanel();
 		setViewportView(this.panel);
+		
+		addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+				TreeNode[] n = m.getPathToRoot(document);
+				
+				
+				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));		
+				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
+						.getTree());
+			}
+		});
 	}
-
+	
+	public DocumentPanel getDocumentPanel() {
+		return this.panel;
+	}
 	public Document getDocument() {
 		return this.document;
 	}
@@ -75,6 +122,8 @@ public class DocumentView extends JScrollPane implements Observer {
 			for(Slot slot:slots)
 				eventObject.getPage().notifyObservers(new PageEvent(PageEventType.ADD_SLOT, slot));
 			
+			validate();
+			
 		} else if (eventObject.getType() == DocumentEventType.REMOVE_PAGE) {
 			
 			ArrayList<PageView> pageViews = this.panel.getPageViews();
@@ -83,12 +132,14 @@ public class DocumentView extends JScrollPane implements Observer {
 					removePageView(view);
 			}
 			
+			validate();
+			
 		} else if (eventObject.getType() == DocumentEventType.RENAME_DOCUMENT) {
 			
 			setName(getDocument().getName());
 			
 		}
-
+		
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
 }

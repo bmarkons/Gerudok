@@ -14,6 +14,9 @@ import java.util.Observable;
 import javax.swing.BorderFactory;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import gerudok.actions.CommandRedoAction;
 import gerudok.actions.CommandUndoAction;
@@ -47,7 +50,7 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 		stateManager = new StateManager(this);
 		
 		toolBar = new GraphicSlotToolbar();
-		add(toolBar, BorderLayout.EAST);		
+		add(toolBar, BorderLayout.EAST);
 	}
 	
 	@Override
@@ -96,6 +99,15 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 	@Override
 	public void focusGained(FocusEvent e) {
 		setBorder(BorderFactory.createLineBorder(Color.BLUE));
+		
+		DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+		TreeNode[] n = m.getPathToRoot(slot);
+		
+		
+		MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+		MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));		
+		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
+				.getTree());
 	}
 
 	@Override

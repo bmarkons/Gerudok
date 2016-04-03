@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,6 +15,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import gerudok.events.PageEvent;
 import gerudok.events.PageEvent.PageEventType;
@@ -41,6 +47,44 @@ public class PageView extends JPanel implements FocusListener, Observer {
 		border.setTitleColor(Color.BLACK);
 		setBorder(border);
 		addFocusListener(this);
+		
+		addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+				TreeNode[] n = m.getPathToRoot(page);
+						
+				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));		
+				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
+						.getTree());
+			}
+		});
 	}
 
 	public String getName() {

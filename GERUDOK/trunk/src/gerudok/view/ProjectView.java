@@ -5,11 +5,14 @@ import gerudok.events.DocumentEvent.DocumentEventType;
 import gerudok.events.ProjectEvent;
 import gerudok.events.ProjectEvent.ProjectEventType;
 import gerudok.gui.MainFrameGerudok;
+import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.model.Project;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -17,7 +20,13 @@ import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
+import javax.swing.JTree;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 public class ProjectView extends JInternalFrame implements Observer {
 	private static final long serialVersionUID = -1223897253460221963L;
@@ -41,11 +50,52 @@ public class ProjectView extends JInternalFrame implements Observer {
 		this.setSize(d.width / 2, 2 * d.height / 3);
 
 		ImageIcon image = new ImageIcon("images/tree/treeproj.png");
-		setFrameIcon(new ImageIcon(image.getImage().getScaledInstance(16, 16,
-				Image.SCALE_SMOOTH)));
+		setFrameIcon(new ImageIcon(image.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH)));
 
 		tabbedPane = new JTabbedPane();
 		add(tabbedPane);
+		tabbedPane.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+			/*
+				System.out.println(e.getSource());
+				JTabbedPane source = null;
+				
+				if (e.getSource() instanceof JTabbedPane)
+					source = (JTabbedPane) e.getSource();
+				else
+					return;
+				
+				Document document = null;
+
+				if (MainFrameGerudok.getInstance().getTree().getLastSelectedPathComponent() instanceof Document){
+					document = (Document) MainFrameGerudok.getInstance().getTree().getLastSelectedPathComponent();
+					System.out.println("dokument");
+				}
+				else
+					return;
+				
+				if (source instanceof JTabbedPane)
+				
+				if (source.getSelectedIndex() != -1) {
+
+					DocumentView selected = (DocumentView) source.getComponent(source.getSelectedIndex());
+
+					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+					TreeNode[] n = m.getPathToRoot(selected.getDocument());
+
+					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
+					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+					
+
+				} else
+					return;
+				*/
+			}
+			
+		});
 
 		setLocation(x, y);
 		int maxY = MainFrameGerudok.getInstance().getHeight();
@@ -60,6 +110,40 @@ public class ProjectView extends JInternalFrame implements Observer {
 			y = yStart;
 			x = xStart + 40;
 		}
+
+		// Mouse listener za selekciju ka stablu
+		addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+				TreeNode[] n = m.getPathToRoot(project);
+
+				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
+				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+			}
+		});
 	}
 
 	public Project getProject() {
@@ -90,30 +174,27 @@ public class ProjectView extends JInternalFrame implements Observer {
 
 			ArrayList<Page> pages = eventObject.getDocument().getPages();
 			for (Page page : pages)
-				eventObject.getDocument().notifyObservers(
-						new DocumentEvent(DocumentEventType.ADD_PAGE, page));
+				eventObject.getDocument().notifyObservers(new DocumentEvent(DocumentEventType.ADD_PAGE, page));
 
 		} else if (eventObject.getType() == ProjectEventType.REMOVE_DOCUMENT) {
 
-			//ubacivanje svih view-ova za brisanje u listu removeViews
+			// ubacivanje svih view-ova za brisanje u listu removeViews
 			ArrayList<DocumentView> removeViews = new ArrayList<DocumentView>();
 			int totalTabs = tabbedPane.getTabCount();
 			for (int i = 0; i < totalTabs; i++) {
-				DocumentView docView = (DocumentView) tabbedPane
-						.getComponentAt(i);
+				DocumentView docView = (DocumentView) tabbedPane.getComponentAt(i);
 				if (docView.getDocument().equals(eventObject.getDocument())) {
 					removeViews.add(docView);
 				}
 			}
-			//brisanje view-ova iz liste
-			for(DocumentView docView:removeViews)
+			// brisanje view-ova iz liste
+			for (DocumentView docView : removeViews)
 				removeDocumentView(docView);
-			
+
 		} else if (eventObject.getType() == ProjectEventType.RENAME_PROJECT) {
 			this.title = project.getName();
 		}
 
-		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
-				.getTree());
+		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
 }
