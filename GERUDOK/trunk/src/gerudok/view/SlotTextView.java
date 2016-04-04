@@ -1,10 +1,14 @@
 package gerudok.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Observable;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
@@ -18,14 +22,17 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import gerudok.gui.MainFrameGerudok;
+import gerudok.gui.dialogs.SlotGraphicDialog;
+import gerudok.gui.dialogs.SlotTextDialog;
 import gerudok.model.Slot;
+import gerudok.model.SlotGraphic;
 import gerudok.model.SlotText;
 
-public class SlotTextView extends SlotView {
+public class SlotTextView extends SlotView  {
 	private static final long serialVersionUID = 3150036223105443249L;
 
 	private JTextPane textArea = null;
-	private TextSlotToolbar toolbar = null;
+	//private TextSlotToolbar toolbar = null;
 
 	public SlotTextView(Slot slot) {
 		super(slot);
@@ -36,12 +43,14 @@ public class SlotTextView extends SlotView {
 		add(scrollPane, BorderLayout.CENTER);
 		textArea.setContentType("text/html");
 		
+		textArea.setEditable(false);
 		
 		textArea.addFocusListener(new FocusListener() {
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				((SlotText)slot).setText(textArea.getText());	
+				//((SlotText)slot).setText(textArea.getText());	
+				setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			}
 			
 			@Override
@@ -54,60 +63,93 @@ public class SlotTextView extends SlotView {
 				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));		
 				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
 						.getTree());
+				
+				setBorder(BorderFactory.createLineBorder(Color.BLUE));
 			}
 		});
 		
-		toolbar = new TextSlotToolbar();
-		add(toolbar, BorderLayout.EAST);
+		textArea.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				requestFocus();
+				if(SwingUtilities.isLeftMouseButton(e) && !(SlotTextView.this.getParent() instanceof SlotTextDialog)){
+					if(e.getClickCount() == 2){
+						SlotTextDialog dialog = new SlotTextDialog((SlotText)SlotTextView.this.getSlot(),SlotTextView.this.getSize());
+						dialog.setVisible(true);
+					}
+				}
+			}
+		});
+		//toolbar = new TextSlotToolbar();
+		//add(toolbar, BorderLayout.EAST);
 	}
+	
+	public SlotTextView(Slot slot, boolean Dialog) {
+		super(slot);
 
+		// skrolabilni deo za tekst
+		textArea = new JTextPane();
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		add(scrollPane, BorderLayout.CENTER);
+		textArea.setContentType("text/html");
+		
+		//textArea.setEditable(false);
+		
+		textArea.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				//((SlotText)slot).setText(textArea.getText());	
+				setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+				TreeNode[] n = m.getPathToRoot(slot);
+				
+				
+				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));		
+				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
+						.getTree());
+				
+				setBorder(BorderFactory.createLineBorder(Color.BLUE));
+			}
+		});
+		
+		
+	}
+	
 	public JEditorPane getTextArea() {
 		return textArea;
 	}
 
-	private class TextSlotToolbar extends JToolBar {
-		private static final long serialVersionUID = 1L;
-
-		public TextSlotToolbar() {
-			super(JToolBar.VERTICAL);
-			setFloatable(false);
-			setCursor(getCursor());
-			JButton bold = new JButton();
-			bold.setToolTipText("Bold Text");
-			bold.setIcon(new ImageIcon("images/toolbar_slotview/bold.jpg"));
-			bold.addActionListener(new StyledEditorKit.BoldAction());
-			add(bold);
-
-			JButton italic = new JButton();
-			italic.setToolTipText("Italic Text");
-			italic.setIcon(new ImageIcon("images/toolbar_slotview/italic.jpg"));
-			italic.addActionListener(new StyledEditorKit.ItalicAction());
-			add(italic);
-
-			JButton underline = new JButton();
-			underline.setToolTipText("Underline Text");
-			underline.setIcon(new ImageIcon(
-					"images/toolbar_slotview/underline.jpg"));
-			underline.addActionListener(new StyledEditorKit.UnderlineAction());
-			add(underline);
-			
-			//buduca implementacija velicine fonta sancagay
-//			JButton font = new JButton();
-//			font.setToolTipText("Font");
-//			font.setIcon(new ImageIcon(
-//					"images/toolbar_slotview/underline.jpg"));
-//			font.addActionListener(new ActionListener() {
-//				
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					new StyledEditorKit.FontSizeAction("myaction-", 20).actionPerformed(e);
-//					
-//				}
-//			});
-//			add(font);
-		}
-
-	}
 
 	@Override
 	public void update(Observable o, Object arg) {

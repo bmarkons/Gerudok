@@ -33,12 +33,13 @@ public class SlotGraphicDialog extends JDialog {
 		setLayout(new BorderLayout());
 		setSize(dim);
 
-		this.view = new SlotGraphicView(slot);
+		this.view = new SlotGraphicView(slot, true);
 		view.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				stateManager.getCurrentState().mouseClicked(e);
+				repaint();
 			}
 			
 			@Override
