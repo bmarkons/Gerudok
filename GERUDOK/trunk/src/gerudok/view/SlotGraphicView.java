@@ -69,9 +69,9 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		this.requestFocus();
-		if(SwingUtilities.isLeftMouseButton(e)){
+		if(SwingUtilities.isLeftMouseButton(e) && !(SlotGraphicView.this.getParent() instanceof SlotGraphicDialog)){
 			if(e.getClickCount() == 2){
-				SlotGraphicDialog dialog = new SlotGraphicDialog((SlotGraphic)SlotGraphicView.this.getSlot());
+				SlotGraphicDialog dialog = new SlotGraphicDialog((SlotGraphic)SlotGraphicView.this.getSlot(),SlotGraphicView.this.getSize());
 				dialog.setVisible(true);
 			}
 		}

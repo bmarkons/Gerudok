@@ -1,6 +1,7 @@
 package gerudok.gui.dialogs;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -26,10 +27,11 @@ public class SlotGraphicDialog extends JDialog {
 	private GraphicSlotToolbar toolBar = null;
 	private StateManager stateManager = null;
 
-	public SlotGraphicDialog(SlotGraphic slot) {
+	public SlotGraphicDialog(SlotGraphic slot, Dimension dim) {
 		super(MainFrameGerudok.getInstance(), "Edit " + slot.getName(), true);
 		setLocationRelativeTo(MainFrameGerudok.getInstance());
 		setLayout(new BorderLayout());
+		setSize(dim);
 
 		this.view = new SlotGraphicView(slot);
 		view.addMouseListener(new MouseListener() {
