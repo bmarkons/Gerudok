@@ -10,7 +10,10 @@ import gerudok.model.Slot;
 
 public abstract class SlotView extends JPanel implements Observer{
 	private static final long serialVersionUID = 4449718288145521263L;
-
+	public static final Dimension SLOT_DIM = new Dimension(PageView.PAGE_WIDTH - 5,
+			PageView.PAGE_HEIGHT / 3);
+	
+	
 	Slot slot;
 	String name = null;
 
@@ -19,8 +22,7 @@ public abstract class SlotView extends JPanel implements Observer{
 		this.slot = slot;
 		name = slot.getName();
 
-		setPreferredSize(new Dimension(PageView.PAGE_WIDTH - 5,
-				PageView.PAGE_HEIGHT / 3));
+		setPreferredSize(SLOT_DIM);
 	}
 
 	public Slot getSlot() {

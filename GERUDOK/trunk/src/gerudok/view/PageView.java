@@ -46,50 +46,49 @@ public class PageView extends JPanel implements FocusListener, Observer {
 		border.setTitleColor(Color.BLACK);
 		setBorder(border);
 		addFocusListener(this);
-		
+
 		addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 				TreeNode[] n = m.getPathToRoot(page);
-						
+
 				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
-				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));		
-				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
-						.getTree());
+				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
+				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 			}
 		});
 	}
 
-	public ArrayList<SlotView> getSlotViews(){
+	public ArrayList<SlotView> getSlotViews() {
 		return slotViews;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -146,11 +145,11 @@ public class PageView extends JPanel implements FocusListener, Observer {
 
 			SlotView slotView = null;
 			if (slot instanceof SlotGraphic) {
-				slotView = new SlotGraphicView(slot);
+				slotView = new SlotGraphicView(slot, false);
 				addSlotView(slotView);
 				slot.addObserver(slotView);
 			} else if (slot instanceof SlotText) {
-				slotView = new SlotTextView(slot);
+				slotView = new SlotTextView(slot, false);
 				addSlotView(slotView);
 				slot.addObserver(slotView);
 

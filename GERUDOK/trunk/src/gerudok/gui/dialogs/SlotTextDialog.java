@@ -1,7 +1,6 @@
 package gerudok.gui.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -14,6 +13,7 @@ import javax.swing.text.StyledEditorKit;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.SlotText;
 import gerudok.view.SlotTextView;
+import gerudok.view.SlotView;
 
 public class SlotTextDialog extends JDialog {
 	private static final long serialVersionUID = -6660328054235775838L;
@@ -21,11 +21,11 @@ public class SlotTextDialog extends JDialog {
 	private SlotTextView view = null;
 	private TextSlotToolbar toolbar = null;
 
-	public SlotTextDialog(SlotText slot, Dimension dim) {
+	public SlotTextDialog(SlotText slot) {
 		super(MainFrameGerudok.getInstance(), "Edit " + slot.getName(), true);
-		setLocationRelativeTo(MainFrameGerudok.getInstance());
+		//setLocationRelativeTo(MainFrameGerudok.getInstance());
 		setLayout(new BorderLayout());
-		setSize(dim);
+		setSize(SlotView.SLOT_DIM);
 		
 		this.view = new SlotTextView(slot, true);
 		view.getTextArea().setText(slot.getText());
