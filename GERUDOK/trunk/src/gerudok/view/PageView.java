@@ -105,10 +105,6 @@ public class PageView extends JPanel implements FocusListener, Observer {
 		return page;
 	}
 
-	// public void setPage(Page page) {
-	// this.page = page;
-	// }
-
 	public void addSlotView(SlotView view) {
 		slotViews.add(view);
 		add(view, "wrap");

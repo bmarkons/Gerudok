@@ -22,6 +22,7 @@ import gerudok.actions.CommandRedoAction;
 import gerudok.actions.CommandUndoAction;
 import gerudok.actions.manager.AbstractActionIcon;
 import gerudok.gui.MainFrameGerudok;
+import gerudok.gui.dialogs.SlotGraphicDialog;
 import gerudok.model.GraphicSlotElement;
 import gerudok.model.Slot;
 import gerudok.model.SlotGraphic;
@@ -36,8 +37,8 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 		MouseListener {
 	private static final long serialVersionUID = -5207430261641543334L;
 
-	private GraphicSlotToolbar toolBar = null;
-	private StateManager stateManager = null;
+	//private GraphicSlotToolbar toolBar = null;
+	//private StateManager stateManager = null;
 
 	public SlotGraphicView(Slot slot) {
 		super(slot);
@@ -47,10 +48,10 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
-		stateManager = new StateManager(this);
+		//stateManager = new StateManager(this);
 		
-		toolBar = new GraphicSlotToolbar();
-		add(toolBar, BorderLayout.EAST);
+		//toolBar = new GraphicSlotToolbar();
+		//add(toolBar, BorderLayout.EAST);
 	}
 	
 	@Override
@@ -68,7 +69,12 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		this.requestFocus();
-		stateManager.getCurrentState().mouseClicked(e);
+		if(SwingUtilities.isLeftMouseButton(e)){
+			if(e.getClickCount() == 2){
+				SlotGraphicDialog dialog = new SlotGraphicDialog((SlotGraphic)SlotGraphicView.this.getSlot());
+				dialog.setVisible(true);
+			}
+		}
 
 	}
 
@@ -121,27 +127,27 @@ public class SlotGraphicView extends SlotView implements FocusListener,
 		repaint();
 	}
 
-	private class GraphicSlotToolbar extends JToolBar {
-		private static final long serialVersionUID = -4349172055812358634L;
-
-		public GraphicSlotToolbar() {
-			super(JToolBar.VERTICAL);
-			setFloatable(false);
-			setCursor(getCursor());
-			
-			add(new NewStar(stateManager));
-			
-			add(new NewSmiley(stateManager));
-			
-			add(new NewFrowney(stateManager));
-			
-			add(new SelectAction(stateManager));
-			
-			addSeparator();
-
-			add(new CommandUndoAction((SlotGraphic)slot, AbstractActionIcon.small));
-
-			add(new CommandRedoAction((SlotGraphic)slot, AbstractActionIcon.small));
-		}
-	}
+//	private class GraphicSlotToolbar extends JToolBar {
+//		private static final long serialVersionUID = -4349172055812358634L;
+//
+//		public GraphicSlotToolbar() {
+//			super(JToolBar.VERTICAL);
+//			setFloatable(false);
+//			setCursor(getCursor());
+//			
+//			add(new NewStar(stateManager));
+//			
+//			add(new NewSmiley(stateManager));
+//			
+//			add(new NewFrowney(stateManager));
+//			
+//			add(new SelectAction(stateManager));
+//			
+//			addSeparator();
+//
+//			add(new CommandUndoAction((SlotGraphic)slot, AbstractActionIcon.small));
+//
+//			add(new CommandRedoAction((SlotGraphic)slot, AbstractActionIcon.small));
+//		}
+//	}
 }

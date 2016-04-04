@@ -20,6 +20,7 @@ import javax.swing.tree.TreePath;
 public class TreeMouseListener extends MouseAdapter {
 
 	public void mousePressed(MouseEvent e) {
+		
 		//JTree tree = MainFrameGerudok.getInstance().getTree();
 		//TreePath path = tree.getPathForLocation(e.getX(), e.getY());
 		//Object node = null;

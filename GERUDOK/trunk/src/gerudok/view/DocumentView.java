@@ -81,10 +81,6 @@ public class DocumentView extends JScrollPane implements Observer {
 		return this.document;
 	}
 
-	// public void setDocument(Document document) {
-	// this.document = document;
-	// }
-
 	public String getName() {
 		return name;
 	}
