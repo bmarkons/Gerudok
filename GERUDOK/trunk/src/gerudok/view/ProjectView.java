@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,10 +21,7 @@ import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
-import javax.swing.JTree;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
@@ -54,47 +52,53 @@ public class ProjectView extends JInternalFrame implements Observer {
 
 		tabbedPane = new JTabbedPane();
 		add(tabbedPane);
-		tabbedPane.addChangeListener(new ChangeListener() {
-
+		
+		tabbedPane.addMouseListener(new MouseListener() {
+			
 			@Override
-			public void stateChanged(ChangeEvent e) {
-			/*
-				System.out.println(e.getSource());
-				JTabbedPane source = null;
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
 				
-				if (e.getSource() instanceof JTabbedPane)
-					source = (JTabbedPane) e.getSource();
-				else
-					return;
-				
-				Document document = null;
-
-				if (MainFrameGerudok.getInstance().getTree().getLastSelectedPathComponent() instanceof Document){
-					document = (Document) MainFrameGerudok.getInstance().getTree().getLastSelectedPathComponent();
-					System.out.println("dokument");
-				}
-				else
-					return;
-				
-				if (source instanceof JTabbedPane)
-				
-				if (source.getSelectedIndex() != -1) {
-
-					DocumentView selected = (DocumentView) source.getComponent(source.getSelectedIndex());
-
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(e.getSource() instanceof JTabbedPane){
+					JTabbedPane source = (JTabbedPane) e.getSource();
+					
+					if(source.getTabCount()==0)
+						return;
+					
+					DocumentView view = (DocumentView) source.getSelectedComponent();
+					Document document = (Document) view.getDocument();
+					
 					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
-					TreeNode[] n = m.getPathToRoot(selected.getDocument());
+					TreeNode[] n = m.getPathToRoot(document);
 
 					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
 					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-					
-
-				} else
-					return;
-				*/
+				}
+				
 			}
 			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
 
 		setLocation(x, y);
@@ -110,7 +114,7 @@ public class ProjectView extends JInternalFrame implements Observer {
 			y = yStart;
 			x = xStart + 40;
 		}
-
+		
 		// Mouse listener za selekciju ka stablu
 		addMouseListener(new MouseListener() {
 
@@ -197,4 +201,26 @@ public class ProjectView extends JInternalFrame implements Observer {
 
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
+
+	public void setSelectedFromTree(boolean selected) throws PropertyVetoException
+	{
+		super.setSelected(selected);
+	}
+	
+	@Override
+	public void setSelected(boolean selected) throws PropertyVetoException {
+		// TODO Auto-generated method stub
+		super.setSelected(selected);
+		
+		if(selected==true){
+			DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+			TreeNode[] n = m.getPathToRoot(project);
+			
+			MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+			MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
+			SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+		}
+	}
+	
+	
 }

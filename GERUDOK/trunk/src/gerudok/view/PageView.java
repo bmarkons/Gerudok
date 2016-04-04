@@ -7,7 +7,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -87,6 +86,10 @@ public class PageView extends JPanel implements FocusListener, Observer {
 		});
 	}
 
+	public ArrayList<SlotView> getSlotViews(){
+		return slotViews;
+	}
+	
 	public String getName() {
 		return name;
 	}
