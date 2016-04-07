@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.swing.KeyStroke;
 
 import gerudok.actions.manager.AbstractActionIcon;
+import gerudok.gui.MainFrameGerudok;
 import gerudok.model.SlotGraphic;
 
 public class CommandRedoAction extends AbstractActionIcon implements Serializable {
@@ -21,6 +22,7 @@ public class CommandRedoAction extends AbstractActionIcon implements Serializabl
 		putValue(NAME, rb.getString("Redo"));
 		putValue(SHORT_DESCRIPTION, rb.getString("RedoH"));
 		this.slot = slot;
+		//setEnabled(false);
 	}
 
 	public CommandRedoAction(Dimension d) {
@@ -28,10 +30,15 @@ public class CommandRedoAction extends AbstractActionIcon implements Serializabl
 		putValue(SMALL_ICON, iconGetter("/menu/redo.png", d));
 		putValue(NAME, rb.getString("Redo"));
 		putValue(SHORT_DESCRIPTION, rb.getString("RedoH"));
+		setEnabled(false);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		if(slot == null)
+		{
+			slot = (SlotGraphic) MainFrameGerudok.getInstance().getTree().getLastSelectedPathComponent();
+		}
 		slot.getCommandManager().doCommand();
 	}
 

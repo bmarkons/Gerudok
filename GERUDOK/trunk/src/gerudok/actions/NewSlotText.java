@@ -22,7 +22,7 @@ public class NewSlotText extends AbstractActionIcon {
 		putValue(SMALL_ICON, iconGetter("/toolbar/newtxt.png", d));
 		putValue(NAME, rb.getString("NewTSlot"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewTSlotH"));
-
+		setEnabled(false);
 	}
 	
 	@Override

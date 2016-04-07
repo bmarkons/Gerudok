@@ -75,7 +75,16 @@ public class SlotGraphicView extends SlotView implements FocusListener {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				requestFocus();
-				System.out.println(e.getSource());
+				
+				setBorder(BorderFactory.createLineBorder(Color.BLUE));
+
+				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+				TreeNode[] n = m.getPathToRoot(slot);
+
+				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
+				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+				
 				if (SwingUtilities.isLeftMouseButton(e)
 						&& !(SlotGraphicView.this.getParent() instanceof SlotGraphicDialog)) {
 					if (e.getClickCount() == 2) {

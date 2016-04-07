@@ -2,11 +2,14 @@ package gerudok.tree.listener;
 
 import java.beans.PropertyVetoException;
 
+import gerudok.actions.manager.ActionManager;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.model.Project;
 import gerudok.model.Slot;
+import gerudok.model.SlotGraphic;
+import gerudok.model.Workspace;
 import gerudok.view.DocumentView;
 import gerudok.view.PageView;
 import gerudok.view.ProjectView;
@@ -32,10 +35,28 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 		/*
 		 * Selektovanje slota u stablu dovodi u fokus interni prozor projekta.
 		 */
-		if (selectedComponent instanceof Project) {
+		if (selectedComponent instanceof Workspace) {
+			
+			ActionManager.getInstance().getSave().setEnabled(false);
+			ActionManager.getInstance().getSaveas().setEnabled(false);
+			
+			ActionManager.getInstance().getNewdocument().setEnabled(false);
+			ActionManager.getInstance().getNewpage().setEnabled(false);
+			ActionManager.getInstance().getNewgraphicslot().setEnabled(false);
+			ActionManager.getInstance().getNewtextslot().setEnabled(false);
+			
+			ActionManager.getInstance().getDeletenode().setEnabled(false);
+			
+			ActionManager.getInstance().getUndo().setEnabled(false);
+			ActionManager.getInstance().getRedo().setEnabled(false);
+			
+		} else if (selectedComponent instanceof Project) {
 			Project project = (Project) selectedComponent;
 
 			setProjectViewInFront(project);
+			
+			ActionManager.getInstance().getSave().setEnabled(true);
+			ActionManager.getInstance().getSaveas().setEnabled(true);
 			// ProjectView view = project.getProjectView();
 			// Postavljanje internog prozora projekta u fokus
 			// try {
@@ -43,7 +64,17 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			// } catch (PropertyVetoException e1) {
 			// e1.printStackTrace();
 			// }
-
+			
+			ActionManager.getInstance().getNewdocument().setEnabled(true);
+			ActionManager.getInstance().getNewpage().setEnabled(false);
+			ActionManager.getInstance().getNewgraphicslot().setEnabled(false);
+			ActionManager.getInstance().getNewtextslot().setEnabled(false);
+			
+			ActionManager.getInstance().getDeletenode().setEnabled(true);
+			
+			ActionManager.getInstance().getUndo().setEnabled(false);
+			ActionManager.getInstance().getRedo().setEnabled(false);
+			
 		} else if (selectedComponent instanceof Document) {
 			/*
 			 * Selektovanje slota u stablu dovodi, redom, u fokus interni prozor
@@ -54,6 +85,19 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 
 			ProjectView projectView = setProjectViewInFront(project);
 			setDocumentViewInFront(document, projectView);
+			
+			ActionManager.getInstance().getSave().setEnabled(false);
+			ActionManager.getInstance().getSaveas().setEnabled(false);
+			
+			ActionManager.getInstance().getNewdocument().setEnabled(false);
+			ActionManager.getInstance().getNewpage().setEnabled(true);
+			ActionManager.getInstance().getNewgraphicslot().setEnabled(false);
+			ActionManager.getInstance().getNewtextslot().setEnabled(false);
+			
+			ActionManager.getInstance().getDeletenode().setEnabled(true);
+			
+			ActionManager.getInstance().getUndo().setEnabled(false);
+			ActionManager.getInstance().getRedo().setEnabled(false);
 
 		} else if (selectedComponent instanceof Page) {
 			/*
@@ -84,7 +128,20 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			// projectView.getTabbedPane().setSelectedComponent(documentView);
 			// PageView pageView = page.getPageView();
 			// pageView.requestFocus();
-
+			
+			ActionManager.getInstance().getSave().setEnabled(false);
+			ActionManager.getInstance().getSaveas().setEnabled(false);
+			
+			ActionManager.getInstance().getNewdocument().setEnabled(false);
+			ActionManager.getInstance().getNewpage().setEnabled(false);
+			ActionManager.getInstance().getNewgraphicslot().setEnabled(true);
+			ActionManager.getInstance().getNewtextslot().setEnabled(true);
+			
+			ActionManager.getInstance().getDeletenode().setEnabled(true);
+			
+			ActionManager.getInstance().getUndo().setEnabled(false);
+			ActionManager.getInstance().getRedo().setEnabled(false);
+			
 		} else if (selectedComponent instanceof Slot) {
 			/*
 			 * Selektovanje slota u stablu dovodi, redom, u fokus interni prozor
@@ -118,6 +175,25 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			// pView.getTabbedPane().setSelectedComponent(dView);
 			// SlotView sView = slot.getSlotView();
 			// sView.requestFocus();
+			
+			ActionManager.getInstance().getSave().setEnabled(false);
+			ActionManager.getInstance().getSaveas().setEnabled(false);
+			
+			ActionManager.getInstance().getNewdocument().setEnabled(false);
+			ActionManager.getInstance().getNewpage().setEnabled(false);
+			ActionManager.getInstance().getNewgraphicslot().setEnabled(false);
+			ActionManager.getInstance().getNewtextslot().setEnabled(false);
+			
+			ActionManager.getInstance().getDeletenode().setEnabled(true);
+			
+			if(selectedComponent instanceof SlotGraphic){
+				ActionManager.getInstance().getUndo().setEnabled(true);
+				ActionManager.getInstance().getRedo().setEnabled(true);
+			} else {
+				ActionManager.getInstance().getUndo().setEnabled(false);
+				ActionManager.getInstance().getRedo().setEnabled(false);
+			}
+			
 		}
 	}
 	

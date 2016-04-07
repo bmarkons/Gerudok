@@ -22,7 +22,7 @@ public class NewPageAction extends AbstractActionIcon {
 		putValue(SMALL_ICON, iconGetter("/toolbar/addpage.png", d));
 		putValue(NAME, rb.getString("NewPage"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewPageH"));
-
+		setEnabled(false);
 	}
 	
 	@Override

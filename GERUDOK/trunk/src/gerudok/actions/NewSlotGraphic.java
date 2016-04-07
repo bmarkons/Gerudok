@@ -23,7 +23,7 @@ public class NewSlotGraphic extends AbstractActionIcon {
 		putValue(SMALL_ICON, iconGetter("/toolbar/newgslot.png", d));
 		putValue(NAME, rb.getString("NewGSlot"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewGSlotH"));
-
+		setEnabled(false);
 	}
 	
 	@Override

@@ -3,6 +3,8 @@ package gerudok.commands;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import gerudok.actions.manager.ActionManager;
+
 public class CommandManager implements Serializable {
 	private static final long serialVersionUID = 520246163128615091L;
 

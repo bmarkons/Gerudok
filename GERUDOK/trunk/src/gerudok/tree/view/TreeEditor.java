@@ -33,7 +33,7 @@ public class TreeEditor extends DefaultTreeCellEditor implements ActionListener,
 	public Component getTreeCellEditorComponent(JTree arg0, Object arg1, boolean arg2, boolean arg3, boolean arg4,
 			int arg5) {
 
-		// super.getTreeCellEditorComponent(arg0,arg1,arg2,arg3,arg4,arg5);
+		//super.getTreeCellEditorComponent(arg0,arg1,arg2,arg3,arg4,arg5);
 		stavka = arg1;
 
 		edit = new JTextField(arg1.toString());

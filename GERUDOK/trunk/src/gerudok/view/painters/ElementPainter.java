@@ -1,8 +1,6 @@
 package gerudok.view.painters;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;

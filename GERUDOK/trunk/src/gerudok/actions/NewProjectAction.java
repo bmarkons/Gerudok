@@ -23,7 +23,7 @@ public class NewProjectAction extends AbstractActionIcon {
 		putValue(SMALL_ICON, iconGetter("/toolbar/addproj.png", d));
 		putValue(NAME, rb.getString("NewProject"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewProjectH"));
-
+		
 	}
 
 	@Override

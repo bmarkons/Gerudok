@@ -22,7 +22,7 @@ public class NewDocumentAction extends AbstractActionIcon {
 		putValue(SMALL_ICON, iconGetter("/toolbar/adddoc.png", d));
 		putValue(NAME, rb.getString("NewDocument"));
 		putValue(SHORT_DESCRIPTION, rb.getString("NewDocumentH"));
-
+		setEnabled(false);
 	}
 	
 	@Override

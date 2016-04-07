@@ -26,7 +26,7 @@ public class SaveAsProjectAction extends AbstractActionIcon {
 		putValue(SMALL_ICON, iconGetter("/toolbar/save.png", d));
 		putValue(NAME, rb.getString("SaveAs"));
 		putValue(SHORT_DESCRIPTION, rb.getString("SaveAsH"));
-
+		setEnabled(false);
 	}
 	
 	@Override

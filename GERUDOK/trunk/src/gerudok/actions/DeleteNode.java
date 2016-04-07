@@ -23,6 +23,7 @@ public class DeleteNode extends AbstractActionIcon {
 		putValue(SMALL_ICON, iconGetter("/menu/deleteAll.png", d));
 		putValue(NAME, rb.getString("Delete"));
 		putValue(SHORT_DESCRIPTION, rb.getString("DeleteH"));
+		setEnabled(false);
 	}
 
 	@Override
