@@ -1,10 +1,12 @@
 package gerudok.model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
+
 
 public class SlotGraphic extends Slot {
 	private static final long serialVersionUID = -5018847687408131521L;
@@ -24,7 +26,8 @@ public class SlotGraphic extends Slot {
 		if (element.getName() == null) {
 			element.setName(element.getName() + graphicElements.size());
 		}
-
+		
+		setChanged();
 		// Dogodila se promena u slotu - obavestiti stranicu koja ga sadrzi
 		notifyObservers();
 
@@ -37,7 +40,8 @@ public class SlotGraphic extends Slot {
 	public void removeGraphicSlotElement(GraphicSlotElement element) {
 
 		graphicElements.remove(element);
-
+		
+		setChanged();
 		// Dogodila se promena u slotu - obavestiti stranicu koja ga sadrzi
 		notifyObservers();
 
@@ -119,4 +123,15 @@ public class SlotGraphic extends Slot {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public int getElementAtPosition(Point point) {
+		for(int i=graphicElements.size()-1;i>=0;i--){
+			GraphicSlotElement element = graphicElements.get(i);
+			if(element.getPainter().getShape().contains(point)){
+				return i;
+			}
+		}
+		return -1;
+	}	
+	
 }

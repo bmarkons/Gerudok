@@ -4,15 +4,19 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.QuadCurve2D;
+import java.awt.geom.Rectangle2D;
 
 import gerudok.model.GraphicSlotElement;
 
 public class SmileyPainter extends ElementPainter {
 	private static final long serialVersionUID = 3066960397745139340L;
-
+	private Rectangle2D rect;
+	private Shape shape;
+	
 	public SmileyPainter(GraphicSlotElement element) {
 		super(element);
 	}
@@ -20,6 +24,7 @@ public class SmileyPainter extends ElementPainter {
 	@Override
 	public void paint(Graphics2D g) {
 		Point position = getElement().getPosition();
+		
 		/*
 		 * Iscrtati Smajlija. Polje position predstavlja referentu poziciju na
 		 * kojoj treba izvrsiti iscrtavanje. Polje color predstavlja boju koju
@@ -74,6 +79,19 @@ public class SmileyPainter extends ElementPainter {
 		g.draw(linija4);
 		Line2D linija5 = new Line2D.Double(x+26, y+75, x+26, y+87);
 		g.draw(linija5);
+		
+		rect = krug.getBounds2D();
+		shape = krug;
+	}
+	
+	@Override
+	public Rectangle2D getRectangle() {
+		return rect;
+	}
+
+	@Override
+	public Shape getShape() {
+		return shape;
 	}
 
 }

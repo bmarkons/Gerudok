@@ -8,7 +8,6 @@ import java.io.Serializable;
 import javax.swing.KeyStroke;
 
 import gerudok.actions.manager.AbstractActionIcon;
-import gerudok.gui.MainFrameGerudok;
 import gerudok.model.SlotGraphic;
 
 public class CommandUndoAction extends AbstractActionIcon implements Serializable {
@@ -34,13 +33,7 @@ public class CommandUndoAction extends AbstractActionIcon implements Serializabl
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if (MainFrameGerudok.getInstance().getTree().getSelectionPath() != null)
-			if (MainFrameGerudok.getInstance().getTree().getSelectionPath()
-					.getLastPathComponent() instanceof SlotGraphic) {
-				slot = (SlotGraphic) MainFrameGerudok.getInstance().getTree().getSelectionPath().getLastPathComponent();
-				slot.getCommandManager().undoCommand();
-			}
-
+		slot.getCommandManager().undoCommand();
 	}
 
 }

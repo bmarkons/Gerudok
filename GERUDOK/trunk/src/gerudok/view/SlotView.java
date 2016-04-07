@@ -23,6 +23,8 @@ public abstract class SlotView extends JPanel implements Observer{
 		name = slot.getName();
 
 		setPreferredSize(SLOT_DIM);
+		
+		slot.addObserver(this);
 	}
 
 	public Slot getSlot() {

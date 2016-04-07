@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/gerudok/gui/dialogs/SlotGraphicDialog.java=UTF-8
 encoding//src/gerudok/gui/segments/JTreeGerudok.java=UTF-8
 encoding//src/gerudok/gui/segments/MenuBarGerudok.java=UTF-8
+encoding//src/gerudok/model/element/SelectionModel.java=UTF-8
 encoding//src/gerudok/view/ProjectView.java=UTF-8
+encoding//src/gerudok/view/SlotGraphicView.java=UTF-8

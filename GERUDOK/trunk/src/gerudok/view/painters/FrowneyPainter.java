@@ -1,17 +1,22 @@
 package gerudok.view.painters;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.QuadCurve2D;
+import java.awt.geom.Rectangle2D;
 
 import gerudok.model.GraphicSlotElement;
 
 public class FrowneyPainter extends ElementPainter {
 	private static final long serialVersionUID = -4476634890356537059L;
-
+	private Rectangle2D rect;
+	private Shape shape;
+	
 	public FrowneyPainter(GraphicSlotElement element) {
 		super(element);
 	}
@@ -39,12 +44,24 @@ public class FrowneyPainter extends ElementPainter {
 		Ellipse2D doko = new Ellipse2D.Double(x + 80, y + 25, 20, 20);
 		g.fill(loko);
 		g.fill(doko);
-		;
+		
 
 		QuadCurve2D frow = new QuadCurve2D.Double(x + 25, y + 100, x + 50,
 				y + 60, x + 100, y + 100);
 		g.draw(frow);
+		
+		rect = krug.getBounds2D();
+		shape = krug;
+	}
 
+	@Override
+	public Rectangle2D getRectangle() {
+		return rect;
+	}
+
+	@Override
+	public Shape getShape() {
+		return shape;
 	}
 
 }

@@ -1,16 +1,21 @@
 package gerudok.view.painters;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
 
 import gerudok.model.GraphicSlotElement;
 
 public class StarPainter extends ElementPainter {
 	private static final long serialVersionUID = -4427769004994299310L;
-
+	private Rectangle2D rect;
+	private Shape shape;
+	
 	public StarPainter(GraphicSlotElement element) {
 		super(element);
 	}
@@ -50,5 +55,17 @@ public class StarPainter extends ElementPainter {
 		g.setColor(Color.BLUE);
 		g.draw(star);
 
+		rect = star.getBounds2D();
+		shape = star;
+	}
+
+	@Override
+	public Rectangle2D getRectangle(){
+		return rect;
+	}
+
+	@Override
+	public Shape getShape() {
+		return shape;
 	}
 }

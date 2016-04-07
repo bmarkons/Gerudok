@@ -1,6 +1,10 @@
 package gerudok.view.painters;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 import gerudok.model.GraphicSlotElement;
@@ -19,4 +23,8 @@ public abstract class ElementPainter implements Serializable{
 	public GraphicSlotElement getElement() {
 		return element;
 	}
+	
+	public abstract Rectangle2D getRectangle();
+	
+	public abstract Shape getShape();
 }

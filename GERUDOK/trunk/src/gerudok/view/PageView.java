@@ -145,7 +145,7 @@ public class PageView extends JPanel implements FocusListener, Observer {
 
 			SlotView slotView = null;
 			if (slot instanceof SlotGraphic) {
-				slotView = new SlotGraphicView(slot, false);
+				slotView = new SlotGraphicView(slot);
 				addSlotView(slotView);
 				slot.addObserver(slotView);
 			} else if (slot instanceof SlotText) {

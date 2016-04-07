@@ -1,15 +1,14 @@
 package gerudok.actions;
 
-import gerudok.actions.manager.AbstractActionIcon;
-import gerudok.gui.MainFrameGerudok;
-import gerudok.model.SlotGraphic;
-
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
 import javax.swing.KeyStroke;
+
+import gerudok.actions.manager.AbstractActionIcon;
+import gerudok.model.SlotGraphic;
 
 public class CommandRedoAction extends AbstractActionIcon implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,7 +17,7 @@ public class CommandRedoAction extends AbstractActionIcon implements Serializabl
 
 	public CommandRedoAction(SlotGraphic slot, Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, iconGetter("/menu/redo.png",d));
+		putValue(SMALL_ICON, iconGetter("/menu/redo.png", d));
 		putValue(NAME, rb.getString("Redo"));
 		putValue(SHORT_DESCRIPTION, rb.getString("RedoH"));
 		this.slot = slot;
@@ -33,14 +32,7 @@ public class CommandRedoAction extends AbstractActionIcon implements Serializabl
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-
-		if (MainFrameGerudok.getInstance().getTree().getSelectionPath() != null)
-			if (MainFrameGerudok.getInstance().getTree().getSelectionPath()
-					.getLastPathComponent() instanceof SlotGraphic) {
-				slot = (SlotGraphic) MainFrameGerudok.getInstance().getTree().getSelectionPath().getLastPathComponent();
-				slot.getCommandManager().doCommand();
-			}
-
+		slot.getCommandManager().doCommand();
 	}
 
 }

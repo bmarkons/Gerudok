@@ -14,11 +14,29 @@ public class StarState extends State {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		// Dodavanje zvezde
-		Point point = e.getPoint();
-		getSlot().getCommandManager()
-				.addCommand(new AddCommand(getSlot(), new StarElement(getSlot(), point)));
+				Point point = e.getPoint();
+				getSlot().getCommandManager()
+						.addCommand(new AddCommand(getSlot(), new StarElement(getSlot(), point)));
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -14,10 +14,28 @@ public class FrowneyState extends State {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		// Dodavanje fraunija :(
 		Point point = e.getPoint();
 		getSlot().getCommandManager()
 				.addCommand(new AddCommand(getSlot(), new FrowneyElement(getSlot(), point)));
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
