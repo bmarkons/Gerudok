@@ -140,6 +140,7 @@ public class ProjectView extends JInternalFrame implements Observer {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 				TreeNode[] n = m.getPathToRoot(project);
 

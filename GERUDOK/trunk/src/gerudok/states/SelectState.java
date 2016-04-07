@@ -23,6 +23,7 @@ public class SelectState extends State{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		
 		SlotGraphicView sgv;
 		
 		if(sv instanceof SlotGraphicView)
@@ -38,6 +39,7 @@ public class SelectState extends State{
 			if (e.getButton()==MouseEvent.BUTTON1){
 				//provera se da li je korisnik uhvatio neki od hand-lova
 				//trebace nam kad krenemo raditi resize elemenata
+				
 				handleInMotion = sgv.getDeviceAndHandleForPoint(position);
 				if(handleInMotion == null){
 					elementInMotion = ((SlotGraphic)sgv.getSlot()).getElementAtPosition(position);
@@ -52,9 +54,11 @@ public class SelectState extends State{
 							sgv.getSelectionModel().addToSelectionList(element);
 						}	
 						
+						sv.repaint();
+						
 					}else{
 						//nije pogodjen nijedan element
-						
+						sv.repaint();
 					}
 				}	
 			}
@@ -62,14 +66,14 @@ public class SelectState extends State{
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		
+
 		SlotGraphicView sgv;
 
 		if (sv instanceof SlotGraphicView)
 			sgv = (SlotGraphicView) sv;
 		else
 			return;
-		
+
 		sgv.getStateManager().setLassoSelectState();
 	}
 
