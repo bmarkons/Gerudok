@@ -123,9 +123,15 @@ public class DocumentView extends JScrollPane implements Observer {
 		} else if (eventObject.getType() == DocumentEventType.REMOVE_PAGE) {
 			
 			ArrayList<PageView> pageViews = this.panel.getPageViews();
+			ArrayList<PageView> toRemove = new ArrayList<PageView>();
+			
 			for (PageView view : pageViews) {
 				if(view.getPage().equals(eventObject.getPage()))
-					removePageView(view);
+					toRemove.add(view);
+			}
+			
+			for(PageView view : toRemove){
+				removePageView(view);
 			}
 			
 			validate();

@@ -184,16 +184,16 @@ public class ProjectView extends JInternalFrame implements Observer {
 		} else if (eventObject.getType() == ProjectEventType.REMOVE_DOCUMENT) {
 
 			// ubacivanje svih view-ova za brisanje u listu removeViews
-			ArrayList<DocumentView> removeViews = new ArrayList<DocumentView>();
+			ArrayList<DocumentView> toRemove = new ArrayList<DocumentView>();
 			int totalTabs = tabbedPane.getTabCount();
 			for (int i = 0; i < totalTabs; i++) {
 				DocumentView docView = (DocumentView) tabbedPane.getComponentAt(i);
 				if (docView.getDocument().equals(eventObject.getDocument())) {
-					removeViews.add(docView);
+					toRemove.add(docView);
 				}
 			}
 			// brisanje view-ova iz liste
-			for (DocumentView docView : removeViews)
+			for (DocumentView docView : toRemove)
 				removeDocumentView(docView);
 
 		} else if (eventObject.getType() == ProjectEventType.RENAME_PROJECT) {
