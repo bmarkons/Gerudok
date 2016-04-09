@@ -1,21 +1,20 @@
 package gerudok.actions;
 
 import gerudok.actions.manager.AbstractActionIcon;
-import gerudok.filters.GerudokFileFilter;
 import gerudok.gui.MainFrameGerudok;
+import gerudok.model.Document;
 import gerudok.model.Project;
 import gerudok.model.Workspace;
+import gerudok.xml.ParseResult;
+import gerudok.xml.XmlManager;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
 import javax.swing.tree.TreePath;
@@ -36,40 +35,43 @@ public class OpenProjectAction extends AbstractActionIcon {
 	public void actionPerformed(ActionEvent arg0) {
 
 		JFileChooser jfc = new JFileChooser();
-		jfc.setFileFilter(new GerudokFileFilter());
-		jfc.setDialogTitle("Open Gerudok project");
-		File projectFile = null;
-		Project project = null;
+		jfc.setDialogTitle("Select project folder to open");
+		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
 		int choosen = jfc.showOpenDialog(MainFrameGerudok.getInstance());
-		if (choosen == JFileChooser.APPROVE_OPTION) {
-			projectFile = jfc.getSelectedFile();
-			ObjectInputStream is;
-			try {
+		if (choosen != JFileChooser.APPROVE_OPTION) {
+			return;
+		}
 
-				is = new ObjectInputStream(new FileInputStream(projectFile));
-				project = (Project) is.readObject();
+		File projectFolder = jfc.getSelectedFile();
 
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-
-			if (project != null) {
-				JTree tree = MainFrameGerudok.getInstance().getTree();
-				//JDesktopPane desktopPane = MainFrameGerudok.getInstance().getWorkspaceView();
-
-				TreePath path = tree.getSelectionPath();
-				tree.expandPath(path);
-
-				// Dodavanje otvorenog ubacenog projekta u stablo
-				((Workspace) tree.getModel().getRoot()).addProject(project);
-
-				project.setProjectFile(projectFile);
-
+		File projectFile = null;
+		for (File file : projectFolder.listFiles()) {
+			if (file.getName().endsWith(".gproj")) {
+				projectFile = file;
+				break;
 			}
 		}
+		if (projectFile == null) {
+			JOptionPane.showMessageDialog(MainFrameGerudok.getInstance(), "Selected folder is not Gerudok project.",
+					"Open project error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		ParseResult parseResult = XmlManager.parseXmlFile(projectFile);
+
+		Project project = new Project();
+		project.setName(parseResult.getProjectName());
+		project.setProjectFile(projectFile);
+		for (Document doc : parseResult.getDocuments()) {
+			project.addDocument(doc);
+		}
+
+		JTree tree = MainFrameGerudok.getInstance().getTree();
+		TreePath path = tree.getSelectionPath();
+		tree.expandPath(path);
+
+		((Workspace) tree.getModel().getRoot()).addProject(project);
+		
 	}
 }

@@ -23,23 +23,20 @@ public class TreeCellRendered extends DefaultTreeCellRenderer {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	protected ImageIcon iconGetter(String iconPath) {
 		final Dimension size = new Dimension(16, 16);
-		
+
 		String PATH = "images/tree/";
-		
-		ImageIcon i = new ImageIcon(new ImageIcon(PATH+iconPath).getImage()
-				.getScaledInstance(size.height, size.width, Image.SCALE_SMOOTH));
+
+		ImageIcon i = new ImageIcon(new ImageIcon(PATH + iconPath).getImage().getScaledInstance(size.height, size.width,
+				Image.SCALE_SMOOTH));
 		return i;
 	}
-	
-	public Component getTreeCellRendererComponent(JTree tree, Object value,
-			boolean sel, boolean expanded, boolean leaf, int row,
-			boolean hasFocus) {
-		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf,
-				row, hasFocus);
-		
+
+	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf,
+			int row, boolean hasFocus) {
+		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
 		if (value instanceof Workspace) {
 			ImageIcon icon = iconGetter("treeworkspace.png");

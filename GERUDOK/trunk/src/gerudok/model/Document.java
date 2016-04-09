@@ -1,5 +1,6 @@
 package gerudok.model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -18,12 +19,20 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	private Project parent = null;
 	private String name = null;
 	private ArrayList<Page> pages = new ArrayList<Page>();
-	//transient DocumentView documentView = null;
+	private File documentFile = null;
 
 	public Document(Project parent) {
 		super();
 		this.parent = parent;
 		addObserver(parent);
+	}
+	
+	public File getDocumentFile() {
+		return documentFile;
+	}
+
+	public void setDocumentFile(File documentFile) {
+		this.documentFile = documentFile;
 	}
 
 	public ArrayList<Page> getPages() {
@@ -31,18 +40,9 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	}
 
 	private Object readResolve() {
-		//documentView = new DocumentView(this.name);
 		addObserver(parent);
 		return this;
 	}
-
-//	public DocumentView getDocumentView() {
-//		return documentView;
-//	}
-//
-//	public void setDocumentView(DocumentView documentView) {
-//		this.documentView = documentView;
-//	}
 
 	public void addPage(Page page) {
 		pages.add(page);

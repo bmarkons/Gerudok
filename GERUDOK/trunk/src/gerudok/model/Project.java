@@ -7,13 +7,11 @@ import java.util.Enumeration;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.SwingUtilities;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import gerudok.events.ProjectEvent;
 import gerudok.events.ProjectEvent.ProjectEventType;
-import gerudok.gui.MainFrameGerudok;
 
 public class Project extends Observable implements MutableTreeNode, Serializable, Observer {
 	private static final long serialVersionUID = -8713701240302899388L;
@@ -38,7 +36,6 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	}
 
 	private Object readResolve() {
-		//projectView = new ProjectView(this.name);
 		addObserver(this);
 		return this;
 	}
@@ -49,7 +46,7 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 
 	public void setProjectModified(boolean projectModified) {
 		this.projectModified = projectModified;
-		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+		//SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
 
 	public File getProjectFile() {
@@ -59,14 +56,6 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	public void setProjectFile(File projectFile) {
 		this.projectFile = projectFile;
 	}
-
-//	public ProjectView getProjectView() {
-//		return projectView;
-//	}
-//
-//	public void setProjectView(ProjectView projectView) {
-//		this.projectView = projectView;
-//	}
 
 	public void addDocument(Document document) {
 		documents.add(document);
