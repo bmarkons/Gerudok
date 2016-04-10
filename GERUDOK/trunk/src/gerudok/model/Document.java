@@ -150,8 +150,7 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 
 	@Override
 	public void setParent(MutableTreeNode newParent) {
-		// TODO Auto-generated method stub
-
+		this.parent = (Project) newParent;
 	}
 	
 	@Override

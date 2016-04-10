@@ -64,6 +64,7 @@ public class OpenProjectAction extends AbstractActionIcon {
 		project.setName(parseResult.getProjectName());
 		project.setProjectFile(projectFile);
 		for (Document doc : parseResult.getDocuments()) {
+			doc.setParent(project);
 			project.addDocument(doc);
 		}
 
