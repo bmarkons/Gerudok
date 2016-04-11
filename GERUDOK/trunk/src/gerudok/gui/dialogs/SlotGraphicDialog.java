@@ -1,6 +1,9 @@
 package gerudok.gui.dialogs;
 
 import java.awt.BorderLayout;
+import java.awt.datatransfer.Clipboard;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -13,6 +16,7 @@ import javax.swing.JToolBar;
 
 import gerudok.actions.manager.ActionManager;
 import gerudok.gui.MainFrameGerudok;
+import gerudok.model.ElementSelection;
 import gerudok.model.SlotGraphic;
 import gerudok.slot.actions.NewFrowney;
 import gerudok.slot.actions.NewSmiley;
@@ -22,7 +26,7 @@ import gerudok.states.StateManager;
 import gerudok.view.SlotGraphicView;
 import gerudok.view.SlotView;
 
-public class SlotGraphicDialog extends JDialog implements EventListener{
+public class SlotGraphicDialog extends JDialog implements EventListener {
 	private static final long serialVersionUID = 1849432776128841231L;
 
 	private SlotGraphicView view = null;
@@ -30,11 +34,11 @@ public class SlotGraphicDialog extends JDialog implements EventListener{
 	private StateManager stateManager = null;
 
 	private DiagramController controler = new DiagramController();
-	
+
 	public StateManager getStateManager() {
 		return stateManager;
 	}
-	
+
 	public SlotGraphicDialog(SlotGraphic slot) {
 		super(MainFrameGerudok.getInstance(), "Edit " + slot.getName(), true);
 		//setLocationRelativeTo(MainFrameGerudok.getInstance());
@@ -43,17 +47,17 @@ public class SlotGraphicDialog extends JDialog implements EventListener{
 
 		this.view = new SlotGraphicView(slot, true);
 		this.stateManager = view.getStateManager();
-		
+
 		view.addMouseListener(controler);
 		view.addMouseMotionListener(controler);
-		
+
 		toolBar = new GraphicSlotToolbar();
 
 		add(toolBar, BorderLayout.WEST);
 		add(view, BorderLayout.CENTER);
 	}
 
-	private class GraphicSlotToolbar extends JToolBar {
+	public class GraphicSlotToolbar extends JToolBar {
 		private static final long serialVersionUID = -4349172055812358634L;
 
 		public GraphicSlotToolbar() {
@@ -70,19 +74,27 @@ public class SlotGraphicDialog extends JDialog implements EventListener{
 			add(new SelectAction(stateManager));
 
 			addSeparator();
-			
-			//add(new CommandUndoAction((SlotGraphic) (view.getSlot()), AbstractActionIcon.small));
+
+			// add(new CommandUndoAction((SlotGraphic) (view.getSlot()),
+			// AbstractActionIcon.small));
 			add(ActionManager.getInstance().getUndo());
-			
-			//add(new CommandRedoAction((SlotGraphic) (view.getSlot()), AbstractActionIcon.small));
+
+			// add(new CommandRedoAction((SlotGraphic) (view.getSlot()),
+			// AbstractActionIcon.small));
 			add(ActionManager.getInstance().getRedo());
 			
+			addSeparator();
+			
+			add(ActionManager.getInstance().getCopyaction());
+			add(ActionManager.getInstance().getCutaction());
+			add(ActionManager.getInstance().getPasteaction());
 		}
 	}
-	
+
 	/**************************************/
-	
-	private class DiagramController extends MouseAdapter implements MouseMotionListener {
+
+	private class DiagramController extends MouseAdapter implements
+			MouseMotionListener {
 
 		public void mousePressed(MouseEvent e) {
 			lastPosition = e.getPoint();
@@ -122,5 +134,5 @@ public class SlotGraphicDialog extends JDialog implements EventListener{
 	public void setSelectionRectangle(Rectangle2D selectionRectangle) {
 		this.selectionRectangle = selectionRectangle;
 	}
-	
+
 }

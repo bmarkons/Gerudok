@@ -6,6 +6,8 @@ import gerudok.actions.AboutAction;
 import gerudok.actions.CascadeProjectAction;
 import gerudok.actions.CommandRedoAction;
 import gerudok.actions.CommandUndoAction;
+import gerudok.actions.CopyAction;
+import gerudok.actions.CutAction;
 import gerudok.actions.DeleteNode;
 import gerudok.actions.DisplayProject;
 import gerudok.actions.GridProjectAction;
@@ -15,6 +17,7 @@ import gerudok.actions.NewProjectAction;
 import gerudok.actions.NewSlotGraphic;
 import gerudok.actions.NewSlotText;
 import gerudok.actions.OpenProjectAction;
+import gerudok.actions.PasteAction;
 import gerudok.actions.QuitAction;
 import gerudok.actions.RenameNode;
 import gerudok.actions.SaveAsProjectAction;
@@ -45,6 +48,10 @@ public class ActionManager {
 	private TileVerticallyAction tilevertically;
 	private QuitAction quit;
 	
+	private CopyAction copy;
+	private CutAction cut;
+	private PasteAction paste;
+	
 	private static ActionManager instance = null;
 	
 	private ActionManager() {
@@ -67,6 +74,10 @@ public class ActionManager {
 		tilehorizontally = new TileHorizontallyAction(AbstractActionIcon.small);
 		tilevertically = new TileVerticallyAction(AbstractActionIcon.small);
 		quit = new QuitAction(AbstractActionIcon.small);
+		
+		copy = new CopyAction(AbstractActionIcon.small);
+		cut = new CutAction(AbstractActionIcon.small);
+		paste = new PasteAction(AbstractActionIcon.small);
 	}
 
 	public AboutAction getAbout() {
@@ -143,6 +154,18 @@ public class ActionManager {
 	
 	public QuitAction getQuitaction() {
 		return quit;
+	}
+	
+	public CopyAction getCopyaction() {
+		return copy;
+	}
+	
+	public CutAction getCutaction() {
+		return cut;
+	}
+	
+	public PasteAction getPasteaction() {
+		return paste;
 	}
 	
 	public void changeLanguage() {

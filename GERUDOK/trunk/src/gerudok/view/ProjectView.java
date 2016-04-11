@@ -52,7 +52,7 @@ public class ProjectView extends JInternalFrame implements Observer {
 
 		tabbedPane = new JTabbedPane();
 		add(tabbedPane);
-		
+
 		tabbedPane.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -147,6 +147,7 @@ public class ProjectView extends JInternalFrame implements Observer {
 				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
 				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+				
 			}
 		});
 	}
@@ -213,7 +214,7 @@ public class ProjectView extends JInternalFrame implements Observer {
 		// TODO Auto-generated method stub
 		super.setSelected(selected);
 		
-		if(selected==true){
+		if(selected==true && project.getChildCount()==0){
 			DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 			TreeNode[] n = m.getPathToRoot(project);
 			

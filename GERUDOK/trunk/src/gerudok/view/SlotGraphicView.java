@@ -6,6 +6,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
@@ -25,12 +27,14 @@ import javax.swing.tree.TreePath;
 
 import gerudok.gui.MainFrameGerudok;
 import gerudok.gui.dialogs.SlotGraphicDialog;
+import gerudok.model.ElementSelection;
 import gerudok.model.GraphicSlotElement;
 import gerudok.model.Slot;
 import gerudok.model.SlotGraphic;
 import gerudok.model.element.SelectionModel;
 import gerudok.states.StateManager;
 import gerudok.view.painters.ElementPainter;
+
 
 public class SlotGraphicView extends SlotView {
 	private static final long serialVersionUID = -5207430261641543334L;
@@ -123,13 +127,6 @@ public class SlotGraphicView extends SlotView {
 				@Override
 				public void focusGained(FocusEvent e) {
 					setBorder(BorderFactory.createLineBorder(Color.BLUE));
-
-					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
-					TreeNode[] n = m.getPathToRoot(slot);
-
-					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
-					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
-					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 				}
 
 				@Override
@@ -147,8 +144,12 @@ public class SlotGraphicView extends SlotView {
 
 				@Override
 				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-
+					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+					TreeNode[] n = m.getPathToRoot(slot);
+					
+					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
+					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 				}
 
 				@Override
@@ -413,6 +414,12 @@ public class SlotGraphicView extends SlotView {
 	// setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	// }
 
+	private Clipboard clipboard = new Clipboard("Clipboard");
+
+	public Clipboard getClipboard() {
+		return clipboard;
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
@@ -442,4 +449,24 @@ public class SlotGraphicView extends SlotView {
 	// add(new CommandRedoAction((SlotGraphic)slot, AbstractActionIcon.small));
 	// }
 	// }
+	
+public void paste (){
+		
+		Clipboard c = clipboard;
+		
+		Transferable clipboardContent = c.getContents (MainFrameGerudok.getInstance()); 
+		
+		if ((clipboardContent != null) &&
+		 	(clipboardContent.isDataFlavorSupported (ElementSelection.elementFlavor))) {
+			try {
+				@SuppressWarnings("unchecked")
+				ArrayList<GraphicSlotElement> tempElements = (ArrayList<GraphicSlotElement>) clipboardContent.getTransferData (ElementSelection.elementFlavor);					
+		 		for(int i=0;i<tempElements.size();i++){
+		 			((SlotGraphic)slot).addGraphicSlotElement(tempElements.get(i));
+		 		}
+			}catch (Exception ex) {
+		 		ex.printStackTrace ();
+		 	}
+		}
+	}
 }

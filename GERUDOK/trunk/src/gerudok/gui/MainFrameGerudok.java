@@ -3,6 +3,9 @@ package gerudok.gui;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Locale;
@@ -29,7 +32,7 @@ import gerudok.tree.view.TreeEditor;
 import gerudok.view.WorkspaceView;
 import gerudok.tree.view.TreePopUp;
 
-public class MainFrameGerudok extends JFrame {
+public class MainFrameGerudok extends JFrame implements ClipboardOwner{
 	private static final long serialVersionUID = 2022795997717084907L;
 
 	private static MainFrameGerudok instance = null;
@@ -201,5 +204,17 @@ public class MainFrameGerudok extends JFrame {
 		ActionManager.getInstance().changeLanguage();
 		menuBar.changeLanguage();
 		statusBar.changeLanguage();
+	}
+
+	@Override
+	public void lostOwnership(Clipboard arg0, Transferable arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private Clipboard clipboard=new Clipboard("Main clipboard");
+	
+	public Clipboard getClipboard() {
+		return clipboard;
 	}
 }

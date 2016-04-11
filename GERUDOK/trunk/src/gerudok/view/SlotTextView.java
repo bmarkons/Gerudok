@@ -48,12 +48,7 @@ public class SlotTextView extends SlotView {
 
 				@Override
 				public void focusGained(FocusEvent e) {
-					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
-					TreeNode[] n = m.getPathToRoot(slot);
-
-					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
-					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
-					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+					
 
 					setBorder(BorderFactory.createLineBorder(Color.BLUE));
 				}
@@ -68,8 +63,12 @@ public class SlotTextView extends SlotView {
 
 				@Override
 				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
+					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+					TreeNode[] n = m.getPathToRoot(slot);
 
+					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
+					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 				}
 
 				@Override

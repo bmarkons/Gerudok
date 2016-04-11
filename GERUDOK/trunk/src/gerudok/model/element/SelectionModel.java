@@ -75,5 +75,12 @@ public class SelectionModel extends DefaultSingleSelectionModel {
 			}
 		}
 	}
-
+	
+	public ArrayList<GraphicSlotElement> getSelected() {
+		ArrayList<GraphicSlotElement> selected=new ArrayList<GraphicSlotElement>();
+		selected.addAll(selectionList);
+		
+		return selected;
+	}
+	
 }
