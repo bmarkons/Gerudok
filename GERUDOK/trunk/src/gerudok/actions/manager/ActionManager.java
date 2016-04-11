@@ -221,6 +221,15 @@ public class ActionManager {
 		
 		quit.putValue(AbstractActionIcon.NAME, rb.getString("Quit"));
 		quit.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("QuitH"));
+		
+		copy.putValue(AbstractActionIcon.NAME, rb.getString("Copy"));
+		copy.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("CopyH"));
+		
+		cut.putValue(AbstractActionIcon.NAME, rb.getString("Cut"));
+		cut.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("CutH"));
+		
+		paste.putValue(AbstractActionIcon.NAME, rb.getString("Paste"));
+		paste.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("PasteH"));
 	}
 	
 	public static ActionManager getInstance() {

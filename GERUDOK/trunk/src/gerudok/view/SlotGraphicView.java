@@ -17,6 +17,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.BorderFactory;
@@ -25,6 +26,8 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import gerudok.commands.AddCommands;
+import gerudok.commands.DeleteCommands;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.gui.dialogs.SlotGraphicDialog;
 import gerudok.model.ElementSelection;
@@ -458,11 +461,10 @@ public void paste (){
 		 	(clipboardContent.isDataFlavorSupported (ElementSelection.elementFlavor))) {
 			try {
 				@SuppressWarnings("unchecked")
-				ArrayList<GraphicSlotElement> tempElements = (ArrayList<GraphicSlotElement>) clipboardContent.getTransferData (ElementSelection.elementFlavor);					
-		 		for(int i=0;i<tempElements.size();i++){
-		 			((SlotGraphic)slot).addGraphicSlotElement(tempElements.get(i));
-		 			selectionModel.addToSelectionList(tempElements.get(i));
-		 		}
+				List<GraphicSlotElement> tempElements = (List<GraphicSlotElement>) clipboardContent.getTransferData (ElementSelection.elementFlavor);					
+		 		
+		 		slot.getCommandManager().addCommand(new AddCommands(this, tempElements));
+		 		
 			}catch (Exception ex) {
 		 		ex.printStackTrace ();
 		 	}

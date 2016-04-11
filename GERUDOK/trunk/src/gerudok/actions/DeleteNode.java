@@ -1,11 +1,14 @@
 package gerudok.actions;
 
 import gerudok.actions.manager.AbstractActionIcon;
+import gerudok.commands.DeleteCommand;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Document;
+import gerudok.model.GraphicSlotElement;
 import gerudok.model.Page;
 import gerudok.model.Project;
 import gerudok.model.Slot;
+import gerudok.model.SlotGraphic;
 import gerudok.model.Workspace;
 
 import java.awt.Dimension;
@@ -57,6 +60,13 @@ public class DeleteNode extends AbstractActionIcon {
 			Slot slot = (Slot) selectedComponent;
 			Page parent = (Page) slot.getParent();
 			parent.deleteSlot(slot);
+			
+		} else if (selectedComponent instanceof GraphicSlotElement) {
+			
+			GraphicSlotElement element = (GraphicSlotElement) selectedComponent;
+			SlotGraphic parent = (SlotGraphic) element.getParent();
+			
+			parent.getCommandManager().addCommand(new DeleteCommand(parent, element));
 			
 		}
 

@@ -9,6 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import gerudok.actions.manager.AbstractActionIcon;
+import gerudok.commands.DeleteCommands;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.gui.dialogs.SlotGraphicDialog.GraphicSlotToolbar;
 import gerudok.model.ElementSelection;
@@ -21,9 +22,9 @@ public class CutAction extends AbstractActionIcon{
 
 	public CutAction(Dimension d) {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, iconGetter("/toolbar/about.png",d));
-		putValue(NAME, "Cut");
-		putValue(SHORT_DESCRIPTION, "Cut");
+		putValue(SMALL_ICON, iconGetter("/toolbar/cut.png",d));
+		putValue(NAME, rb.getString("CutH"));
+		putValue(SHORT_DESCRIPTION, rb.getString("Cut"));
 
 	}
 	
@@ -45,10 +46,15 @@ Component[] c = ((GraphicSlotToolbar)((JComponent)e.getSource()).getParent()).ge
 				ElementSelection content = new ElementSelection(sgv.getSelectionModel().getSelected());
 				MainFrameGerudok.getInstance().getClipboard().setContents(content, MainFrameGerudok.getInstance());
 				
+				sgv.getSlot().getCommandManager().addCommand(new DeleteCommands(sgv, content.getList()));
+				
 				for (GraphicSlotElement element : content.getList()) {
 					((SlotGraphic)sgv.getSlot()).removeGraphicSlotElement(element);
 					sgv.getSelectionModel().removeAllFromSelectionList();
-				}		
+					sgv.repaint();
+				}
+				
+				
 			}
 		}
 	}

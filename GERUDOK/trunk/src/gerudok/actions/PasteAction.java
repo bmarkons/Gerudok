@@ -18,9 +18,9 @@ public class PasteAction extends AbstractActionIcon {
 	public PasteAction(Dimension d) {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, iconGetter("/toolbar/about.png", d));
-		putValue(NAME, "Paste");
-		putValue(SHORT_DESCRIPTION, "Paste");
+		putValue(SMALL_ICON, iconGetter("/toolbar/paste.png", d));
+		putValue(NAME, rb.getString("PasteH"));
+		putValue(SHORT_DESCRIPTION, rb.getString("Paste"));
 
 	}
 

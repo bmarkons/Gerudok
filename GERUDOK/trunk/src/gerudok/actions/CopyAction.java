@@ -20,9 +20,9 @@ public class CopyAction extends AbstractActionIcon {
 	public CopyAction(Dimension d) {
 		putValue(ACCELERATOR_KEY,
 				KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		putValue(SMALL_ICON, iconGetter("/toolbar/about.png", d));
-		putValue(NAME, "Copy");
-		putValue(SHORT_DESCRIPTION, "Copy");
+		putValue(SMALL_ICON, iconGetter("/toolbar/copy.png", d));
+		putValue(NAME, rb.getString("CopyH"));
+		putValue(SHORT_DESCRIPTION, rb.getString("Copy"));
 
 	}
 

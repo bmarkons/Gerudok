@@ -23,5 +23,5 @@ public class AddCommand extends Command {
 	public void undoCommand() {
 		model.removeGraphicSlotElement(element);
 	}
-
+	
 }
