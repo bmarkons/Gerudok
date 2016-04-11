@@ -11,6 +11,7 @@ import java.awt.event.WindowListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.swing.DropMode;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -26,6 +27,7 @@ import gerudok.gui.segments.MenuBarGerudok;
 import gerudok.gui.segments.StatusBarGerudok;
 import gerudok.gui.segments.ToolBarGerudok;
 import gerudok.model.Workspace;
+import gerudok.tree.dragndrop.TreeTransferHandler;
 import gerudok.tree.listener.JTreeControllerGerudok;
 import gerudok.tree.view.TreeCellRendered;
 import gerudok.tree.view.TreeEditor;
@@ -159,8 +161,13 @@ public class MainFrameGerudok extends JFrame implements ClipboardOwner{
 		tree.setCellRenderer(new TreeCellRendered());
 		tree.setComponentPopupMenu(new TreePopUp());
 		tree.setEditable(true);
-		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-
+		
+		//konfigurisanje za DnD
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.CONTIGUOUS_TREE_SELECTION);
+		tree.setDragEnabled(true);
+		tree.setDropMode(DropMode.ON_OR_INSERT);
+		tree.setTransferHandler(new TreeTransferHandler());
+		
 		return tree;
 	}
 
