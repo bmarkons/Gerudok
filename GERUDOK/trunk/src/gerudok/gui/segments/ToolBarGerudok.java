@@ -27,6 +27,8 @@ public class ToolBarGerudok extends JToolBar {
 		addSeparator();
 
 		add(ActionManager.getInstance().getOpenproject());
+		
+		add(ActionManager.getInstance().getImportAction());
 
 		add(ActionManager.getInstance().getSave());
 		

@@ -46,6 +46,7 @@ public class MenuBarGerudok extends JMenuBar {
 		newSlot.add(ActionManager.getInstance().getNewtextslot());
 		
 		file.add(ActionManager.getInstance().getOpenproject());
+		file.add(ActionManager.getInstance().getImportAction());
 		file.addSeparator();
 		
 		file.add(ActionManager.getInstance().getSave());

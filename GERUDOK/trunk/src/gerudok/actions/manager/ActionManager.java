@@ -11,6 +11,7 @@ import gerudok.actions.CutAction;
 import gerudok.actions.DeleteNode;
 import gerudok.actions.DisplayProject;
 import gerudok.actions.GridProjectAction;
+import gerudok.actions.ImportDocumentAction;
 import gerudok.actions.NewDocumentAction;
 import gerudok.actions.NewPageAction;
 import gerudok.actions.NewProjectAction;
@@ -47,13 +48,15 @@ public class ActionManager {
 	private TileHorizontallyAction tilehorizontally;
 	private TileVerticallyAction tilevertically;
 	private QuitAction quit;
-	
+
 	private CopyAction copy;
 	private CutAction cut;
 	private PasteAction paste;
-	
+
+	private ImportDocumentAction importDoc;
+
 	private static ActionManager instance = null;
-	
+
 	private ActionManager() {
 		about = new AboutAction(AbstractActionIcon.small);
 		cascade = new CascadeProjectAction(AbstractActionIcon.small);
@@ -74,10 +77,12 @@ public class ActionManager {
 		tilehorizontally = new TileHorizontallyAction(AbstractActionIcon.small);
 		tilevertically = new TileVerticallyAction(AbstractActionIcon.small);
 		quit = new QuitAction(AbstractActionIcon.small);
-		
+
 		copy = new CopyAction(AbstractActionIcon.small);
 		cut = new CutAction(AbstractActionIcon.small);
 		paste = new PasteAction(AbstractActionIcon.small);
+
+		importDoc = new ImportDocumentAction(AbstractActionIcon.small);
 	}
 
 	public AboutAction getAbout() {
@@ -151,91 +156,98 @@ public class ActionManager {
 	public TileVerticallyAction getTilevertically() {
 		return tilevertically;
 	}
-	
+
 	public QuitAction getQuitaction() {
 		return quit;
 	}
-	
+
 	public CopyAction getCopyaction() {
 		return copy;
 	}
-	
+
 	public CutAction getCutaction() {
 		return cut;
 	}
-	
+
 	public PasteAction getPasteaction() {
 		return paste;
 	}
-	
+
+	public ImportDocumentAction getImportAction() {
+		return importDoc;
+	}
+
 	public void changeLanguage() {
 		ResourceBundle rb = MainFrameGerudok.getInstance().getResourceBundle();
-		
+
 		about.putValue(AbstractActionIcon.NAME, rb.getString("About"));
 		about.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("AboutH"));
-		
+
 		cascade.putValue(AbstractActionIcon.NAME, rb.getString("Cascade"));
 		cascade.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("CascadeH"));
-		
+
 		redo.putValue(AbstractActionIcon.NAME, rb.getString("Redo"));
 		redo.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("RedoH"));
-		
+
 		undo.putValue(AbstractActionIcon.NAME, rb.getString("Undo"));
 		undo.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("UndoH"));
-		
+
 		deletenode.putValue(AbstractActionIcon.NAME, rb.getString("Delete"));
 		deletenode.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("DeleteH"));
-		
+
 		gridaction.putValue(AbstractActionIcon.NAME, rb.getString("Grid"));
 		gridaction.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("GridH"));
-		
+
 		newdocument.putValue(AbstractActionIcon.NAME, rb.getString("NewDocument"));
 		newdocument.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewDocumentH"));
-		
+
 		newpage.putValue(AbstractActionIcon.NAME, rb.getString("NewPage"));
 		newpage.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewPageH"));
-		
+
 		newproject.putValue(AbstractActionIcon.NAME, rb.getString("NewProject"));
 		newproject.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewProjectH"));
-		
+
 		newgraphicslot.putValue(AbstractActionIcon.NAME, rb.getString("NewGSlot"));
 		newgraphicslot.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewGSlotH"));
-		
+
 		newtextslot.putValue(AbstractActionIcon.NAME, rb.getString("NewTSlot"));
 		newtextslot.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("NewTSlotH"));
-		
+
 		openproject.putValue(AbstractActionIcon.NAME, rb.getString("Open"));
 		openproject.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("OpenH"));
-		
+
 		saveas.putValue(AbstractActionIcon.NAME, rb.getString("SaveAs"));
 		saveas.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("SaveAsH"));
-		
+
 		save.putValue(AbstractActionIcon.NAME, rb.getString("Save"));
 		save.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("SaveH"));
-		
+
 		tilehorizontally.putValue(AbstractActionIcon.NAME, rb.getString("TH"));
 		tilehorizontally.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("THH"));
-		
+
 		tilevertically.putValue(AbstractActionIcon.NAME, rb.getString("TV"));
 		tilevertically.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("TVH"));
-		
+
 		quit.putValue(AbstractActionIcon.NAME, rb.getString("Quit"));
 		quit.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("QuitH"));
-		
+
 		copy.putValue(AbstractActionIcon.NAME, rb.getString("Copy"));
 		copy.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("CopyH"));
-		
+
 		cut.putValue(AbstractActionIcon.NAME, rb.getString("Cut"));
 		cut.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("CutH"));
-		
+
 		paste.putValue(AbstractActionIcon.NAME, rb.getString("Paste"));
 		paste.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("PasteH"));
+
+		importDoc.putValue(AbstractActionIcon.NAME, rb.getString("Import"));
+		importDoc.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("ImportH"));
 	}
-	
+
 	public static ActionManager getInstance() {
-		if(instance == null)
+		if (instance == null)
 			instance = new ActionManager();
-		
+
 		return instance;
 	}
 }
