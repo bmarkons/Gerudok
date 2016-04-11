@@ -451,10 +451,8 @@ public class SlotGraphicView extends SlotView {
 	// }
 	
 public void paste (){
-		
-		Clipboard c = clipboard;
-		
-		Transferable clipboardContent = c.getContents (MainFrameGerudok.getInstance()); 
+
+		Transferable clipboardContent = MainFrameGerudok.getInstance().getClipboard().getContents (MainFrameGerudok.getInstance()); 
 		
 		if ((clipboardContent != null) &&
 		 	(clipboardContent.isDataFlavorSupported (ElementSelection.elementFlavor))) {
@@ -463,6 +461,7 @@ public void paste (){
 				ArrayList<GraphicSlotElement> tempElements = (ArrayList<GraphicSlotElement>) clipboardContent.getTransferData (ElementSelection.elementFlavor);					
 		 		for(int i=0;i<tempElements.size();i++){
 		 			((SlotGraphic)slot).addGraphicSlotElement(tempElements.get(i));
+		 			selectionModel.addToSelectionList(tempElements.get(i));
 		 		}
 			}catch (Exception ex) {
 		 		ex.printStackTrace ();

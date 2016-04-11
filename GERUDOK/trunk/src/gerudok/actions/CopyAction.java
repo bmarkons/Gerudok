@@ -1,23 +1,18 @@
 package gerudok.actions;
 
-import gerudok.actions.manager.AbstractActionIcon;
-import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.dialogs.SlotGraphicDialog;
-import gerudok.gui.dialogs.SlotGraphicDialog.GraphicSlotToolbar;
-import gerudok.model.ElementSelection;
-import gerudok.model.SlotGraphic;
-import gerudok.view.SlotGraphicView;
-
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.datatransfer.Clipboard;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
+
+import gerudok.actions.manager.AbstractActionIcon;
+import gerudok.gui.MainFrameGerudok;
+import gerudok.gui.dialogs.SlotGraphicDialog.GraphicSlotToolbar;
+import gerudok.model.ElementSelection;
+import gerudok.view.SlotGraphicView;
 
 @SuppressWarnings("serial")
 public class CopyAction extends AbstractActionIcon {
@@ -45,14 +40,10 @@ public class CopyAction extends AbstractActionIcon {
 		
 		
 		if (sgv!=null) {
-			
-			System.out.println("copy");
-			
-			if (sgv.getSelectionModel().getSelectionListSize() == 0) {
-				Clipboard clipboard = sgv.getClipboard();
+			if (sgv.getSelectionModel().getSelectionListSize() != 0) {
 				
 				ElementSelection content = new ElementSelection(sgv.getSelectionModel().getSelected());
-				clipboard.setContents(content, MainFrameGerudok.getInstance());
+				MainFrameGerudok.getInstance().getClipboard().setContents(content, MainFrameGerudok.getInstance());
 			}
 		}
 	}

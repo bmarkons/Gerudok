@@ -38,9 +38,6 @@ public class PasteAction extends AbstractActionIcon {
 		}
 
 		if (sgv != null) {
-			
-			System.out.println("paste");
-			
 			sgv.paste();
 		}
 	}

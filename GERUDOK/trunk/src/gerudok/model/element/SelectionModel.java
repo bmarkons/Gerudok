@@ -14,8 +14,6 @@ public class SelectionModel extends DefaultSingleSelectionModel {
 
 	private ArrayList<GraphicSlotElement> selectionList = new ArrayList<GraphicSlotElement>();
 
-	transient EventListenerList listenerList = new EventListenerList();
-
 	public void addToSelectionList(GraphicSlotElement element) {
 		selectionList.add(element);
 

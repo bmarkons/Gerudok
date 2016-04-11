@@ -51,6 +51,7 @@ public class SlotGraphicDialog extends JDialog implements EventListener {
 		view.addMouseListener(controler);
 		view.addMouseMotionListener(controler);
 
+		
 		toolBar = new GraphicSlotToolbar();
 
 		add(toolBar, BorderLayout.WEST);
@@ -95,25 +96,31 @@ public class SlotGraphicDialog extends JDialog implements EventListener {
 
 	private class DiagramController extends MouseAdapter implements
 			MouseMotionListener {
-
+		
+		@Override
 		public void mousePressed(MouseEvent e) {
 			lastPosition = e.getPoint();
 			view.setLastPosition(lastPosition);
 			stateManager.getCurrentState().mousePressed(e);
 		}
-
+		
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			stateManager.getCurrentState().mouseReleased(e);
 		}
-
+		
+		@Override
 		public void mouseDragged(MouseEvent e) {
 			stateManager.getCurrentState().mouseDragged(e);
 		}
-
+		
+		@Override
 		public void mouseMoved(MouseEvent e) {
 			stateManager.getCurrentState().mouseMoved(e);
 		}
-
+		
+		
+		
 	}
 
 	private Point2D lastPosition = null;
