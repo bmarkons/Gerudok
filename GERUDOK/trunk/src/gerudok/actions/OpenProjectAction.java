@@ -35,7 +35,7 @@ public class OpenProjectAction extends AbstractActionIcon {
 	public void actionPerformed(ActionEvent arg0) {
 
 		JFileChooser jfc = new JFileChooser();
-		jfc.setDialogTitle("Select project folder to open");
+		jfc.setDialogTitle("Select project folder to open");//rb
 		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
 		int choosen = jfc.showOpenDialog(MainFrameGerudok.getInstance());
@@ -54,7 +54,7 @@ public class OpenProjectAction extends AbstractActionIcon {
 		}
 		if (projectFile == null) {
 			JOptionPane.showMessageDialog(MainFrameGerudok.getInstance(), "Selected folder is not Gerudok project.",
-					"Open project error", JOptionPane.ERROR_MESSAGE);
+					"Open project error", JOptionPane.ERROR_MESSAGE);//rb
 			return;
 		}
 

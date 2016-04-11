@@ -21,12 +21,30 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	private ArrayList<Document> documents = new ArrayList<Document>();
 	private File projectFile = null;
 	private boolean projectModified;
-
+	private boolean detachedDocs = false;
+	private static boolean hasDetachedDocs = false;
+	
 	public Project() {
 		super();
 		this.addObserver(this);
 	}
 
+	public static boolean isHasDetachedDocs() {
+		return hasDetachedDocs;
+	}
+
+	public static void setHasDetachedDocs(boolean hasDetachedDocs) {
+		Project.hasDetachedDocs = hasDetachedDocs;
+	}
+
+	public boolean isDetachedDocs(){
+		return detachedDocs;
+	}
+	
+	public void setDetachedDocs(boolean detachedDocs){
+		this.detachedDocs = detachedDocs;
+	}
+	
 	public void setParent(Workspace parent) {
 		this.parent = parent;
 	}

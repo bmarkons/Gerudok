@@ -4,16 +4,16 @@ import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-public class GerudokFileFilter extends FileFilter {
+public class DocumentFileFilter extends FileFilter {
 
 	@Override
 	public boolean accept(File f) {
-		return (f.isDirectory() || f.getName().toLowerCase().endsWith(".gpf")); 
+		return (f.isDirectory() || f.getName().toLowerCase().endsWith(".gdoc"));
 	}
 
 	@Override
 	public String getDescription() {
-		return "Gerudok Project Files (*.gpf)";
+		return "Gerudok Document Files (*.gdoc)";
 	}
 
 }
