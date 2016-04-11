@@ -37,7 +37,7 @@ public class SlotGraphicDialog extends JDialog implements EventListener{
 	
 	public SlotGraphicDialog(SlotGraphic slot) {
 		super(MainFrameGerudok.getInstance(), "Edit " + slot.getName(), true);
-		setLocationRelativeTo(MainFrameGerudok.getInstance());
+		//setLocationRelativeTo(MainFrameGerudok.getInstance());
 		setLayout(new BorderLayout());
 		setSize(SlotView.SLOT_DIM);
 
