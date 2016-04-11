@@ -32,7 +32,7 @@ import gerudok.model.element.SelectionModel;
 import gerudok.states.StateManager;
 import gerudok.view.painters.ElementPainter;
 
-public class SlotGraphicView extends SlotView implements FocusListener {
+public class SlotGraphicView extends SlotView {
 	private static final long serialVersionUID = -5207430261641543334L;
 
 	// private GraphicSlotToolbar toolBar = null;
@@ -41,79 +41,165 @@ public class SlotGraphicView extends SlotView implements FocusListener {
 	public StateManager getStateManager() {
 		return stateManager;
 	}
-	
-	public SlotGraphicView(Slot slot) {
-		super(slot);
 
-		addFocusListener(this);
-		addMouseListener(new MouseListener() {
+	// public SlotGraphicView(Slot slot) {
+	// super(slot);
+	//
+	// addFocusListener(this);
+	// addMouseListener(new MouseListener() {
+	//
+	// @Override
+	// public void mouseReleased(MouseEvent e) {
+	// // TODO Auto-generated method stub
+	//
+	// }
+	//
+	// @Override
+	// public void mousePressed(MouseEvent e) {
+	// // TODO Auto-generated method stub
+	//
+	// }
+	//
+	// @Override
+	// public void mouseExited(MouseEvent e) {
+	// // TODO Auto-generated method stub
+	//
+	// }
+	//
+	// @Override
+	// public void mouseEntered(MouseEvent e) {
+	// // TODO Auto-generated method stub
+	//
+	// }
+	//
+	// @Override
+	// public void mouseClicked(MouseEvent e) {
+	// requestFocus();
+	//
+	// setBorder(BorderFactory.createLineBorder(Color.BLUE));
+	//
+	// DefaultTreeModel m = (DefaultTreeModel)
+	// MainFrameGerudok.getInstance().getTree().getModel();
+	// TreeNode[] n = m.getPathToRoot(slot);
+	//
+	// MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new
+	// TreePath(n));
+	// MainFrameGerudok.getInstance().getTree().setSelectionPath(new
+	// TreePath(n));
+	// SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+	//
+	// if (SwingUtilities.isLeftMouseButton(e)
+	// && !(SlotGraphicView.this.getParent() instanceof SlotGraphicDialog)) {
+	// if (e.getClickCount() == 2) {
+	// SlotGraphicDialog dialog = new SlotGraphicDialog((SlotGraphic)
+	// SlotGraphicView.this.getSlot(),
+	// SlotGraphicView.this.getSize());
+	// dialog.setVisible(true);
+	// }
+	// }
+	// }
+	// });
+	//
+	// setBackground(Color.WHITE);
+	// }
 
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				requestFocus();
-				
-				setBorder(BorderFactory.createLineBorder(Color.BLUE));
-
-				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
-				TreeNode[] n = m.getPathToRoot(slot);
-
-				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
-				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
-				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-				
-				if (SwingUtilities.isLeftMouseButton(e)
-						&& !(SlotGraphicView.this.getParent() instanceof SlotGraphicDialog)) {
-					if (e.getClickCount() == 2) {
-						SlotGraphicDialog dialog = new SlotGraphicDialog((SlotGraphic) SlotGraphicView.this.getSlot(),
-								SlotGraphicView.this.getSize());
-						dialog.setVisible(true);
-					}
-				}
-			}
-		});
-
-		setBackground(Color.WHITE);
-	}
-	
 	public SelectionModel getSelectionModel() {
 		return selectionModel;
 	}
 
-	public SlotGraphicView(Slot slot, boolean Dialog) {
+	public SlotGraphicView(Slot slot, boolean isDialog) {
 		super(slot);
 
-		addFocusListener(this);
-
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		setBackground(Color.WHITE);
 
-		stateManager = new StateManager(this);
+		if (isDialog) {
 
-		setBackground(Color.WHITE);
+			stateManager = new StateManager(this);
+
+		} else {
+
+			addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusGained(FocusEvent e) {
+					setBorder(BorderFactory.createLineBorder(Color.BLUE));
+
+					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
+					TreeNode[] n = m.getPathToRoot(slot);
+
+					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
+					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
+					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+				}
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				}
+			});
+			addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				// @Override
+				// public void mouseClicked(MouseEvent e) {
+				// requestFocus();
+				//
+				// setBorder(BorderFactory.createLineBorder(Color.BLUE));
+				//
+				// DefaultTreeModel m = (DefaultTreeModel)
+				// MainFrameGerudok.getInstance().getTree().getModel();
+				// TreeNode[] n = m.getPathToRoot(slot);
+				//
+				// MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new
+				// TreePath(n));
+				// MainFrameGerudok.getInstance().getTree().setSelectionPath(new
+				// TreePath(n));
+				// SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+				//
+				// if (SwingUtilities.isLeftMouseButton(e)
+				// && !(SlotGraphicView.this.getParent() instanceof
+				// SlotGraphicDialog)) {
+				// if (e.getClickCount() == 2) {
+				// SlotGraphicDialog dialog = new SlotGraphicDialog(
+				// (SlotGraphic) SlotGraphicView.this.getSlot(),
+				// SlotGraphicView.this.getSize());
+				// dialog.setVisible(true);
+				// }
+				// }
+				// }
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					requestFocus();
+					if (SwingUtilities.isLeftMouseButton(e) && e.getClickCount() == 2) {
+						SlotGraphicDialog dialog = new SlotGraphicDialog((SlotGraphic) SlotGraphicView.this.getSlot());
+						dialog.setVisible(true);
+					}
+				}
+			});
+		}
 	}
 
 	/*****************************************************/
@@ -171,17 +257,18 @@ public class SlotGraphicView extends SlotView implements FocusListener {
 		Iterator<GraphicSlotElement> it = selectionModel.getSelectionListIterator();
 		while (it.hasNext()) {
 			GraphicSlotElement element = it.next();
-			
+
 			Dimension dim = new Dimension();
-			dim.setSize(element.getPainter().getRectangle().getWidth(), element.getPainter().getRectangle().getHeight());
-			
+			dim.setSize(element.getPainter().getRectangle().getWidth(),
+					element.getPainter().getRectangle().getHeight());
+
 			// Iscrtavanje pravougaonika sa isprekidanom linijom
 			g2.setStroke(new BasicStroke((float) 1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 1f,
 					new float[] { 3f, 6f }, 0));
 			g2.setPaint(Color.BLACK);
 
-			g2.drawRect((int) element.getPosition().getX(), (int) element.getPosition().getY(),
-					(int) dim.getWidth(), (int) dim.getHeight());
+			g2.drawRect((int) element.getPosition().getX(), (int) element.getPosition().getY(), (int) dim.getWidth(),
+					(int) dim.getHeight());
 
 			// Iscrtavanje hendlova
 			for (Handle e : Handle.values()) {
@@ -306,22 +393,25 @@ public class SlotGraphicView extends SlotView implements FocusListener {
 
 	/************************************************************/
 
-	@Override
-	public void focusGained(FocusEvent e) {
-		setBorder(BorderFactory.createLineBorder(Color.BLUE));
-
-		DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
-		TreeNode[] n = m.getPathToRoot(slot);
-
-		MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
-		MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
-		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		setBorder(BorderFactory.createLineBorder(Color.BLACK));
-	}
+	// @Override
+	// public void focusGained(FocusEvent e) {
+	// setBorder(BorderFactory.createLineBorder(Color.BLUE));
+	//
+	// DefaultTreeModel m = (DefaultTreeModel)
+	// MainFrameGerudok.getInstance().getTree().getModel();
+	// TreeNode[] n = m.getPathToRoot(slot);
+	//
+	// MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new
+	// TreePath(n));
+	// MainFrameGerudok.getInstance().getTree().setSelectionPath(new
+	// TreePath(n));
+	// SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+	// }
+	//
+	// @Override
+	// public void focusLost(FocusEvent e) {
+	// setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	// }
 
 	@Override
 	public void update(Observable o, Object arg) {
