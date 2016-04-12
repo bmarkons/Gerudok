@@ -6,6 +6,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.Doc;
 import javax.swing.JComponent;
 import javax.swing.JTree;
 import javax.swing.TransferHandler;
@@ -23,7 +24,7 @@ public class TreeTransferHandler extends TransferHandler {
 
 	DataFlavor nodesFlavor;
 	DataFlavor[] flavors = new DataFlavor[1];
-	//MutableTreeNode[] nodesToRemove;
+	// MutableTreeNode[] nodesToRemove;
 
 	public TreeTransferHandler() {
 		try {
@@ -48,7 +49,7 @@ public class TreeTransferHandler extends TransferHandler {
 
 		JTree tree = (JTree) support.getComponent();
 		JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
-		//int action = support.getDropAction();
+		// int action = support.getDropAction();
 
 		// Samo dokumenti mogu biti drag n dropovani
 		int[] selectedRows = tree.getSelectionRows();
@@ -73,7 +74,7 @@ public class TreeTransferHandler extends TransferHandler {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
 
@@ -86,33 +87,37 @@ public class TreeTransferHandler extends TransferHandler {
 			// another for/of the nodes that will be removed in
 			// exportDone after a successful drop.
 			List<MutableTreeNode> copies = new ArrayList<MutableTreeNode>();
-			
-			for(int i = 0;i<paths.length;i++){
+
+			for (int i = 0; i < paths.length; i++) {
 				MutableTreeNode node = (MutableTreeNode) paths[i].getLastPathComponent();
-				if(node instanceof Document){
+				if (node instanceof Document) {
 					copies.add(node);
 				}
 			}
-//			List<MutableTreeNode> toRemove = new ArrayList<MutableTreeNode>();	
-//			MutableTreeNode node = (MutableTreeNode) paths[0].getLastPathComponent();
-//			MutableTreeNode copy = copy(node);
-//			copies.add(copy);
-//			toRemove.add(node);
-//			for (int i = 1; i < paths.length; i++) {
-//				MutableTreeNode next = (MutableTreeNode) paths[i].getLastPathComponent();
-//				// Do not allow higher level nodes to be added to list.
-//				if (next.getLevel() < node.getLevel()) {
-//					break;
-//				} else if (next.getLevel() > node.getLevel()) { // child node
-//					copy.add(copy(next));
-//					// node already contains child
-//				} else { // sibling
-//					copies.add(copy(next));
-//					toRemove.add(next);
-//				}
-//			}
+			// List<MutableTreeNode> toRemove = new
+			// ArrayList<MutableTreeNode>();
+			// MutableTreeNode node = (MutableTreeNode)
+			// paths[0].getLastPathComponent();
+			// MutableTreeNode copy = copy(node);
+			// copies.add(copy);
+			// toRemove.add(node);
+			// for (int i = 1; i < paths.length; i++) {
+			// MutableTreeNode next = (MutableTreeNode)
+			// paths[i].getLastPathComponent();
+			// // Do not allow higher level nodes to be added to list.
+			// if (next.getLevel() < node.getLevel()) {
+			// break;
+			// } else if (next.getLevel() > node.getLevel()) { // child node
+			// copy.add(copy(next));
+			// // node already contains child
+			// } else { // sibling
+			// copies.add(copy(next));
+			// toRemove.add(next);
+			// }
+			// }
 			MutableTreeNode[] nodes = copies.toArray(new MutableTreeNode[copies.size()]);
-			///nodesToRemove = toRemove.toArray(new MutableTreeNode[toRemove.size()]);
+			/// nodesToRemove = toRemove.toArray(new
+			/// MutableTreeNode[toRemove.size()]);
 			return new NodesTransferable(nodes);
 		}
 		return null;
@@ -120,14 +125,14 @@ public class TreeTransferHandler extends TransferHandler {
 
 	@Override
 	protected void exportDone(JComponent source, Transferable data, int action) {
-//		if ((action & MOVE) == MOVE) {
-//			JTree tree = (JTree) source;
-//			DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-//			// Remove nodes saved in nodesToRemove in createTransferable.
-//			for (int i = 0; i < nodesToRemove.length; i++) {
-//				model.removeNodeFromParent(nodesToRemove[i]);
-//			}
-//		}
+		// if ((action & MOVE) == MOVE) {
+		// JTree tree = (JTree) source;
+		// DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+		// // Remove nodes saved in nodesToRemove in createTransferable.
+		// for (int i = 0; i < nodesToRemove.length; i++) {
+		// model.removeNodeFromParent(nodesToRemove[i]);
+		// }
+		// }
 	}
 
 	@Override
@@ -140,7 +145,7 @@ public class TreeTransferHandler extends TransferHandler {
 		if (!canImport(support)) {
 			return false;
 		}
-		
+
 		// Extract transfer data.
 		MutableTreeNode[] nodes = null;
 		try {
@@ -151,19 +156,23 @@ public class TreeTransferHandler extends TransferHandler {
 		} catch (java.io.IOException ioe) {
 			System.out.println("I/O error: " + ioe.getMessage());
 		}
-		
+
 		// Get drop location info.
 		JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
 		TreePath dest = dl.getPath();
 		Project parent = (Project) dest.getLastPathComponent();
-		
-		//Ubaci sve selektovane u projekat
-		for(MutableTreeNode node : nodes){
-			if(!(node.getParent().equals(parent))){
+
+		// Ubaci sve selektovane u projekat
+		for (MutableTreeNode node : nodes) {
+			if (!(node.getParent().equals(parent)) && !parent.getDocuments().contains(node)) {
 				parent.addDocument((Document) node);
+				((Document)node).setShared(true);
+				((Document)node).addParent(parent);
+			} else {
+				return false;
 			}
 		}
-		
+
 		return true;
 	}
 

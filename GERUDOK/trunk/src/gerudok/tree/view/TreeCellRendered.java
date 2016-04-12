@@ -43,9 +43,16 @@ public class TreeCellRendered extends DefaultTreeCellRenderer {
 			if (icon != null)
 				setIcon(icon);
 		} else if (value instanceof Document) {
-			ImageIcon icon = iconGetter("treedoc.png");
-			if (icon != null)
-				setIcon(icon);
+			Document doc = (Document) value;
+			if (doc.isShared()) {
+				ImageIcon icon = iconGetter("shareddoc.png");
+				if (icon != null)
+					setIcon(icon);
+			} else {
+				ImageIcon icon = iconGetter("treedoc.png");
+				if (icon != null)
+					setIcon(icon);
+			}
 
 		} else if (value instanceof Project) {
 			ImageIcon icon = iconGetter("treeproj.png");

@@ -1,6 +1,7 @@
 package gerudok.tree.listener;
 
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
 
 import gerudok.actions.manager.ActionManager;
 import gerudok.gui.MainFrameGerudok;
@@ -78,6 +79,15 @@ public class JTreeControllerGerudok implements TreeSelectionListener {
 			 * projekta, zatim tab dokumenta.
 			 */
 			Document document = (Document) selectedComponent;
+			if(document.isShared()){
+				Object[] pathElements = path.getPath();
+				ArrayList<Project> parents = document.getAllParents();
+				for(Object obj : pathElements){
+					
+				}
+			}else{
+				Project project = (Project) document.getParent();
+			}
 			Project project = (Project) document.getParent();
 
 			ProjectView projectView = setProjectViewInFront(project);

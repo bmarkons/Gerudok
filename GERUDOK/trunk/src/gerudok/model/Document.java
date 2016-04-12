@@ -20,13 +20,31 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 	private String name = null;
 	private ArrayList<Page> pages = new ArrayList<Page>();
 	private File documentFile = null;
+	private boolean shared = false;
+	private ArrayList<Project> allParents = new ArrayList<Project>();
 
 	public Document(Project parent) {
 		super();
-		this.parent = parent;
+		setParent(parent);
 		addObserver(parent);
 	}
-	
+
+	public ArrayList<Project> getAllParents() {
+		return allParents;
+	}
+
+	public void addParent(Project newParent) {
+		this.allParents.add(newParent);
+	}
+
+	public boolean isShared() {
+		return shared;
+	}
+
+	public void setShared(boolean shared) {
+		this.shared = shared;
+	}
+
 	public File getDocumentFile() {
 		return documentFile;
 	}
@@ -150,7 +168,11 @@ public class Document extends Observable implements MutableTreeNode, Serializabl
 
 	@Override
 	public void setParent(MutableTreeNode newParent) {
+//		if(allParents.contains(parent)){
+//			allParents.remove(parent);
+//		}
 		this.parent = (Project) newParent;
+		// allParents.add((Project) newParent);
 	}
 	
 	@Override
