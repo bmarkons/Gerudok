@@ -8,12 +8,10 @@ import javax.swing.JPanel;
 
 import gerudok.model.Slot;
 
-public abstract class SlotView extends JPanel implements Observer{
+public abstract class SlotView extends JPanel implements Observer {
 	private static final long serialVersionUID = 4449718288145521263L;
-	public static final Dimension SLOT_DIM = new Dimension(PageView.PAGE_WIDTH - 5,
-			PageView.PAGE_HEIGHT / 3);
-	
-	
+	public static final Dimension SLOT_DIM = new Dimension(PageView.PAGE_WIDTH - 5, PageView.PAGE_HEIGHT / 3);
+
 	Slot slot;
 	String name = null;
 
@@ -23,8 +21,12 @@ public abstract class SlotView extends JPanel implements Observer{
 		name = slot.getName();
 
 		setPreferredSize(SLOT_DIM);
-		
+
 		slot.addObserver(this);
+	}
+
+	public PageView getPageView() {
+		return (PageView) getParent();
 	}
 
 	public Slot getSlot() {

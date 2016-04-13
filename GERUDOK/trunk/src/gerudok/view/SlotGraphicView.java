@@ -150,6 +150,9 @@ public class SlotGraphicView extends SlotView {
 					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 					TreeNode[] n = m.getPathToRoot(slot);
 					
+					//Zameni u putanji projekat
+					n[1] = getPageView().getDocumentView().getProjectView().getProject();
+					
 					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
 					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());

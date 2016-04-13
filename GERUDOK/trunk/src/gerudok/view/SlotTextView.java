@@ -48,7 +48,6 @@ public class SlotTextView extends SlotView {
 
 				@Override
 				public void focusGained(FocusEvent e) {
-					
 
 					setBorder(BorderFactory.createLineBorder(Color.BLUE));
 				}
@@ -65,6 +64,9 @@ public class SlotTextView extends SlotView {
 				public void mousePressed(MouseEvent e) {
 					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 					TreeNode[] n = m.getPathToRoot(slot);
+
+					// Zameni u putanji projekat
+					n[1] = getPageView().getDocumentView().getProjectView().getProject();
 
 					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));

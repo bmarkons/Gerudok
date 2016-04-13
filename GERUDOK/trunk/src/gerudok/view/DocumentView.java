@@ -65,6 +65,8 @@ public class DocumentView extends JScrollPane implements Observer {
 				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 				TreeNode[] n = m.getPathToRoot(document);
 				
+				//Zameni u putanji projekat
+				n[1] = getProjectView().getProject();
 				
 				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));		
@@ -72,6 +74,10 @@ public class DocumentView extends JScrollPane implements Observer {
 						.getTree());
 			}
 		});
+	}
+	
+	public ProjectView getProjectView(){
+		return (ProjectView) getParent().getParent().getParent().getParent().getParent();
 	}
 	
 	public DocumentPanel getDocumentPanel() {

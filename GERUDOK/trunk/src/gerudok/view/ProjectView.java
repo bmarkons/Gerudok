@@ -54,50 +54,53 @@ public class ProjectView extends JInternalFrame implements Observer {
 		add(tabbedPane);
 
 		tabbedPane.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if(e.getSource() instanceof JTabbedPane){
+				if (e.getSource() instanceof JTabbedPane) {
 					JTabbedPane source = (JTabbedPane) e.getSource();
-					
-					if(source.getTabCount()==0)
+
+					if (source.getTabCount() == 0)
 						return;
-					
+
 					DocumentView view = (DocumentView) source.getSelectedComponent();
 					Document document = (Document) view.getDocument();
-					
+
 					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 					TreeNode[] n = m.getPathToRoot(document);
+					
+					//Zameni u putanji projekat
+					n[1] = ProjectView.this.project;
 
 					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 					MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
 					SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 				}
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 
@@ -114,7 +117,7 @@ public class ProjectView extends JInternalFrame implements Observer {
 			y = yStart;
 			x = xStart + 40;
 		}
-		
+
 		// Mouse listener za selekciju ka stablu
 		addMouseListener(new MouseListener() {
 
@@ -140,14 +143,14 @@ public class ProjectView extends JInternalFrame implements Observer {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 				TreeNode[] n = m.getPathToRoot(project);
 
 				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
 				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
-				
+
 			}
 		});
 	}
@@ -204,25 +207,23 @@ public class ProjectView extends JInternalFrame implements Observer {
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
 
-	public void setSelectedFromTree(boolean selected) throws PropertyVetoException
-	{
+	public void setSelectedFromTree(boolean selected) throws PropertyVetoException {
 		super.setSelected(selected);
 	}
-	
+
 	@Override
 	public void setSelected(boolean selected) throws PropertyVetoException {
 		// TODO Auto-generated method stub
 		super.setSelected(selected);
-		
-		if(selected==true && project.getChildCount()==0){
+
+		if (selected == true && project.getChildCount() == 0) {
 			DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 			TreeNode[] n = m.getPathToRoot(project);
-			
+
 			MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 			MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
 			SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 		}
 	}
-	
-	
+
 }

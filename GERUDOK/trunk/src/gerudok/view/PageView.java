@@ -78,11 +78,18 @@ public class PageView extends JPanel implements FocusListener, Observer {
 				DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 				TreeNode[] n = m.getPathToRoot(page);
 
+				//Zameni u putanji projekat
+				n[1] = getDocumentView().getProjectView().getProject();
+				
 				MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
 				MainFrameGerudok.getInstance().getTree().setSelectionPath(new TreePath(n));
 				SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 			}
 		});
+	}
+	
+	public DocumentView getDocumentView(){
+		return (DocumentView) getParent().getParent().getParent();
 	}
 
 	public ArrayList<SlotView> getSlotViews() {
