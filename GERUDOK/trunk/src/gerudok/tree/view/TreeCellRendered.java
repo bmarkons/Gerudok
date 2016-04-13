@@ -17,6 +17,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 public class TreeCellRendered extends DefaultTreeCellRenderer {
 	/**
@@ -44,10 +47,26 @@ public class TreeCellRendered extends DefaultTreeCellRenderer {
 				setIcon(icon);
 		} else if (value instanceof Document) {
 			Document doc = (Document) value;
-			if (doc.isShared()) {
-				ImageIcon icon = iconGetter("shareddoc.png");
-				if (icon != null)
-					setIcon(icon);
+			TreePath path = tree.getPathForRow(row);
+
+			if (path != null) {
+				Object[] objs = path.getPath();
+				if (doc.isShared() && !doc.getParent().equals(objs[1])) {
+					ImageIcon icon = new ImageIcon(new ImageIcon("images/tree/" + "importeddoc.png").getImage()
+							.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+					if (icon != null)
+						setIcon(icon);
+				} else if (doc.isShared() && doc.getParent().equals(objs[1])) {
+					ImageIcon icon = new ImageIcon(new ImageIcon("images/tree/" + "shareddoc.png").getImage()
+							.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+					if (icon != null)
+						setIcon(icon);
+				} else {
+					ImageIcon icon = new ImageIcon(new ImageIcon("images/tree/" + "treedoc.png").getImage()
+							.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+					if (icon != null)
+						setIcon(icon);
+				}
 			} else {
 				ImageIcon icon = iconGetter("treedoc.png");
 				if (icon != null)

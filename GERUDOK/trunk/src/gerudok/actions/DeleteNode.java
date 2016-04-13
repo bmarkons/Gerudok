@@ -33,6 +33,7 @@ public class DeleteNode extends AbstractActionIcon {
 	public void actionPerformed(ActionEvent arg0) {
 		JTree tree = MainFrameGerudok.getInstance().getTree();
 		Object selectedComponent = tree.getLastSelectedPathComponent();
+		Object[] path = tree.getSelectionPath().getPath();
 
 		if (((selectedComponent instanceof Workspace)) || (selectedComponent == null)) {
 			return;
@@ -44,30 +45,30 @@ public class DeleteNode extends AbstractActionIcon {
 			parent.deleteProject(project);
 
 		} else if (selectedComponent instanceof Document) {
-			
+
 			Document document = (Document) selectedComponent;
-			Project parent = (Project) document.getParent();
-			parent.deleteDocument(document);
+			Project project = (Project) path[1];
+			project.deleteDocument(document);
 
 		} else if (selectedComponent instanceof Page) {
-			
+
 			Page page = (Page) selectedComponent;
 			Document parent = (Document) page.getParent();
 			parent.deletePage(page);
-			
+
 		} else if (selectedComponent instanceof Slot) {
-			
+
 			Slot slot = (Slot) selectedComponent;
 			Page parent = (Page) slot.getParent();
 			parent.deleteSlot(slot);
-			
+
 		} else if (selectedComponent instanceof GraphicSlotElement) {
-			
+
 			GraphicSlotElement element = (GraphicSlotElement) selectedComponent;
 			SlotGraphic parent = (SlotGraphic) element.getParent();
-			
+
 			parent.getCommandManager().addCommand(new DeleteCommand(parent, element));
-			
+
 		}
 
 	}

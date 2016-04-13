@@ -21,30 +21,12 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	private ArrayList<Document> documents = new ArrayList<Document>();
 	private File projectFile = null;
 	private boolean projectModified;
-//	private boolean detachedDocs = false;
-//	private static boolean hasDetachedDocs = false;
-	
+
 	public Project() {
 		super();
 		this.addObserver(this);
 	}
 
-	// public static boolean isHasDetachedDocs() {
-	// return hasDetachedDocs;
-	// }
-	//
-	// public static void setHasDetachedDocs(boolean hasDetachedDocs) {
-	// Project.hasDetachedDocs = hasDetachedDocs;
-	// }
-	//
-	// public boolean isDetachedDocs(){
-	// return detachedDocs;
-	// }
-	//
-	// public void setDetachedDocs(boolean detachedDocs){
-	// this.detachedDocs = detachedDocs;
-	// }
-	
 	public void setParent(Workspace parent) {
 		this.parent = parent;
 	}
@@ -64,7 +46,7 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 
 	public void setProjectModified(boolean projectModified) {
 		this.projectModified = projectModified;
-		//SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
+		// SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
 
 	public File getProjectFile() {
@@ -79,23 +61,31 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 		documents.add(document);
 		if (document.getName() == null)
 			document.setName("Document - " + documents.size());
-		
+
 		// dogodila se modifikacija projekta
 		notifyObservers(new ProjectEvent(ProjectEventType.ADD_DOCUMENT, document));
 	}
 
 	public void deleteDocument(Document document) {
 		documents.remove(document);
-		
+
+		if (document.getParent().equals(this)) {
+			for (Object p : document.getAllParents().toArray()) {
+				((Project) p).deleteDocument(document);
+			}
+		} else {
+			document.getAllParents().remove(this);
+		}
+
 		// dogodila se modifikacija projekta
 		notifyObservers(new ProjectEvent(ProjectEventType.REMOVE_DOCUMENT, document));
 	}
 
 	public void setName(String name) {
 		this.name = name;
-		
+
 		// dogodila se modifikacija projekta
-		notifyObservers(new ProjectEvent(ProjectEventType.RENAME_PROJECT,null));
+		notifyObservers(new ProjectEvent(ProjectEventType.RENAME_PROJECT, null));
 	}
 
 	public String getName() {
@@ -180,9 +170,9 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	public void setParent(MutableTreeNode newParent) {
 		this.parent = (Workspace) newParent;
 	}
-	
+
 	@Override
-	public void notifyObservers(Object arg){
+	public void notifyObservers(Object arg) {
 		setChanged();
 		super.notifyObservers(arg);
 	}
