@@ -48,6 +48,9 @@ public class GridProjectAction extends AbstractActionIcon {
 		int x = 0;
 		int y = 0;
 
+		int last_x = 0;
+		int last_y = 0;
+		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols && ((i * cols) + j < count); j++) {
 				JInternalFrame f = frames[(i * cols) + j];
@@ -60,11 +63,19 @@ public class GridProjectAction extends AbstractActionIcon {
 				}
 
 				desktop.getDesktopManager().resizeFrame(f, x, y, w, h);
+				last_x = x;
 				x += w;
+				last_y = y;
 			}
 			y += h; // start the next row
 			x = 0;
 		}
+		/*
+		if (desktop.getAllFrames().length != rows*cols) {
+			JInternalFrame f = frames[desktop.getAllFrames().length - 1];
+			desktop.getDesktopManager().resizeFrame(f, last_x, last_y, 2*w, h);
+		}
+		*/
 	}
 
 }
