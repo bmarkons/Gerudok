@@ -17,8 +17,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 public class TreeCellRendered extends DefaultTreeCellRenderer {

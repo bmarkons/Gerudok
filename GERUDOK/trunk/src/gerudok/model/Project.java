@@ -75,6 +75,10 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 			}
 		} else {
 			document.getAllParents().remove(this);
+			
+			if(document.getAllParents().isEmpty()){
+				document.setShared(false);
+			}
 		}
 
 		// dogodila se modifikacija projekta
