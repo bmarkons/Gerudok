@@ -73,8 +73,9 @@ public class SelectState extends State{
 			sgv = (SlotGraphicView) sv;
 		else
 			return;
-
-		sgv.getStateManager().setLassoSelectState();
+		
+		if(sgv.getSelectionModel().getSelectionList().isEmpty())
+			sgv.getStateManager().setLassoSelectState();
 	}
 
 	@Override
