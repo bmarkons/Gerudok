@@ -26,7 +26,8 @@ public class GridProjectAction extends AbstractActionIcon {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JDesktopPane desktop = MainFrameGerudok.getInstance().getWorkspaceView();
+		JDesktopPane desktop = MainFrameGerudok.getInstance()
+				.getWorkspaceView();
 		JInternalFrame[] frames = MainFrameGerudok.getInstance()
 				.getWorkspaceView().getAllFrames();
 		int count = frames.length;
@@ -50,7 +51,7 @@ public class GridProjectAction extends AbstractActionIcon {
 
 		int last_x = 0;
 		int last_y = 0;
-		
+
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols && ((i * cols) + j < count); j++) {
 				JInternalFrame f = frames[(i * cols) + j];
@@ -70,12 +71,17 @@ public class GridProjectAction extends AbstractActionIcon {
 			y += h; // start the next row
 			x = 0;
 		}
-		/*
-		if (desktop.getAllFrames().length != rows*cols) {
+
+		if (desktop.getAllFrames().length != rows * cols) {
+
+			int c = rows * cols - desktop.getAllFrames().length;
+
 			JInternalFrame f = frames[desktop.getAllFrames().length - 1];
-			desktop.getDesktopManager().resizeFrame(f, last_x, last_y, 2*w, h);
+			desktop.getDesktopManager()
+					.resizeFrame(f, last_x, last_y, (c+1) * w, h);
+
 		}
-		*/
+
 	}
 
 }
