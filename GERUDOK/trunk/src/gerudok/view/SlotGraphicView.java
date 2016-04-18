@@ -1,12 +1,23 @@
 package gerudok.view;
 
+import gerudok.commands.AddCommands;
+import gerudok.gui.MainFrameGerudok;
+import gerudok.gui.dialogs.SlotGraphicDialog;
+import gerudok.model.ElementSelection;
+import gerudok.model.GraphicSlotElement;
+import gerudok.model.Project;
+import gerudok.model.Slot;
+import gerudok.model.SlotGraphic;
+import gerudok.model.element.SelectionModel;
+import gerudok.states.StateManager;
+import gerudok.view.painters.ElementPainter;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -25,18 +36,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
-
-import gerudok.commands.AddCommands;
-import gerudok.commands.DeleteCommands;
-import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.dialogs.SlotGraphicDialog;
-import gerudok.model.ElementSelection;
-import gerudok.model.GraphicSlotElement;
-import gerudok.model.Slot;
-import gerudok.model.SlotGraphic;
-import gerudok.model.element.SelectionModel;
-import gerudok.states.StateManager;
-import gerudok.view.painters.ElementPainter;
 
 
 public class SlotGraphicView extends SlotView {
@@ -419,12 +418,6 @@ public class SlotGraphicView extends SlotView {
 	// public void focusLost(FocusEvent e) {
 	// setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	// }
-
-	private Clipboard clipboard = new Clipboard("Clipboard");
-
-	public Clipboard getClipboard() {
-		return clipboard;
-	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
@@ -458,7 +451,9 @@ public class SlotGraphicView extends SlotView {
 	
 public void paste (){
 
-		Transferable clipboardContent = MainFrameGerudok.getInstance().getClipboard().getContents (MainFrameGerudok.getInstance()); 
+		Project p = (Project)slot.getParent().getParent().getParent();
+	
+		Transferable clipboardContent = p.getClipboard().getContents (p); 
 		
 		if ((clipboardContent != null) &&
 		 	(clipboardContent.isDataFlavorSupported (ElementSelection.elementFlavor))) {

@@ -1,5 +1,8 @@
 package gerudok.model;
 
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.Transferable;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,7 +16,8 @@ import javax.swing.tree.TreeNode;
 import gerudok.events.ProjectEvent;
 import gerudok.events.ProjectEvent.ProjectEventType;
 
-public class Project extends Observable implements MutableTreeNode, Serializable, Observer {
+public class Project extends Observable implements MutableTreeNode,
+		Serializable, Observer, ClipboardOwner {
 	private static final long serialVersionUID = -8713701240302899388L;
 
 	private Workspace parent = null;
@@ -63,7 +67,8 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 			document.setName("Document - " + documents.size());
 
 		// dogodila se modifikacija projekta
-		notifyObservers(new ProjectEvent(ProjectEventType.ADD_DOCUMENT, document));
+		notifyObservers(new ProjectEvent(ProjectEventType.ADD_DOCUMENT,
+				document));
 	}
 
 	public void deleteDocument(Document document) {
@@ -82,7 +87,8 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 		}
 
 		// dogodila se modifikacija projekta
-		notifyObservers(new ProjectEvent(ProjectEventType.REMOVE_DOCUMENT, document));
+		notifyObservers(new ProjectEvent(ProjectEventType.REMOVE_DOCUMENT,
+				document));
 	}
 
 	public void setName(String name) {
@@ -179,5 +185,17 @@ public class Project extends Observable implements MutableTreeNode, Serializable
 	public void notifyObservers(Object arg) {
 		setChanged();
 		super.notifyObservers(arg);
+	}
+
+	transient private Clipboard clipboard = new Clipboard("Project clipboard");
+
+	public Clipboard getClipboard() {
+		return clipboard;
+	}
+
+	@Override
+	public void lostOwnership(Clipboard clipboard, Transferable contents) {
+		// TODO Auto-generated method stub
+		
 	}
 }

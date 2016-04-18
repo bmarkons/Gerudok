@@ -1,9 +1,6 @@
 package gerudok.gui.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.datatransfer.Clipboard;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -16,7 +13,6 @@ import javax.swing.JToolBar;
 
 import gerudok.actions.manager.ActionManager;
 import gerudok.gui.MainFrameGerudok;
-import gerudok.model.ElementSelection;
 import gerudok.model.SlotGraphic;
 import gerudok.slot.actions.NewFrowney;
 import gerudok.slot.actions.NewSmiley;

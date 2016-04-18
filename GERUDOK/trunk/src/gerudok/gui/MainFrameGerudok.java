@@ -1,11 +1,20 @@
 package gerudok.gui;
 
+import gerudok.actions.manager.ActionManager;
+import gerudok.gui.segments.MenuBarGerudok;
+import gerudok.gui.segments.StatusBarGerudok;
+import gerudok.gui.segments.ToolBarGerudok;
+import gerudok.model.Workspace;
+import gerudok.tree.dragndrop.TreeTransferHandler;
+import gerudok.tree.listener.JTreeControllerGerudok;
+import gerudok.tree.view.TreeCellRendered;
+import gerudok.tree.view.TreeEditor;
+import gerudok.tree.view.TreePopUp;
+import gerudok.view.WorkspaceView;
+
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.ClipboardOwner;
-import java.awt.datatransfer.Transferable;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Locale;
@@ -22,19 +31,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
-import gerudok.actions.manager.ActionManager;
-import gerudok.gui.segments.MenuBarGerudok;
-import gerudok.gui.segments.StatusBarGerudok;
-import gerudok.gui.segments.ToolBarGerudok;
-import gerudok.model.Workspace;
-import gerudok.tree.dragndrop.TreeTransferHandler;
-import gerudok.tree.listener.JTreeControllerGerudok;
-import gerudok.tree.view.TreeCellRendered;
-import gerudok.tree.view.TreeEditor;
-import gerudok.view.WorkspaceView;
-import gerudok.tree.view.TreePopUp;
-
-public class MainFrameGerudok extends JFrame implements ClipboardOwner{
+public class MainFrameGerudok extends JFrame {
 	private static final long serialVersionUID = 2022795997717084907L;
 
 	private static MainFrameGerudok instance = null;
@@ -213,15 +210,4 @@ public class MainFrameGerudok extends JFrame implements ClipboardOwner{
 		statusBar.changeLanguage();
 	}
 
-	@Override
-	public void lostOwnership(Clipboard arg0, Transferable arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	private Clipboard clipboard=new Clipboard("Main clipboard");
-	
-	public Clipboard getClipboard() {
-		return clipboard;
-	}
 }

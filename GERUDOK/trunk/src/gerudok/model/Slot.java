@@ -15,8 +15,8 @@ public abstract class Slot extends Observable implements MutableTreeNode, Serial
 
 	private Page parent = null;
 	private String name = null;
-	private CommandManager commandManager;
-
+	transient private CommandManager commandManager;
+	
 	public Slot(Page parent) {
 		super();
 		this.commandManager = new CommandManager();
@@ -25,6 +25,9 @@ public abstract class Slot extends Observable implements MutableTreeNode, Serial
 	}
 	
 	public CommandManager getCommandManager() {
+		if(commandManager == null)
+			commandManager = new CommandManager();
+		
 		return commandManager;
 	}
 	
@@ -95,4 +98,11 @@ public abstract class Slot extends Observable implements MutableTreeNode, Serial
 		setChanged();
 		super.notifyObservers(arg);
 	}
+	
+	/*public Object readResolve() {
+		Slot s = this;
+		s.commandManager = new CommandManager();
+		
+		return s;
+	}*/
 }

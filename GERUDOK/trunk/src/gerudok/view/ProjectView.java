@@ -225,5 +225,5 @@ public class ProjectView extends JInternalFrame implements Observer {
 			SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 		}
 	}
-
+	
 }

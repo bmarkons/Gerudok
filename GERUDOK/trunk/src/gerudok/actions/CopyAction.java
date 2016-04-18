@@ -1,5 +1,12 @@
 package gerudok.actions;
 
+import gerudok.actions.manager.AbstractActionIcon;
+import gerudok.gui.dialogs.SlotGraphicDialog.GraphicSlotToolbar;
+import gerudok.model.ElementSelection;
+import gerudok.model.Project;
+import gerudok.model.Slot;
+import gerudok.view.SlotGraphicView;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -7,12 +14,6 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-
-import gerudok.actions.manager.AbstractActionIcon;
-import gerudok.gui.MainFrameGerudok;
-import gerudok.gui.dialogs.SlotGraphicDialog.GraphicSlotToolbar;
-import gerudok.model.ElementSelection;
-import gerudok.view.SlotGraphicView;
 
 @SuppressWarnings("serial")
 public class CopyAction extends AbstractActionIcon {
@@ -28,7 +29,7 @@ public class CopyAction extends AbstractActionIcon {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
 		Component[] c = ((GraphicSlotToolbar)((JComponent)e.getSource()).getParent()).getParent().getComponents();
 		
 		SlotGraphicView sgv = null;
@@ -42,8 +43,11 @@ public class CopyAction extends AbstractActionIcon {
 		if (sgv!=null) {
 			if (sgv.getSelectionModel().getSelectionListSize() != 0) {
 				
+				Slot s = sgv.getSlot();
+				Project p = (Project)s.getParent().getParent().getParent();
+				
 				ElementSelection content = new ElementSelection(sgv.getSelectionModel().getSelected());
-				MainFrameGerudok.getInstance().getClipboard().setContents(content, MainFrameGerudok.getInstance());
+				p.getClipboard().setContents(content, p);
 			}
 		}
 	}
