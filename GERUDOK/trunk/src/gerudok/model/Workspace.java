@@ -21,6 +21,14 @@ public class Workspace extends Observable implements MutableTreeNode, Serializab
 		super();
 	}
 
+	public void openProject(Project project) {
+		project.setParent(this);
+		projects.add(project);
+		project.setProjectModified(false);
+
+		notifyObservers(new WorkspaceEvent(WorkspaceEventType.OPEN_PROJECT, project));
+	}
+
 	public void addProject(Project project) {
 		project.setParent(this);
 		projects.add(project);
@@ -29,7 +37,7 @@ public class Workspace extends Observable implements MutableTreeNode, Serializab
 		if (project.getProjectFile() == null) {
 			project.setProjectModified(true);
 		}
-		
+
 		notifyObservers(new WorkspaceEvent(WorkspaceEventType.ADD_PROJECT, project));
 	}
 
@@ -90,41 +98,41 @@ public class Workspace extends Observable implements MutableTreeNode, Serializab
 	@Override
 	public void insert(MutableTreeNode child, int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(int index) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(MutableTreeNode node) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setUserObject(Object object) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeFromParent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setParent(MutableTreeNode newParent) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
-	public void notifyObservers(Object arg){
+	public void notifyObservers(Object arg) {
 		setChanged();
 		super.notifyObservers(arg);
 	}

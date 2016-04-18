@@ -16,8 +16,7 @@ import javax.swing.tree.TreeNode;
 import gerudok.events.ProjectEvent;
 import gerudok.events.ProjectEvent.ProjectEventType;
 
-public class Project extends Observable implements MutableTreeNode,
-		Serializable, Observer, ClipboardOwner {
+public class Project extends Observable implements MutableTreeNode, Serializable, Observer, ClipboardOwner {
 	private static final long serialVersionUID = -8713701240302899388L;
 
 	private Workspace parent = null;
@@ -61,14 +60,20 @@ public class Project extends Observable implements MutableTreeNode,
 		this.projectFile = projectFile;
 	}
 
+	public void importDocument(Document document) {
+		documents.add(document);
+
+		// dogodila se modifikacija projekta
+		notifyObservers(new ProjectEvent(ProjectEventType.IMPORT_DOCUMENT, document));
+	}
+
 	public void addDocument(Document document) {
 		documents.add(document);
 		if (document.getName() == null)
 			document.setName("Document - " + documents.size());
 
 		// dogodila se modifikacija projekta
-		notifyObservers(new ProjectEvent(ProjectEventType.ADD_DOCUMENT,
-				document));
+		notifyObservers(new ProjectEvent(ProjectEventType.ADD_DOCUMENT, document));
 	}
 
 	public void deleteDocument(Document document) {
@@ -80,15 +85,14 @@ public class Project extends Observable implements MutableTreeNode,
 			}
 		} else {
 			document.getAllParents().remove(this);
-			
-			if(document.getAllParents().isEmpty()){
+
+			if (document.getAllParents().isEmpty()) {
 				document.setShared(false);
 			}
 		}
 
 		// dogodila se modifikacija projekta
-		notifyObservers(new ProjectEvent(ProjectEventType.REMOVE_DOCUMENT,
-				document));
+		notifyObservers(new ProjectEvent(ProjectEventType.REMOVE_DOCUMENT, document));
 	}
 
 	public void setName(String name) {
@@ -196,6 +200,6 @@ public class Project extends Observable implements MutableTreeNode,
 	@Override
 	public void lostOwnership(Clipboard clipboard, Transferable contents) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

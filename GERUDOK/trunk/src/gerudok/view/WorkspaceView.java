@@ -15,7 +15,11 @@ import gerudok.events.WorkspaceEvent;
 import gerudok.events.WorkspaceEvent.WorkspaceEventType;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Document;
+import gerudok.model.Page;
 import gerudok.model.Project;
+import gerudok.model.Slot;
+import gerudok.model.SlotGraphic;
+import gerudok.model.SlotText;
 
 public class WorkspaceView extends JDesktopPane implements Observer {
 	private static final long serialVersionUID = -8620524935845234444L;
@@ -34,13 +38,11 @@ public class WorkspaceView extends JDesktopPane implements Observer {
 			projectView.setVisible(true);
 			project.addObserver(projectView);
 
-			ArrayList<Document> documents = eventObject.getProject()
-					.getDocuments();
-			for (Document document : documents) {
-
-				project.notifyObservers(new ProjectEvent(
-						ProjectEventType.ADD_DOCUMENT, document));
-			}
+//			ArrayList<Document> documents = eventObject.getProject().getDocuments();
+//			for (Document document : documents) {
+//
+//				project.notifyObservers(new ProjectEvent(ProjectEventType.ADD_DOCUMENT, document));
+//			}
 
 		} else if (eventObject.getType() == WorkspaceEventType.REMOVE_PROJECT) {
 
@@ -57,9 +59,43 @@ public class WorkspaceView extends JDesktopPane implements Observer {
 					}
 				}
 			}
+		} else if (eventObject.getType() == WorkspaceEventType.OPEN_PROJECT) {
+
+			ProjectView projectView = new ProjectView(project);
+			add(projectView);
+			projectView.setVisible(true);
+			project.addObserver(projectView);
+			
+			for(Document document : project.getDocuments()){
+				DocumentView documentView = new DocumentView(document);
+				projectView.addDocumentView(documentView);
+				document.addObserver(documentView);
+				for(Page page : document.getPages()){
+					PageView pageView = new PageView(page);
+					documentView.addPageView(pageView);
+					page.addObserver(pageView);
+					documentView.validate();
+					for(Slot slot : page.getSlots()){
+						SlotView slotView = null;
+						if (slot instanceof SlotGraphic) {
+							slotView = new SlotGraphicView(slot, false);
+							pageView.addSlotView(slotView);
+							slot.addObserver(slotView);
+						} else if (slot instanceof SlotText) {
+							slotView = new SlotTextView(slot, false);
+							pageView.addSlotView(slotView);
+							slot.addObserver(slotView);
+
+							if (((SlotText) slot).getText() != null) {
+								slot.notifyObservers();
+							}
+						}
+					}
+				}
+			}
+			
 		}
 
-		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance()
-				.getTree());
+		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 	}
 }

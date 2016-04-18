@@ -165,9 +165,9 @@ public class TreeTransferHandler extends TransferHandler {
 		// Ubaci sve selektovane u projekat
 		for (MutableTreeNode node : nodes) {
 			if (!(node.getParent().equals(parent)) && !parent.getDocuments().contains(node)) {
-				parent.addDocument((Document) node);
-				((Document)node).setShared(true);
-				((Document)node).addParent(parent);
+				parent.importDocument((Document) node);
+				((Document) node).setShared(true);
+				((Document) node).addParent(parent);
 			} else {
 				return false;
 			}

@@ -22,6 +22,7 @@ public class ProjectEvent {
 	public enum ProjectEventType{
 		ADD_DOCUMENT,
 		REMOVE_DOCUMENT,
-		RENAME_PROJECT
+		RENAME_PROJECT,
+		IMPORT_DOCUMENT
 	}
 }

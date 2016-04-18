@@ -65,6 +65,7 @@ public class OpenProjectAction extends AbstractActionIcon {
 		project.setProjectFile(projectFile);
 		for (Document doc : parseResult.getDocuments()) {
 			doc.setParent(project);
+			doc.addObserver(project);
 			project.addDocument(doc);
 		}
 
@@ -72,7 +73,7 @@ public class OpenProjectAction extends AbstractActionIcon {
 		TreePath path = tree.getSelectionPath();
 		tree.expandPath(path);
 
-		((Workspace) tree.getModel().getRoot()).addProject(project);
+		((Workspace) tree.getModel().getRoot()).openProject(project);
 		
 	}
 }

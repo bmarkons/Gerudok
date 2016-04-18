@@ -1,13 +1,14 @@
 package gerudok.view;
 
-import gerudok.events.DocumentEvent;
-import gerudok.events.DocumentEvent.DocumentEventType;
 import gerudok.events.ProjectEvent;
 import gerudok.events.ProjectEvent.ProjectEventType;
 import gerudok.gui.MainFrameGerudok;
 import gerudok.model.Document;
 import gerudok.model.Page;
 import gerudok.model.Project;
+import gerudok.model.Slot;
+import gerudok.model.SlotGraphic;
+import gerudok.model.SlotText;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -74,8 +75,8 @@ public class ProjectView extends JInternalFrame implements Observer {
 
 					DefaultTreeModel m = (DefaultTreeModel) MainFrameGerudok.getInstance().getTree().getModel();
 					TreeNode[] n = m.getPathToRoot(document);
-					
-					//Zameni u putanji projekat
+
+					// Zameni u putanji projekat
 					n[1] = ProjectView.this.project;
 
 					MainFrameGerudok.getInstance().getTree().scrollPathToVisible(new TreePath(n));
@@ -174,16 +175,18 @@ public class ProjectView extends JInternalFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		ProjectEvent eventObject = (ProjectEvent) arg;
+		Document document = eventObject.getDocument();
 
 		if (eventObject.getType() == ProjectEventType.ADD_DOCUMENT) {
 
-			DocumentView docView = new DocumentView(eventObject.getDocument());
+			DocumentView docView = new DocumentView(document);
 			addDocumentView(docView);
-			eventObject.getDocument().addObserver(docView);
+			document.addObserver(docView);
 
-			ArrayList<Page> pages = eventObject.getDocument().getPages();
-			for (Page page : pages)
-				eventObject.getDocument().notifyObservers(new DocumentEvent(DocumentEventType.ADD_PAGE, page));
+			// ArrayList<Page> pages = eventObject.getDocument().getPages();
+			// for (Page page : pages)
+			// eventObject.getDocument().notifyObservers(new
+			// DocumentEvent(DocumentEventType.ADD_PAGE, page));
 
 		} else if (eventObject.getType() == ProjectEventType.REMOVE_DOCUMENT) {
 
@@ -192,7 +195,7 @@ public class ProjectView extends JInternalFrame implements Observer {
 			int totalTabs = tabbedPane.getTabCount();
 			for (int i = 0; i < totalTabs; i++) {
 				DocumentView docView = (DocumentView) tabbedPane.getComponentAt(i);
-				if (docView.getDocument().equals(eventObject.getDocument())) {
+				if (docView.getDocument().equals(document)) {
 					toRemove.add(docView);
 				}
 			}
@@ -202,6 +205,32 @@ public class ProjectView extends JInternalFrame implements Observer {
 
 		} else if (eventObject.getType() == ProjectEventType.RENAME_PROJECT) {
 			this.title = project.getName();
+		} else if (eventObject.getType() == ProjectEventType.IMPORT_DOCUMENT) {
+			DocumentView docView = new DocumentView(document);
+			addDocumentView(docView);
+			document.addObserver(docView);
+			for (Page page : document.getPages()) {
+				PageView pageView = new PageView(page);
+				docView.addPageView(pageView);
+				page.addObserver(pageView);
+				docView.validate();
+				for (Slot slot : page.getSlots()) {
+					SlotView slotView = null;
+					if (slot instanceof SlotGraphic) {
+						slotView = new SlotGraphicView(slot, false);
+						pageView.addSlotView(slotView);
+						slot.addObserver(slotView);
+					} else if (slot instanceof SlotText) {
+						slotView = new SlotTextView(slot, false);
+						pageView.addSlotView(slotView);
+						slot.addObserver(slotView);
+
+						if (((SlotText) slot).getText() != null) {
+							slot.notifyObservers();
+						}
+					}
+				}
+			}
 		}
 
 		SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
@@ -225,5 +254,5 @@ public class ProjectView extends JInternalFrame implements Observer {
 			SwingUtilities.updateComponentTreeUI(MainFrameGerudok.getInstance().getTree());
 		}
 	}
-	
+
 }

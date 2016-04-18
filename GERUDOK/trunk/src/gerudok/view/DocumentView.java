@@ -120,9 +120,9 @@ public class DocumentView extends JScrollPane implements Observer {
 			addPageView(pageView);
 			eventObject.getPage().addObserver(pageView);
 			
-			ArrayList<Slot> slots = eventObject.getPage().getSlots();
-			for(Slot slot:slots)
-				eventObject.getPage().notifyObservers(new PageEvent(PageEventType.ADD_SLOT, slot));
+//			ArrayList<Slot> slots = eventObject.getPage().getSlots();
+//			for(Slot slot:slots)
+//				eventObject.getPage().notifyObservers(new PageEvent(PageEventType.ADD_SLOT, slot));
 			
 			validate();
 			

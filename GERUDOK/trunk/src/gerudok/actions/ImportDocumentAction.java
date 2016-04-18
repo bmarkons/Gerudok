@@ -63,7 +63,7 @@ public class ImportDocumentAction extends AbstractActionIcon {
 			Project project = (Project) selectedComponent;
 			doc.setParent(project);
 			
-			project.addDocument(doc);
+			project.importDocument(doc);
 		}else if(selectedComponent instanceof Workspace){
 			// TODO
 		}

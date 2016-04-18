@@ -21,6 +21,7 @@ public class WorkspaceEvent {
 
 	public enum WorkspaceEventType{
 		ADD_PROJECT,
-		REMOVE_PROJECT
+		REMOVE_PROJECT,
+		OPEN_PROJECT
 	}
 }
