@@ -11,6 +11,7 @@ public class StateManager {
 	private FrowneyState frowneyState;
 	private SelectState selectState;
 	private LassoSelectState lassoSelectState;
+	private MoveState moveState;
 
 	public StateManager(SlotView view) {
 		starState = new StarState(view);
@@ -18,6 +19,7 @@ public class StateManager {
 		frowneyState = new FrowneyState(view);
 		selectState = new SelectState(view);
 		lassoSelectState = new LassoSelectState(view);
+		moveState = new MoveState(view);
 		currentState = selectState;
 	}
 
@@ -43,5 +45,13 @@ public class StateManager {
 
 	public State getCurrentState() {
 		return currentState;
+	}
+	
+	public void setMoveState() {
+		currentState = moveState;
+	}
+	
+	public State getMoveState() {
+		return moveState;
 	}
 }

@@ -1,5 +1,6 @@
 package gerudok.states;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -20,8 +21,29 @@ public class LassoSelectState extends State {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		SlotGraphicView sgv;
 
+		if (sv instanceof SlotGraphicView)
+			sgv = (SlotGraphicView) sv;
+		else
+			return;
+
+		Point position = e.getPoint();
+		int elementIndex = ((SlotGraphic) sgv.getSlot()).getElementAtPosition(position);
+		if (elementIndex == -1) {
+			sgv.getSelectionModel().removeAllFromSelectionList();
+			sgv.getStateManager().setSelectState();
+			sgv.repaint();
+		} else {
+			if(sgv.getSelectionModel().getSelected().isEmpty())
+			{
+				sgv.getSelectionModel().removeAllFromSelectionList();
+				sgv.getStateManager().setSelectState();
+				sgv.repaint();
+			}
+			else
+				sgv.getStateManager().setMoveState();;
+		}
 	}
 
 	@Override
@@ -71,7 +93,11 @@ public class LassoSelectState extends State {
 
 		sgv.setSelectionRectangle(new Rectangle2D.Double(0, 0, 0, 0));
 		sgv.repaint();
-		sgv.getStateManager().setSelectState();
+		
+		/*if(sgv.getSelectionModel().getSelected().isEmpty())
+			sgv.getStateManager().setSelectState();
+		else
+			sgv.getStateManager().setMoveState();*/
 	}
 
 	@Override

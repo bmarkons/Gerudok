@@ -76,6 +76,8 @@ public class SelectState extends State{
 		
 		if(sgv.getSelectionModel().getSelectionList().isEmpty())
 			sgv.getStateManager().setLassoSelectState();
+		else
+			sgv.getStateManager().setMoveState();
 	}
 
 	@Override

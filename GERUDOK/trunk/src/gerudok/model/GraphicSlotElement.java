@@ -16,6 +16,7 @@ public class GraphicSlotElement extends Observable implements MutableTreeNode, S
 	private SlotGraphic parent = null;
 	private String name = null;
 	private Point position;
+	private double size;
 	private ElementPainter painter = null;
 
 	public GraphicSlotElement(SlotGraphic parent, Point position) {
@@ -25,6 +26,14 @@ public class GraphicSlotElement extends Observable implements MutableTreeNode, S
 	
 	public String toString() {
 		return this.name;
+	}
+	
+	public void setSize(double size) {
+		this.size = size;
+	}
+	
+	public double getSize() {
+		return size;
 	}
 	
 	public void setPainter(ElementPainter painter) {

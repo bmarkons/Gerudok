@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.DefaultSingleSelectionModel;
-import javax.swing.event.EventListenerList;
 
 import gerudok.model.GraphicSlotElement;
 
@@ -16,14 +15,10 @@ public class SelectionModel extends DefaultSingleSelectionModel {
 
 	public void addToSelectionList(GraphicSlotElement element) {
 		selectionList.add(element);
-
-		//fireUpdatePerformed();
 	}
 
 	public void addToSelectionList(ArrayList<GraphicSlotElement> list) {
 		selectionList.addAll(list);
-
-		//fireUpdatePerformed();
 	}
 
 	public int getSelectionListSize() {
@@ -40,14 +35,10 @@ public class SelectionModel extends DefaultSingleSelectionModel {
 
 	public void removeFromSelectionList(GraphicSlotElement element) {
 		selectionList.remove(element);
-
-		// fireUpdatePerformed();
 	}
 
 	public void removeAllFromSelectionList() {
 		selectionList.clear();
-
-		// fireUpdatePerformed();
 	}
 
 	public ArrayList<GraphicSlotElement> getSelectionList() {
