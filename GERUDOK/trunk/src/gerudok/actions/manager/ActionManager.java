@@ -8,6 +8,7 @@ import gerudok.actions.CommandRedoAction;
 import gerudok.actions.CommandUndoAction;
 import gerudok.actions.CopyAction;
 import gerudok.actions.CutAction;
+import gerudok.actions.DeleteDialogAction;
 import gerudok.actions.DeleteNode;
 import gerudok.actions.DisplayProject;
 import gerudok.actions.GridProjectAction;
@@ -54,6 +55,8 @@ public class ActionManager {
 	private PasteAction paste;
 
 	private ImportDocumentAction importDoc;
+	
+	private DeleteDialogAction deleteDialog;
 
 	private static ActionManager instance = null;
 
@@ -83,6 +86,8 @@ public class ActionManager {
 		paste = new PasteAction(AbstractActionIcon.small);
 
 		importDoc = new ImportDocumentAction(AbstractActionIcon.small);
+		
+		deleteDialog = new DeleteDialogAction(AbstractActionIcon.small);
 	}
 
 	public AboutAction getAbout() {
@@ -176,6 +181,10 @@ public class ActionManager {
 	public ImportDocumentAction getImportAction() {
 		return importDoc;
 	}
+	
+	public DeleteDialogAction getDeleteDialog() {
+		return deleteDialog;
+	}
 
 	public void changeLanguage() {
 		ResourceBundle rb = MainFrameGerudok.getInstance().getResourceBundle();
@@ -242,6 +251,9 @@ public class ActionManager {
 
 		importDoc.putValue(AbstractActionIcon.NAME, rb.getString("Import"));
 		importDoc.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("ImportH"));
+		
+		deleteDialog.putValue(AbstractActionIcon.NAME, rb.getString("Delete"));
+		deleteDialog.putValue(AbstractActionIcon.SHORT_DESCRIPTION, rb.getString("DeleteH"));
 	}
 
 	public static ActionManager getInstance() {

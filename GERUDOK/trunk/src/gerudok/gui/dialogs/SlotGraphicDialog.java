@@ -52,6 +52,7 @@ public class SlotGraphicDialog extends JDialog implements EventListener {
 
 		add(toolBar, BorderLayout.WEST);
 		add(view, BorderLayout.CENTER);
+		
 	}
 
 	public class GraphicSlotToolbar extends JToolBar {
@@ -85,6 +86,10 @@ public class SlotGraphicDialog extends JDialog implements EventListener {
 			add(ActionManager.getInstance().getCopyaction());
 			add(ActionManager.getInstance().getCutaction());
 			add(ActionManager.getInstance().getPasteaction());
+			
+			addSeparator();
+			
+			add(ActionManager.getInstance().getDeleteDialog());
 		}
 	}
 

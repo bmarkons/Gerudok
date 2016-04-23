@@ -1,5 +1,6 @@
 package gerudok.model;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.Enumeration;
@@ -16,7 +17,7 @@ public class GraphicSlotElement extends Observable implements MutableTreeNode, S
 	private SlotGraphic parent = null;
 	private String name = null;
 	private Point position;
-	private double size;
+	private Dimension size;
 	private ElementPainter painter = null;
 
 	public GraphicSlotElement(SlotGraphic parent, Point position) {
@@ -28,11 +29,11 @@ public class GraphicSlotElement extends Observable implements MutableTreeNode, S
 		return this.name;
 	}
 	
-	public void setSize(double size) {
+	public void setSize(Dimension size) {
 		this.size = size;
 	}
 	
-	public double getSize() {
+	public Dimension getSize() {
 		return size;
 	}
 	
