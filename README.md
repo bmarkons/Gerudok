@@ -1,6 +1,2 @@
 # Patterns used
-Command
-State
-MVC
-Observer
-Singleton
+Command, State, MVC, Observer, Singleton
